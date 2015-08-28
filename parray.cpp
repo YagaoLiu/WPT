@@ -88,16 +88,7 @@ unsigned int parray ( float ** x, unsigned int n, unsigned int m, float z, unsig
 		delete[] tempPT;
 	}
 	
-	unsigned int lvp = 0;
-	float max_prob = 1;
-	for ( unsigned int i = 0; i < n && max_prob >= 1/z ; i++ )
-	{
-		max_prob = max_prob * maximum ( x[i], m );
-		if ( max_prob >= 1/z )
-			lvp ++;
-	}
-
-	P[0] = lvp;
+	P[0] = n;
 
 	for ( unsigned int j = 1; j < n; j++ )
 	{
