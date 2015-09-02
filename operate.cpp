@@ -4,23 +4,22 @@
 
 using namespace std;
 
-float maximum ( float * x, unsigned int m )
+double maximum ( double * x, unsigned int m )
 {
-	float max = 0;
+	double max = 0;
 	for ( unsigned int i = 0; i < m; i++ )
 		if ( max < x[i] )
 			max = x[i];
 	return max;
 }
 
-char getLetter ( float *x, unsigned int m )
+unsigned int getLetter ( double *x, unsigned int m )
 {
-	float max = maximum ( x, m );
+	double max = maximum ( x, m );
 	for ( unsigned int i = 0; i < m; i++ )
 		if ( x[i] == max )
-			return 'a' + i;
+			return i;
 }
-
 
 int findpi ( unsigned int a, vector < unsigned int > sp )
 {
@@ -37,17 +36,17 @@ int findpi ( unsigned int a, vector < unsigned int > sp )
 	return -1;
 }
 
-unsigned int compareBP ( float * x, float * y, unsigned int m )
+unsigned int compareBP ( double * x, double * y, unsigned int m )
 {
 	for ( unsigned int i = 0; i < m; i++ )
 		if ( x[i] > 0 && y[i] > 0 )
 		{
-			return i + 1;
+			return i;
 		}
-	return 0;
+	return m;
 }
 
-unsigned int branchBP ( float * x, float * y, unsigned int m, vector < unsigned int > *branch )
+unsigned int branchBP ( double * x, double * y, unsigned int m, vector < unsigned int > *branch )
 {
 	unsigned int num_branch = 0;
 	for ( int i = 0; i < m; i++ )

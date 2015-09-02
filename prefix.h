@@ -1,3 +1,3 @@
-#include <string>
+#include <vector>
 using namespace std;
-unsigned int prefix ( string x, unsigned int * pref );
+unsigned int prefix ( vector < unsigned int > x, unsigned int * pref );

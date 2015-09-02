@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "prefix.h"
 
 using namespace std;
 
-unsigned int prefix ( string x, unsigned int * pref )
+unsigned int prefix ( vector < unsigned int > x, unsigned int * pref )
 {
-	unsigned int n = x.length();		//get the length of string.
+	unsigned int n = x.size();		//get the length of string.
 	
 	pref[0] = n;
 

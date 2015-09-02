@@ -1,1 +1,1 @@
-unsigned int wptable ( float **x, unsigned n, unsigned int m, float z, unsigned int * WP )
+unsigned int wptable ( double **x, unsigned int n, unsigned int m, double z, unsigned int * WP );

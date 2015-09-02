@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "global.h"
 #include "operate.h"
@@ -10,27 +11,16 @@ using namespace std;
 
 extern StringColour colx;
 
-unsigned int parray ( float ** x, unsigned int n, unsigned int m, float z, unsigned int * P )
+unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned int * P )
 {
-	/* construct a string xx, using unique letter for each black position. */
-	string xx;
-	char ul = '!';
-	for ( unsigned int i = 0; i < n; i++ )
-	{
-		if ( colx.colour[i] == 'b' )
-		{
-			xx.push_back ( ul );
-			ul ++;
-		}
-		else
-		{
-			xx.push_back ( getLetter ( x[i], m ) );
-		}
-	}
-
+	vector < unsigned int > xx = colx.stringxx;
+	unsigned int ul = m + colx.bpos.size() + 1;
 	/* construct the set of string : x'$xx */
-	vector < string > xp;
-	vector < string > fragment;			//save the fragments x' (the strings between two neighboor black position )
+	vector < unsigned int > :: iterator it_xx;
+	it_xx = xx.begin();
+
+	vector < vector < unsigned int > > xp;
+	vector < vector < unsigned int > > fragment;			//save the fragments x' (the strings between two neighboor black position )
 	vector < unsigned int > frag_start;			//save the start position of each fragment
 	for ( unsigned int i = 0; i < colx.bpos.size() + 1; i++ )
 	{
@@ -42,7 +32,7 @@ unsigned int parray ( float ** x, unsigned int n, unsigned int m, float z, unsig
 			}
 			else if ( i == colx.bpos.size() )
 			{
-				frag_length = xx.length() - colx.bpos[i-1] - 1;
+				frag_length = xx.size() - colx.bpos[i-1] - 1;
 				if ( frag_length == 0 )
 					frag_start.push_back ( colx.bpos[i] );
 				else
@@ -53,14 +43,14 @@ unsigned int parray ( float ** x, unsigned int n, unsigned int m, float z, unsig
 				frag_length = colx.bpos[i] - colx.bpos[i-1] - 1;
 				frag_start.push_back ( colx.bpos[i-1] + 1 );
 			}
-			string buffer;
-			buffer.assign ( xx, frag_start[i], frag_length );		//get x'
+			vector  < unsigned int > buffer;
+			buffer.assign ( it_xx + frag_start[i], it_xx + frag_start[i] + frag_length );		//get x'
 			fragment.push_back ( buffer );
 	}
 	/* remove the empty fragments */
 	for ( unsigned int i = 0; i < fragment.size(); i++ )
 	{
-		if ( fragment[i].length() == 0 )
+		if ( fragment[i].size() == 0 )
 		{
 			fragment.erase ( fragment.begin() + i );
 			frag_start.erase ( frag_start.begin() + i );
@@ -69,7 +59,13 @@ unsigned int parray ( float ** x, unsigned int n, unsigned int m, float z, unsig
 	
 	/* construct x'$xx */
 	for ( unsigned int i = 0; i < fragment.size(); i++ )
-		xp.push_back ( fragment[i] + ul + xx );
+	{
+		vector < unsigned int > temp;		
+		temp = fragment[i];										//we have a temporary array same as x'[i]
+		temp.push_back ( ul );									//we add the unique letter ($) to the end of the temp array
+		temp.insert ( temp.end(), xx.begin(), xx.end() );		//we add xx to the end of the temp array, so now it is x'$xx
+		xp.push_back ( temp );									//we add this array to the set of string x'$xx
+	}
 
 	/* compute prefix table for each x'$xx */
 	unsigned int ** ptset = NULL;
@@ -78,28 +74,32 @@ unsigned int parray ( float ** x, unsigned int n, unsigned int m, float z, unsig
 	for ( unsigned int i = 0; i < xp.size(); i++ )
 	{
 		unsigned int * tempPT = NULL;
-		tempPT = new unsigned int [ xp[i].length() ];
+		tempPT = new unsigned int [ xp[i].size() ];
 		ptset[i] = new unsigned int [ n ];
 		if ( prefix ( xp[i], tempPT ) )
 		{
 			for ( unsigned int j = 0; j < n; j++ )
-				ptset[i][j] = tempPT[j + fragment[i].length() + 1];		//just save the prefix table from the beginning of string xx part.
+				ptset[i][j] = tempPT[j + fragment[i].size() + 1];		//just save part of the prefix table, from the beginning of string xx
 		}
 		delete[] tempPT;
 	}
-	
+
 	P[0] = n;
+
+	for ( unsigned int i = 1; i < n; i++ )
+		P[i] = 0;
 
 	for ( unsigned int j = 1; j < n; j++ )
 	{
 		for ( unsigned int i = 0; i < n - j; i++ )
-		{
+		{	
+
 			unsigned int pos_u = i;
 			unsigned int pos_v = j + i;
 			if ( colx.colour[pos_u] == 'b' || colx.colour[pos_v] == 'b' )
 				P[j] ++;
 			else
-			{
+			{	
 				int pi = 0;
 				if ( findpi ( pos_u, frag_start ) >= 0 )
 				{

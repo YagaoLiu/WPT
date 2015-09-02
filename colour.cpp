@@ -10,12 +10,12 @@ using namespace std;
 
 StringColour colx;
 
-unsigned int colour ( float ** x, unsigned int n, unsigned int m, float z )
+unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z )
 {
 	/**Colouring**/
 	for ( unsigned int i = 0; i < n; i++ )
 	{
-		float max = maximum ( x[i], m );
+		double max = maximum ( x[i], m );
 		if ( max == 1 )
 			colx.colour.push_back ('w');
 		else if ( max > 1 - 1/z )
@@ -32,6 +32,21 @@ unsigned int colour ( float ** x, unsigned int n, unsigned int m, float z )
 			for ( unsigned int j = 0; j < m; j++ )
 				if ( x[i][j] < 1/z )
 					x[i][j] = 0;
+		}
+	}
+
+	/**Get a weight string, with the correct letter at the white & grey position, and unique letter at black position**/
+	unsigned int ul = m;
+	for ( unsigned int i = 0; i < n; i++ )
+	{
+		if( colx.colour[i] != 'b' )
+		{
+			colx.stringxx.push_back ( getLetter( x[i], m ) );
+		}
+		else
+		{
+			colx.stringxx.push_back ( ul );
+			ul ++;
 		}
 	}
 
@@ -55,7 +70,7 @@ unsigned int colour ( float ** x, unsigned int n, unsigned int m, float z )
 	}
 
 	/**Computing FP array**/
-	float fp = 1;
+	double fp = 1;
 	for ( unsigned int i = 0; i < n; i++ )
 	{
 		if ( colx.colour[i] == 'b' )

@@ -10,19 +10,30 @@ using namespace std;
 
 extern StringColour colx;
 
-unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigned int lcve, unsigned int P, Factor * u, Factor * v )
+unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsigned int lcve, unsigned int P, Factor * u, Factor * v )
 {
-	unsigned char letter;
-	unsigned int compare;
+	unsigned int letter;
 	unsigned int span;
 	unsigned int old_uend;
 	unsigned int old_vend;
-
-	while ( compareBP ( x[u->end], x[v->end], m ) )
+	while ( compareBP ( x[u->end], x[v->end], m ) < m )
 	{
-
 		if ( lcve == P )
 			return lcve;
+		if ( v->end == n - 1 )
+		{
+			for ( unsigned int i = 0; i < m; i++ )
+			{
+				double pcheck_u = u->p * x[u->end][i];
+				double pcheck_v = v->p * x[v->end][i];
+				if ( pcheck_u > 1/z && pcheck_v > 1/z )
+				{
+					lcve ++;
+					return lcve;
+				}
+			}
+			return lcve;
+		}
 		if ( colx.colour[u->end] == 'b' && colx.colour[v->end] == 'b' )
 		{
 			unsigned int num_branch;
@@ -33,23 +44,22 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 			Factor u_branch[num_branch];
 			Factor v_branch[num_branch];
 
-			for ( int i = 0; i < num_branch; i++ )
+			for ( unsigned int i = 0; i < num_branch; i++ )
 			{
-				compare = branch[i];
-				letter = 'a' + compare;
-				float pcheck_u = u->p * x[u->end][compare];
-				float pcheck_v = v->p * x[v->end][compare];
+				letter = branch[i];
+				double pcheck_u = u->p * x[u->end][letter];
+				double pcheck_v = v->p * x[v->end][letter];
 
 				if ( pcheck_u < 1/z || pcheck_v < 1/z )
 					lcve_branch.push_back ( lcve );
 				else
 				{
 					/* construct two new factors for u and v */
-					u_branch[i] = u;
-					v_branch[i] = v;
+					u_branch[i] = *u;
+					v_branch[i] = *v;
 
 					/* add the new black position in factor u & v */
-					u_bracnh[i].bpp.push_back ( u->end );
+					u_branch[i].bpp.push_back ( u->end );
 					u_branch[i].bpset.push_back ( letter );
 					u_branch[i].l ++;
 
@@ -62,10 +72,16 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 					else
 						span = colx.BP[v->end] - v->end;
 
+					if ( span + lcve > P )
+						span = P - lcve;
+
+					u_branch[i].end = u->end + span;
+					v_branch[i].end = v->end + span;
+
 					if ( span > 1 )
 					{
-						u_branch[i].p = u->p * x[u->end][letter] * colx.FP[ new_u[i].end - 1];
-						v_branch[i].p = v->p * x[v->end][letter] * colx.FP[ new_v[i].end - 1];
+						u_branch[i].p = u->p * x[u->end][letter] * colx.FP[ u_branch[i].end - 1];
+						v_branch[i].p = v->p * x[v->end][letter] * colx.FP[ v_branch[i].end - 1];
 					}
 					else
 					{
@@ -74,7 +90,7 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 					}
 
 					lcve = lcve + span;
-					lcve_branch[i] = LCVE( x, n, m, z, lcve, P, &u_branch[i], &v_branch[i] );
+					lcve_branch.push_back ( LCVE( x, n, m, z, lcve, P, &u_branch[i], &v_branch[i] ) );
 				}
 			}
 
@@ -97,53 +113,53 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 
 				/* update the two factor u & v */
 				u->end = u_branch[choose_branch].end;
-				u->bpp.insert ( u->bpp.end(), u_branch[choose_branch].begin(), u_branch[choose_branch].end() );
-				u->bpset += u_branch[choose_branch].bpset;
+				u->bpp.insert ( u->bpp.end(), u_branch[choose_branch].bpp.begin(), u_branch[choose_branch].bpp.end() );
+				u->bpset.insert ( u->bpset.end(), u_branch[choose_branch].bpset.begin(), u_branch[choose_branch].bpset.end() );
 				u->l += u_branch[choose_branch].l;
 				u->p = u_branch[choose_branch].p;
 
 				v->end = v_branch[choose_branch].end;
-				v->bpp.insert ( v->bpp.end(), u_branch[choose_branch].begin(), u_branch[choose_branch].end() );
-				v->bpset += v_branch[choose_branch].bpset;
+				v->bpp.insert ( v->bpp.end(), u_branch[choose_branch].bpp.begin(), u_branch[choose_branch].bpp.end() );
+				v->bpset.insert ( v->bpset.end(), v_branch[choose_branch].bpset.begin(), v_branch[choose_branch].bpset.end() );
 				v->l += v_branch[choose_branch].l;
 				v->p = v_branch[choose_branch].p;
 			}
 		}
 		else
 		{
-			compare = compareBP ( x[u->end], x[v->end], m ) - 1;
-			letter = 'a' + compare;
-			float pcheck_u = u->p * x[u->end][compare];
-			float pcheck_v = v->p * x[v->end][compare];
+			letter = compareBP ( x[u->end], x[v->end], m );
+			float pcheck_u = u->p * x[u->end][letter];
+			float pcheck_v = v->p * x[v->end][letter];
 			if ( pcheck_u < 1/z || pcheck_v < 1/z )
 				break;
 			else
 			{
 				if ( colx.colour[u->end] != 'b' && colx.colour[v->end] != 'b' )
 				{
+
 					/* skip to the next black position */
 					if ( ( colx.BP[u->end] - u->end ) < ( colx.BP[v->end] - v->end ) )
 						span = colx.BP[u->end] - u->end;
 					else
 						span = colx.BP[v->end] - v->end;
+
 					if ( span + lcve > P )
-						span = p - lcve;
+						span = P - lcve;
 
 					old_uend = u->end;
 					old_vend = v->end;
 					u->end += span;
 					v->end += span;
-
 					/* update the probability */
 					if ( span > 1 )
 					{
-						u->p = u->p * x[old_uend][compare] * colx.FP[u->end - 1] / colx.FP[old_uend];
-						v->p = v->p * x[old_vend][compare] * colx.FP[u->end - 1] / colx.FP[old_vend];
+						u->p = u->p * x[old_uend][letter] * colx.FP[u->end - 1] / colx.FP[old_uend];
+						v->p = v->p * x[old_vend][letter] * colx.FP[u->end - 1] / colx.FP[old_vend];
 					}
 					else
 					{
-						u->p = u->p * x[old_uend][compare];
-						v->p = v->p * x[old_vend][compare];
+						u->p = u->p * x[old_uend][letter];
+						v->p = v->p * x[old_vend][letter];
 					}
 
 					lcve = lcve + span;
@@ -153,14 +169,14 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 					/* add the new black position to factor u */
 					u->bpp.push_back ( u->end );
 					u->bpset.push_back ( letter );
-				
+
 					/* skip to the next black position */
 					if ( ( colx.BP[u->end] - u->end ) < ( colx.BP[v->end] - v->end ) )
 						span = colx.BP[u->end] - u->end;
 					else
 						span = colx.BP[v->end] - v->end;
 					if ( span + lcve > P )
-						span = p - lcve;
+						span = P - lcve;
 
 					old_uend = u->end;
 					old_vend = v->end;
@@ -170,13 +186,13 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 					/* update the probability */
 					if ( span > 1 )
 					{
-						u->p = u->p * x[old_uend][compare] * colx.FP[u->end - 1];
-						v->p = v->p * x[old_vend][compare] * colx.FP[v->end - 1] / colx.FP[old_vend];
+						u->p = u->p * x[old_uend][letter] * colx.FP[u->end - 1];
+						v->p = v->p * x[old_vend][letter] * colx.FP[v->end - 1] / colx.FP[old_vend];
 					}
 					else
 					{
-						u->p = u->p * x[old_uend][compare];
-						v->p = v->p * x[old_vend][compare];
+						u->p = u->p * x[old_uend][letter];
+						v->p = v->p * x[old_vend][letter];
 					}
 
 					lcve = lcve + span;
@@ -193,7 +209,7 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 					else
 						span = colx.BP[v->end] - v->end;
 					if ( span + lcve > P )
-						span = p - lcve;
+						span = P - lcve;
 
 					old_uend = u->end;
 					old_vend = v->end;
@@ -203,13 +219,13 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 					/* update the probability */
 					if ( span > 1 )
 					{
-						u->p = u->p * x[old_uend][compare] * colx.FP[u->end - 1] / colx.FP[old_uend];
-						v->p = v->p * x[old_vend][compare] * colx.FP[v->end - 1];
+						u->p = u->p * x[old_uend][letter] * colx.FP[u->end - 1] / colx.FP[old_uend];
+						v->p = v->p * x[old_vend][letter] * colx.FP[v->end - 1];
 					}
 					else
 					{
-						u->p = u->p * x[old_uend][compare];
-						v->p = v->p * x[old_vend][compare];
+						u->p = u->p * x[old_uend][letter];
+						v->p = v->p * x[old_vend][letter];
 					}
 
 					lcve = lcve + span;
@@ -217,7 +233,6 @@ unsigned int LCVE ( float ** x, unsigned int n, unsigned int m, float z, unsigne
 			}
 		}
 	}
-	
 	return lcve;
+}
 
-			

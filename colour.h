@@ -1,1 +1,1 @@
-unsigned int colour ( float ** x, unsigned int n, unsigned int m, float z );
+unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z );
