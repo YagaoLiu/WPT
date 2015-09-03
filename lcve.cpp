@@ -16,6 +16,8 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 	unsigned int span;
 	unsigned int old_uend;
 	unsigned int old_vend;
+	if ( v->end == n )
+		return lcve;
 	while ( compareBP ( x[u->end], x[v->end], m ) < m )
 	{
 		if ( lcve == P )
@@ -169,6 +171,7 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 					/* add the new black position to factor u */
 					u->bpp.push_back ( u->end );
 					u->bpset.push_back ( letter );
+					u->l ++;
 
 					/* skip to the next black position */
 					if ( ( colx.BP[u->end] - u->end ) < ( colx.BP[v->end] - v->end ) )
@@ -202,6 +205,7 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 					/* add the new black position to factor v */
 					v->bpp.push_back ( v->end );
 					v->bpset.push_back ( letter );
+					v->l ++;
 
 					/* skip to the next black position */
 					if ( ( colx.BP[u->end] - u->end ) < ( colx.BP[v->end] - v->end ) )
@@ -232,6 +236,8 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 				}
 			}
 		}
+		if ( v->end == n )
+			break;
 	}
 	return lcve;
 }

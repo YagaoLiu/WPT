@@ -17,7 +17,6 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 	unsigned int nextBP = colx.BP[start];
 	unsigned int endposition;
 	double newp = p;
-	
 	if ( nextBP == n )
 	{
 		for ( unsigned int i = start; i < n; i++ )
@@ -34,8 +33,6 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 		STable->insert ( pair < vector < unsigned int >, unsigned int > ( BPset, endposition ) );
 		return 1;
 	}
-	if ( start == 8 )
-		cout << colx.colour[start] << endl;
 	if ( colx.colour[start] == 'b' )
 	{
 		for ( unsigned int i = 0; i < m; i++ )
@@ -50,8 +47,10 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 		}
 	}
 	if ( colx.colour[nextBP - 1] != 'b' )
-		newp = colx.FP[nextBP - 1] * p;
-	if ( newp < 1/z )
+	{
+		p = colx.FP[nextBP - 1] * p;
+	}
+	if ( p < 1/z )
 	{
 		for ( unsigned int i = start; i < nextBP; i++ )
 		{
@@ -66,11 +65,11 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 	{
 		for ( int i = 0; i < m; i++ )
 		{
-			newp = newp * x[nextBP][i];
+			newp = p * x[nextBP][i];
 			if ( newp > 1/z )
 			{
 				vector < unsigned int > newBPset = BPset;
-				newBPset.push_back ( i + 1 );
+				newBPset.push_back ( i );
 				PrefixMap ( x, n, m, z, nextBP + 1, newp, newBPset, STable );
 			}
 		}
@@ -118,13 +117,9 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		v.end = i;
 		v.p = 1;
 		v.l = 0;
-		cout << "i:"<<i<<endl;
 		int flag = 1;
 		unsigned int lcve_wp = 0;
 		lcve_wp = LCVE ( x, n, m, z, lcve_wp, Parray[i], &u, &v );
-
-		cout << "before lcve"<<endl;
-		cout << "i=" << i << "	lcve:" << lcve_wp << "	g:"<< g<< endl;
 		/* check the probability fail caused by grey position, and get the longest valid extension */
 		unsigned int lve_u = lcve_wp;
 		unsigned int lve_v = lcve_wp;
@@ -151,7 +146,10 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 			else
 			{
 				/* if we cannot find the bp set in the table, we compute the lve from the end of v, go back one by one and check the probability. And then add it to the table */
-				for ( unsigned int j = v.end; j > v.bpp[v.l - 1]; j-- )
+				unsigned int j = v.end;
+				if ( colx.colour[j] == 'b' )
+					j = j - 1;
+				for ( j; j > v.bpp[v.l - 1]; j-- )
 				{
 					v.p = v.p / ( maximum ( x[j], m ) );
 					if ( v.p > 1/z )
@@ -159,18 +157,20 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 						lve_v = lcve_wp - ( v.end - j ) - 1;
 						v.end = j - 1;
 						FTable.insert ( pair < vector < unsigned int >, unsigned int > ( v.bpset, v.end ) );
+						break;
 					}
 				}
 			}
 		}
-cout << "end match"<<endl;
-		cout << "i=" << i << "	lcve:" << lcve_wp << "	g:"<< g<< endl;
+		if ( lve_u != lcve_wp || lve_v != lcve_wp )
+			lcve_wp = ( lve_u < lve_v ) ? lve_u : lve_v;
+		/* check the probability fail caused by grey position, and get the longest valid extension */
 		if ( i < g && lcve_wp < g - i )
 			WP[i] = lcve_wp;
 		else
 		{
 			f = i;
-			g = g > i ? g: i;
+			g = ( g > i ) ? g: i;
 			while ( ( g < n ) && ( g - f <= lcve_wp ) && ( compareBP ( x[g], x[g-f], m ) < m ) )
 				g ++;
 			WP[i] = g - f;
