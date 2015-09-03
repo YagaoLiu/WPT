@@ -91,11 +91,10 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 						v_branch[i].p = v->p * x[v->end][letter];
 					}
 
-					lcve = lcve + span;
-					lcve_branch.push_back ( LCVE( x, n, m, z, lcve, P, &u_branch[i], &v_branch[i] ) );
+					lcve_branch.push_back ( lcve + span );
+					lcve_branch[i] = ( LCVE( x, n, m, z, lcve_branch[i], P, &u_branch[i], &v_branch[i] ) );
 				}
 			}
-
 			/* find the longest extension branch */
 			unsigned int choose_lcve = 0;
 			unsigned int choose_branch;
@@ -133,7 +132,9 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 			float pcheck_u = u->p * x[u->end][letter];
 			float pcheck_v = v->p * x[v->end][letter];
 			if ( pcheck_u < 1/z || pcheck_v < 1/z )
+			{
 				break;
+			}
 			else
 			{
 				if ( colx.colour[u->end] != 'b' && colx.colour[v->end] != 'b' )

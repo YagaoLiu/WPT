@@ -133,6 +133,10 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 				lve_u = lcve_wp - ( u.end - it_u->second );
 				u.end = it_u->second;
 			}
+			else
+			{
+				cout << "Error : BPset of u not found in Table!" << endl;
+			}
 		}
 		if ( v.p < 1/z )
 		{
@@ -171,11 +175,13 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		{
 			f = i;
 			g = ( g > i ) ? g: i;
-			while ( ( g < n ) && ( g - f <= lcve_wp ) && ( compareBP ( x[g], x[g-f], m ) < m ) )
+			while ( ( g < n ) && ( g - f < lcve_wp )/* && ( compareBP ( x[g], x[g-f], m ) < m )*/ )
 				g ++;
 			WP[i] = g - f;
 		}
 	}
+
+	delete [] Parray;
 
 	return 1;
 }

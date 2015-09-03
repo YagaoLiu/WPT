@@ -15,14 +15,11 @@ extern StringColour colx;
 
 int main (int argc, char **argv)
 {
-	if ( argc == 3 )
+	if ( argc == 2 )
 	{
 		unsigned int n = 0;
-		unsigned int m = 0;
-		string argv2 = argv[2];
-		if ( argv2 == "-d" )
-			m = 4;
-
+		unsigned int m = 4;
+	
 		ifstream ReadFile;
 		string tmp;
 		ReadFile.open ( argv[1] );
@@ -33,7 +30,6 @@ int main (int argc, char **argv)
 			while ( getline ( ReadFile, tmp, '\n' ) )
 				n++;
 		}
-		cout << n << "	" << m << endl;
 		ReadFile.close();
 
 		ifstream in ( argv[1] );
@@ -51,30 +47,6 @@ int main (int argc, char **argv)
 		}
 		in.close();
 
-		for ( unsigned int i = 0; i < n; i++ )
-		{
-			for ( unsigned int j = 0; j < m; j++ )
-			{
-				cout << x[i][j] << ' ';
-			}
-			cout << endl;
-		}
-/*			double xx[10][4] = {
-			{0.95,	0.05,	0,		0},
-			{1,		0,		0,		0},
-			{0.5,	0.5,	0,		0},
-			{0,		0,		1,		0},
-			{0.8,	0,		0.2,	0},
-			{0,		0.05,	0,		0.95},
-			{0.01,	0.01,	0.02,	0.95},
-			{0,		0.75,	0.25,	0},
-			{0,		0,		0.95,	0.05},
-			{0.95,	0,		0,		0.05}
-			};
-			double *a[11];
-			for ( int i = 0; i < 11; i++ )
-			a[i] = xx[i];
-*/		
 		colour ( x, n, m, 16 );
 		cout << "colour:" << colx.colour << endl;
 		cout << "BP:";
@@ -105,7 +77,14 @@ int main (int argc, char **argv)
 		for ( int i = 0; i < n; i++ )
 			cout << WP[i] << ' ';
 		cout << endl;
-	}
+		
+		for ( unsigned int i = 0; i < n; i++ )
+			delete[] x[i];
+		delete[] x;
 
+		delete[] P;
+		delete[] WP;
+	}
+	
 	return 0;
 }
