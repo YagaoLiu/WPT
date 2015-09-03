@@ -158,7 +158,7 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 					v.p = v.p / ( maximum ( x[j], m ) );
 					if ( v.p > 1/z )
 					{
-						lve_v = lcve_wp - ( v.end - j ) - 1;
+						lve_v = j - v.start;
 						v.end = j - 1;
 						FTable.insert ( pair < vector < unsigned int >, unsigned int > ( v.bpset, v.end ) );
 						break;
