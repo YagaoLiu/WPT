@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+//#include <stdio.h>
 
 #include "prefix.h"
 #include "colour.h"
@@ -15,11 +16,13 @@ extern StringColour colx;
 
 int main (int argc, char **argv)
 {
-	if ( argc == 2 )
+	if ( argc == 3 )
 	{
 		unsigned int n = 0;
 		unsigned int m = 4;
-	
+		double z = 1.0;
+		sscanf ( argv[2], "%lf", &z );
+
 		ifstream ReadFile;
 		string tmp;
 		ReadFile.open ( argv[1] );
@@ -47,7 +50,7 @@ int main (int argc, char **argv)
 		}
 		in.close();
 
-		colour ( x, n, m, 16 );
+		colour ( x, n, m, z );
 		cout << "colour:" << colx.colour << endl;
 		cout << "BP:";
 		for ( int i = 0; i < n; i++ )
@@ -65,14 +68,14 @@ int main (int argc, char **argv)
 		unsigned int * P;
 		P = new unsigned int [n];
 
-		parray ( x, n, m, 16, P );
+		parray ( x, n, m, z, P );
 		cout << "P:";
 		for ( unsigned int i = 0; i < n; i++ )
 			cout << P[i] <<' ';
 		cout <<endl;
 
 		unsigned int * WP = new unsigned int [n];
-		wptable ( x, n, m, 16, WP );
+		wptable ( x, n, m, z, WP );
 		cout << "WP:";
 		for ( int i = 0; i < n; i++ )
 			cout << WP[i] << ' ';

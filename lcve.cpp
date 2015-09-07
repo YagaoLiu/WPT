@@ -125,6 +125,7 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 				v->l += v_branch[choose_branch].l;
 				v->p = v_branch[choose_branch].p;
 			}
+			return lcve;
 		}
 		else
 		{

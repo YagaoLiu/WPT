@@ -95,8 +95,8 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 	/* make maps for the black position set and the stop position */
 	map < vector < unsigned int >, unsigned int > STable;									//the map for the
 	map < vector < unsigned int >, unsigned int > :: iterator it_u = STable.begin();
-	map < vector < unsigned int >, unsigned int > FTable;									//the map for the 
-	map < vector < unsigned int >, unsigned int > :: iterator it_v = FTable.begin();
+	//map < vector < unsigned int >, unsigned int > FTable;									//the map for the 
+	//map < vector < unsigned int >, unsigned int > :: iterator it_v = FTable.begin();
 	vector < unsigned int > BPset;
 	PrefixMap ( x, n, m, z, 0, 1, BPset, &STable );		//compute all the maps from the beginning of string x
 	unsigned int * Parray = new unsigned int [n];
@@ -123,8 +123,8 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		/* check the probability fail caused by grey position, and get the longest valid extension */
 		unsigned int lve_u = lcve_wp;
 		unsigned int lve_v = lcve_wp;
-		if ( colx.colour[i] == 'b' )
-			FTable.clear();			//if we get to the next black position, we clear the map table for the previous one.
+//		if ( colx.colour[i] == 'b' )
+//			FTable.clear();			//if we get to the next black position, we clear the map table for the previous one.
 		if ( u.p < 1/z )
 		{
 			it_u = STable.find ( u.bpset );
@@ -138,19 +138,24 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 				cout << "Error : BPset of u not found in Table!" << endl;
 			}
 		}
-		if ( v.p < 1/z )
+/*		Find the stop position of Factor v, using map
+	   if ( v.p < 1/z )
 		{
 			it_v = FTable.find ( v.bpset );
 			if ( it_v != FTable.end() )
 			{
-				/* if we can find the bp set of factor v in the table, we get the lve directly */
+				// if we can find the bp set of factor v in the table, we get the lve directly
 				lve_v = lcve_wp - ( v.end - it_v->second );
 				v.end = it_v->second;
+
+				for ( unsigned int j = v.end; j < colx.BP[v.end]; j++ )
+				{
+
 			}
 			else
 			{
-				/* if we cannot find the bp set in the table, we compute the lve from the end of v, go back one by one and check the probability. And then add it to the table */
-				unsigned int j = v.end;
+				// if we cannot find the bp set in the table, we compute the lve from the end of v, go back one by one and check the probability. And then add it to the table
+				unsigned int j = v.end - 1;
 				if ( colx.colour[j] == 'b' )
 					j = j - 1;
 				for ( j; j > v.bpp[v.l - 1]; j-- )
@@ -166,16 +171,31 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 				}
 			}
 		}
+*/
+		if ( v.p < 1/z )
+		{
+			unsigned int j = v.end - 1;
+			for ( j; j > v.bpp[v.l - 1]; j-- )
+			{
+				v.p = v.p / ( maximum ( x[j], m ) );
+				if ( v.p > 1/z )
+				{
+					lve_v = j - v.start;
+					v.end = j - 1;
+					break;
+				}
+			}
+		}
 		if ( lve_u != lcve_wp || lve_v != lcve_wp )
-			lcve_wp = ( lve_u < lve_v ) ? lve_u : lve_v;
-		/* check the probability fail caused by grey position, and get the longest valid extension */
+			lcve_wp = min ( lve_u, lve_v );
+		
 		if ( i < g && lcve_wp < g - i )
 			WP[i] = lcve_wp;
 		else
 		{
 			f = i;
-			g = ( g > i ) ? g: i;
-			while ( ( g < n ) && ( g - f < lcve_wp )/* && ( compareBP ( x[g], x[g-f], m ) < m )*/ )
+			g = max( g, i ); 
+			while ( ( g < n ) && ( g - f < lcve_wp ) )
 				g ++;
 			WP[i] = g - f;
 		}
@@ -185,13 +205,4 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 
 	return 1;
 }
-
-
-
-
-
-
-
-
-
 
