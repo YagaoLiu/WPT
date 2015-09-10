@@ -50,44 +50,51 @@ int main (int argc, char **argv)
 		}
 		in.close();
 
-		colour ( x, n, m, z );
-		cout << "colour:" << colx.colour << endl;
-		cout << "BP:";
-		for ( int i = 0; i < n; i++ )
-			cout << colx.BP[i]<<' ';
-		cout << endl;
-		cout << "FP:";
-		for ( int i = 0; i < n; i++ )
-			cout << colx.FP[i]<<' ';
-		cout << endl;
-		cout << "String:";
-		for ( int i = 0; i < n; i++ )
-			cout << colx.stringxx[i]<<' ';
-		cout << endl;
+		if ( ! (colour ( x, n, m, z ) ) )
+		{
+			cout << "Error: no Black Position in String" << endl;
+			return 0;
+		}
+		else
+		{
+			cout << "colour:" << colx.colour << endl;
+			cout << "BP:";
+			for ( int i = 0; i < n; i++ )
+				cout << colx.BP[i]<<' ';
+			cout << endl;
+			cout << "FP:";
+			for ( int i = 0; i < n; i++ )
+				cout << colx.FP[i]<<' ';
+			cout << endl;
+			cout << "String:";
+			for ( int i = 0; i < n; i++ )
+				cout << colx.stringxx[i]<<' ';
+			cout << endl;
 
-		unsigned int * P;
-		P = new unsigned int [n];
+			unsigned int * P;
+			P = new unsigned int [n];
 
-		parray ( x, n, m, z, P );
-		cout << "P:";
-		for ( unsigned int i = 0; i < n; i++ )
-			cout << P[i] <<' ';
-		cout <<endl;
+			parray ( x, n, m, z, P );
+			cout << "P:";
+			for ( unsigned int i = 0; i < n; i++ )
+				cout << P[i] <<' ';
+			cout <<endl;
 
-		unsigned int * WP = new unsigned int [n];
-		wptable ( x, n, m, z, WP );
-		cout << "WP:";
-		for ( int i = 0; i < n; i++ )
-			cout << WP[i] << ' ';
-		cout << endl;
-		
-		for ( unsigned int i = 0; i < n; i++ )
-			delete[] x[i];
-		delete[] x;
+			unsigned int * WP = new unsigned int [n];
+			wptable ( x, n, m, z, WP );
+			cout << "WP:";
+			for ( int i = 0; i < n; i++ )
+				cout << WP[i] << ' ';
+			cout << endl;
 
-		delete[] P;
-		delete[] WP;
+			for ( unsigned int i = 0; i < n; i++ )
+				delete[] x[i];
+			delete[] x;
+
+			delete[] P;
+			delete[] WP;
+		}
 	}
-	
+
 	return 0;
 }

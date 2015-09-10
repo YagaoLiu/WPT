@@ -34,41 +34,34 @@ unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z )
 					x[i][j] = 0;
 		}
 	}
-
-	/**Get a weight string, with the correct letter at the white & grey position, and unique letter at black position**/
-	unsigned int ul = m;
-	for ( unsigned int i = 0; i < n; i++ )
+	
+	if ( colx.bpos.size() == 0 )
 	{
-		if( colx.colour[i] != 'b' )
-		{
-			colx.stringxx.push_back ( getLetter( x[i], m ) );
-		}
-		else
-		{
-			colx.stringxx.push_back ( ul );
-			ul ++;
-		}
+		return 0;
 	}
 
 	/**Computing BP array**/
 	unsigned int k = 0;
-	for ( unsigned int i = 0; i < n; i++ )
+	if ( colx.bpos.size() > 0 )
 	{
-		if ( i < colx.bpos[k] )
-			colx.BP.push_back ( colx.bpos[k] );
-		else
+		for ( unsigned int i = 0; i < n; i++ )
 		{
-			k ++;
-			if ( k == colx.bpos.size() )
-			{
-				colx.BP.push_back( n );
-				k = colx.bpos.size() - 1;
-			}
+			if ( i < colx.bpos[k] )
+				colx.BP.push_back ( colx.bpos[k] );
 			else
-				colx.BP.push_back( colx.bpos[k] );
+			{
+				k ++;
+				if ( k == colx.bpos.size() )
+				{
+					colx.BP.push_back( n );
+					k = colx.bpos.size() - 1;
+				}
+				else
+					colx.BP.push_back( colx.bpos[k] );
+			}
 		}
 	}
-
+	
 	/**Computing FP array**/
 	double fp = 1;
 	for ( unsigned int i = 0; i < n; i++ )

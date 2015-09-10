@@ -15,8 +15,7 @@ extern StringColour colx;
 unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, unsigned int start, double p, vector < unsigned int > BPset, map < vector < unsigned int >, unsigned int > * STable )
 {
 	if ( start >= n )
-		return 1;
-
+		return 0;
 	unsigned int nextBP = colx.BP[start];
 	unsigned int endposition;
 	double newp = p;
