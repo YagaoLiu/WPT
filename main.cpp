@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-//#include <stdio.h>
+#include <time.h>
 
 #include "prefix.h"
 #include "colour.h"
@@ -18,6 +18,8 @@ int main (int argc, char **argv)
 {
 	if ( argc == 3 )
 	{
+		clock_t start, finish;
+	
 		unsigned int n = 0;
 		unsigned int m = 4;
 		double z = 1.0;
@@ -57,44 +59,47 @@ int main (int argc, char **argv)
 		}
 		else
 		{
-			cout << "colour:" << colx.colour << endl;
-			cout << "BP:";
-			for ( int i = 0; i < n; i++ )
-				cout << colx.BP[i]<<' ';
-			cout << endl;
-			cout << "FP:";
-			for ( int i = 0; i < n; i++ )
-				cout << colx.FP[i]<<' ';
-			cout << endl;
-			cout << "String:";
-			for ( int i = 0; i < n; i++ )
-				cout << colx.stringxx[i]<<' ';
-			cout << endl;
-
 			unsigned int * P;
 			P = new unsigned int [n];
 
 			parray ( x, n, m, z, P );
-			cout << "P:";
-			for ( unsigned int i = 0; i < n; i++ )
-				cout << P[i] <<' ';
-			cout <<endl;
 
+/*		
 			unsigned int * WP = new unsigned int [n];
+			
 			wptable ( x, n, m, z, WP );
-			cout << "WP:";
-			for ( int i = 0; i < n; i++ )
-				cout << WP[i] << ' ';
-			cout << endl;
 
+			finish = clock();
+			ofstream result( "WPTableReport" );
+			result << "string length=" << n << "		z=" << z << endl;
+			int row = 0;
+			int column = 0;
+			do
+			{
+				result << WP[row * 20 + column] << ' ';
+				column++;
+				if ( column == 20 )
+				{
+					result << endl;
+					row++;
+					column = 0;
+				}
+			}while ( row * 20 + column < n );
+			
+			result << endl;
+
+			double duration = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
+			cout << "It takes " << duration << " seconds." << endl;
+			result << "Elapsed time for processing a string of length " << n <<" is " << duration << " seconds" << endl;
+				
 			for ( unsigned int i = 0; i < n; i++ )
 				delete[] x[i];
 			delete[] x;
 
 			delete[] P;
 			delete[] WP;
+			*/
 		}
 	}
-
-	return 0;
+		return 0;
 }

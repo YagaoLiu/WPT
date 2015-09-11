@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 
 #include "global.h"
 #include "operate.h"
@@ -13,8 +14,20 @@ extern StringColour colx;
 
 unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned int * P )
 {
-	vector < unsigned int > xx = colx.stringxx;
-	unsigned int ul = m + colx.bpos.size() + 1;
+	clock_t begin, finish;
+	vector < unsigned int > xx;
+	unsigned int ul = m;
+	for ( unsigned int i = 0; i < n; i++ )
+	{
+		if ( colx.colour[i] != 'b' )
+			xx.push_back ( getLetter( x[i], m ) );
+		else
+		{
+			xx.push_back ( ul );
+			ul++;
+		}
+	}
+	
 	/* construct the set of string : x'$xx */
 	vector < unsigned int > :: iterator it_xx;
 	it_xx = xx.begin();
@@ -69,7 +82,6 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 
 	/* compute prefix table for each x'$xx */
 	unsigned int ** ptset = NULL;
-
 	ptset = new unsigned int * [ xp.size() ];
 	for ( unsigned int i = 0; i < xp.size(); i++ )
 	{
@@ -86,6 +98,7 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 
 	P[0] = n;
 
+	begin = clock();
 	for ( unsigned int i = 1; i < n; i++ )
 		P[i] = 0;
 
@@ -123,6 +136,9 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 		}
 	}
 
+	finish = clock();
+	double time =( ( double ) finish - begin ) / CLOCKS_PER_SEC;
+	cout << "time is " << time << endl;
 	for ( unsigned int i = 0; i < xp.size(); i++ )
 		delete[] ptset[i];
 	delete[] ptset;
