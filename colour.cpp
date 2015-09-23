@@ -12,15 +12,20 @@ StringColour colx;
 
 unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z )
 {
+	vector < unsigned int > wpos;
 	/**Colouring**/
 	for ( unsigned int i = 0; i < n; i++ )
 	{
 		double max = maximum ( x[i], m );
 		if ( max == 1 )
+		{
 			colx.colour.push_back ('w');
+			wpos.push_back ( i );
+		}
 		else if ( max > 1 - 1/z )
 		{
 			colx.colour.push_back ('g');
+			wpos.push_back ( i );
 			for ( unsigned int j = 0; j < m; j++ )
 				if ( x[i][j] < 1/z )
 					x[i][j] = 0;
@@ -61,7 +66,27 @@ unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z )
 			}
 		}
 	}
-	
+
+	/**Computing WP array**/
+	k = 0;
+	for ( unsigned int i = 0; i< n; i++ )
+	{
+		if ( i < wpos[k] )
+			colx.WP.push_back ( wpos[k] );
+		else
+		{
+			k++;
+			if ( k == wpos.size() )
+			{
+				colx.WP.push_back ( n );
+				k = colx.bpos.size() - 1;
+			}
+			else
+				colx.WP.push_back( wpos[k] );
+		}
+	}
+
+
 	/**Computing FP array**/
 	double fp = 1;
 	for ( unsigned int i = 0; i < n; i++ )

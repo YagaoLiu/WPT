@@ -52,6 +52,7 @@ int main (int argc, char **argv)
 		}
 		in.close();
 
+		start = clock();	
 		if ( ! (colour ( x, n, m, z ) ) )
 		{
 			cout << "Error: no Black Position in String" << endl;
@@ -59,19 +60,25 @@ int main (int argc, char **argv)
 		}
 		else
 		{
-			unsigned int * P;
-			P = new unsigned int [n];
+/*						unsigned int * P;
+						P = new unsigned int [n];
 
-			parray ( x, n, m, z, P );
-
-/*		
+						parray ( x, n, m, z, P );
+						cout << "P: ";
+						for ( unsigned int i = 0; i < n; i++ )
+							cout << P[i] << ' ';
+						cout << endl;
+*/
 			unsigned int * WP = new unsigned int [n];
 			
 			wptable ( x, n, m, z, WP );
 
 			finish = clock();
+			double duration = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
 			ofstream result( "WPTableReport" );
 			result << "string length=" << n << "		z=" << z << endl;
+			result << "Number of	Black Position: " << colx.bpos.size() << "	White & Grey position: " << n - colx.bpos.size() << endl;
+			result << "Elapsed time for processing is " << duration << " seconds" << endl;
 			int row = 0;
 			int column = 0;
 			do
@@ -85,21 +92,19 @@ int main (int argc, char **argv)
 					column = 0;
 				}
 			}while ( row * 20 + column < n );
-			
+
 			result << endl;
 
-			double duration = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
 			cout << "It takes " << duration << " seconds." << endl;
-			result << "Elapsed time for processing a string of length " << n <<" is " << duration << " seconds" << endl;
-				
+
 			for ( unsigned int i = 0; i < n; i++ )
 				delete[] x[i];
 			delete[] x;
 
-			delete[] P;
+			//			delete[] P;
 			delete[] WP;
-			*/
+
 		}
 	}
-		return 0;
+	return 0;
 }

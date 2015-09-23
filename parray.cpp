@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <ctime>
 
 #include "global.h"
 #include "operate.h"
@@ -14,7 +13,6 @@ extern StringColour colx;
 
 unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned int * P )
 {
-	clock_t begin, finish;
 	vector < unsigned int > xx;
 	unsigned int ul = m;
 	for ( unsigned int i = 0; i < n; i++ )
@@ -32,10 +30,36 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 	vector < unsigned int > :: iterator it_xx;
 	it_xx = xx.begin();
 
+
+	/* compute the longest valid prefix of x */
+	unsigned int lvp = 0;
+	double pp = 1;
+	for ( unsigned int i = 0; i < n; i++ )
+	{
+		pp *= maximum ( x[i], m );
+		if ( pp >= 1/z )
+			lvp++;
+		else
+			break;
+	}
+
+	unsigned int num_bp_lvp = 0;
+	for ( unsigned int i = 0; i < colx.bpos.size(); i++ )
+	{
+		if ( colx.bpos[i] < lvp )
+			num_bp_lvp ++;
+		else
+			break;
+	}
+
+	if ( num_bp_lvp == 0 )
+		cout << "Warning: No Black Position in Longest Valid Prefix!" << endl;
+
 	vector < vector < unsigned int > > xp;
 	vector < vector < unsigned int > > fragment;			//save the fragments x' (the strings between two neighboor black position )
-	vector < unsigned int > frag_start;			//save the start position of each fragment
-	for ( unsigned int i = 0; i < colx.bpos.size() + 1; i++ )
+	vector < unsigned int > frag_start;						//save the start position of each fragment
+
+	for ( unsigned int i = 0; i < num_bp_lvp + 1; i++ )
 	{
 			unsigned int frag_length;
 			if ( i == 0 )
@@ -43,11 +67,11 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 				frag_length = colx.bpos[i];
 				frag_start.push_back ( 0 );
 			}
-			else if ( i == colx.bpos.size() )
+			else if ( i == num_bp_lvp )
 			{
-				frag_length = xx.size() - colx.bpos[i-1] - 1;
+				frag_length = lvp - colx.bpos[i-1] - 1;
 				if ( frag_length == 0 )
-					frag_start.push_back ( colx.bpos[i] );
+					frag_start.push_back ( colx.bpos[i-1] );
 				else
 					frag_start.push_back ( colx.bpos[i-1] + 1 );
 			}
@@ -60,6 +84,7 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 			buffer.assign ( it_xx + frag_start[i], it_xx + frag_start[i] + frag_length );		//get x'
 			fragment.push_back ( buffer );
 	}
+	
 	/* remove the empty fragments */
 	for ( unsigned int i = 0; i < fragment.size(); i++ )
 	{
@@ -79,7 +104,6 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 		temp.insert ( temp.end(), xx.begin(), xx.end() );		//we add xx to the end of the temp array, so now it is x'$xx
 		xp.push_back ( temp );									//we add this array to the set of string x'$xx
 	}
-
 	/* compute prefix table for each x'$xx */
 	unsigned int ** ptset = NULL;
 	ptset = new unsigned int * [ xp.size() ];
@@ -98,47 +122,115 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 
 	P[0] = n;
 
-	begin = clock();
 	for ( unsigned int i = 1; i < n; i++ )
 		P[i] = 0;
 
-	for ( unsigned int j = 1; j < n; j++ )
+	for ( unsigned int i = 1; i < n; i++ )
 	{
-		for ( unsigned int i = 0; i < n - j; i++ )
-		{	
-
-			unsigned int pos_u = i;
-			unsigned int pos_v = j + i;
-			if ( colx.colour[pos_u] == 'b' || colx.colour[pos_v] == 'b' )
-				P[j] ++;
+		unsigned int pos_u = 0;
+		unsigned int pos_v = i;
+		unsigned int flag = 1;
+	
+		do 
+		{
+			if ( pos_u > lvp )
+			{
+				P[i] = lvp;
+				flag = 0;
+			}
+			else if ( pos_v >= n )
+			{
+				flag = 0;
+			}
 			else
-			{	
-				int pi = 0;
-				if ( findpi ( pos_u, frag_start ) >= 0 )
+			{
+				if ( colx.colour[pos_u] == 'b' || colx.colour[pos_v] == 'b' )
 				{
-					pi = findpi ( pos_u, frag_start );
-					if ( ptset[pi][pos_v] == 0 )
-						break;
-					P[j] = P[j] + ptset[pi][pos_v];
-					i = i + ptset[pi][pos_v] - 1;
+					unsigned int span;
+					span = min ( ( colx.WP[pos_u] - pos_u ) , ( colx.WP[pos_v] - pos_v ) );
+					P[i] += span;
+					pos_u += span;
+					pos_v += span;
 				}
 				else
 				{
-					pi = findpi ( pos_v, frag_start );
-					if ( ptset[pi][pos_u] == 0 )
-						break;
-					P[j] = P[j] + ptset[pi][pos_u];
-					i = i + ptset[pi][pos_u] - 1;
+					int pi = findpi ( pos_u, frag_start );
+					if ( pi >= 0 )
+					{
+						if ( ptset[pi][pos_v] == 0 )
+							flag = 0;
+						else
+						{
+							P[i] = P[i] + ptset[pi][pos_v];
+							pos_u += ptset[pi][pos_v];
+							pos_v += ptset[pi][pos_v];
+						}
+					}
+					else
+					{
+						if ( xx[pos_u] == xx[pos_v] )
+						{
+							P[i] ++;
+							pos_u ++;
+							pos_v ++;
+						}
+						else
+							flag = 0;
+					}
 				}
-				if ( colx.colour[i + 1] != 'b' && colx.colour[j + i + 1] != 'b' )
-					break;
+			}
+		}while ( flag );
+	}
+
+
+
+
+
+	/*
+	   for ( unsigned int j = 1; j < n; j++ )
+	   {
+			for ( unsigned int i = 0; i < n - j; i++ )
+			{	
+
+			unsigned int pos_u = i;
+			unsigned int pos_v = j + i;
+			if ( i > lvp )
+			{
+				P[j] = n;
+			}
+			else
+			{
+				if ( colx.colour[pos_u] == 'b' || colx.colour[pos_v] == 'b' )
+					P[j] ++;
+				else
+				{	
+					int pi = 0;
+					if ( findpi ( pos_u, frag_start ) >= 0 )
+					{
+						pi = findpi ( pos_u, frag_start );
+						if ( ptset[pi][pos_v] == 0 )
+							break;
+						P[j] = P[j] + ptset[pi][pos_v];
+						i = i + ptset[pi][pos_v] - 1;
+					}
+					else
+					{
+						if ( xx[i] == xx[j + i] )
+						{
+							P[j] ++;
+						}
+						else
+						{
+							break;
+						}
+					}
+					if ( colx.colour[i + 1] != 'b' && colx.colour[j + i + 1] != 'b' )
+						break;
+				}
 			}
 		}
 	}
-
-	finish = clock();
-	double time =( ( double ) finish - begin ) / CLOCKS_PER_SEC;
-	cout << "time is " << time << endl;
+	*/
 	for ( unsigned int i = 0; i < xp.size(); i++ )
 		delete[] ptset[i];
 	delete[] ptset;

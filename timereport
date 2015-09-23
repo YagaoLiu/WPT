@@ -1,0 +1,21 @@
+k1337383@nmscde000492:~/Documents/WPT$ ./main ./data/data10k 256
+parray time:0.61817
+WP time:0.087955
+It takes 0.709501 seconds.
+k1337383@nmscde000492:~/Documents/WPT$ ./main ./data/data20k 256
+parray time:2.07491
+WP time:0.24199
+It takes 2.31931 seconds.
+k1337383@nmscde000492:~/Documents/WPT$ ./main ./data/data30k 256
+parray time:4.68681
+WP time:0.150966
+It takes 4.84334 seconds.
+k1337383@nmscde000492:~/Documents/WPT$ ./main ./data/data40k 256
+parray time:8.29932
+WP time:0.235844
+It takes 8.54291 seconds.
+k1337383@nmscde000492:~/Documents/WPT$ ./main ./data/data50k 256
+parray time:14.1713
+WP time:0.643933
+It takes 14.8243 seconds.
+

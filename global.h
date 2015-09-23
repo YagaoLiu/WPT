@@ -11,6 +11,7 @@ struct StringColour
 	string colour;
 	vector < unsigned int > stringxx;
 	vector < unsigned int > BP;
+	vector < unsigned int > WP;
 	vector < double > FP;
 	vector < unsigned int > bpos;
 };

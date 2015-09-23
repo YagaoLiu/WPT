@@ -137,7 +137,7 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 			}
 			else
 			{
-				cout << "Error : BPset of u not found in Table!" << endl;
+	//			cout << "Error : BPset of u not found in Table!" << endl;
 			}
 		}
 /*		Find the stop position of Factor v, using map
