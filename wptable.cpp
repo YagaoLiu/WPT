@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <ctime>
 
 #include "parray.h"
 #include "lcve.h"
@@ -12,77 +13,77 @@ using namespace std;
 
 extern StringColour colx;
 
-unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, unsigned int start, double p, vector < unsigned int > BPset, map < vector < unsigned int >, unsigned int > * STable )
+struct BPmap
 {
-	if ( start >= n )
-		return 0;
-	unsigned int nextBP = colx.BP[start];
+	vector < unsigned int > BPset;
 	unsigned int endposition;
+};
+
+unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, double p, unsigned int start, vector < unsigned int > BPstring, vector < BPmap > * PrefixBPmaps )
+{
+	BPmap root;
+	unsigned int nextBP;
 	double newp = p;
-	if ( nextBP == n )
-	{
-		for ( unsigned int i = start; i < n; i++ )
-		{
-			newp = newp * maximum ( x[i], m );
-			if ( newp < 1/z )
-			{
-				endposition = i - 1;
-				STable->insert ( pair < vector < unsigned int >, unsigned int > ( BPset, endposition ) );
-				return 1;
-			}
-		}
-		endposition = n - 1;
-		STable->insert ( pair < vector < unsigned int >, unsigned int > ( BPset, endposition ) );
-		return 1;
-	}
+
+	if ( start != 0 )
+		root.BPset = BPstring;
+
 	if ( colx.colour[start] == 'b' )
 	{
-		for ( unsigned int i = 0; i < m; i++ )
+		for ( unsigned int j = 0; j < m; j++ )
 		{
-			newp = newp * x[start][i];
+			newp = p * x[start][j];
 			if ( newp > 1/z )
 			{
-				vector < unsigned int > newBPset = BPset;
-				newBPset.push_back ( i + 1 );
-				PrefixMap ( x, n, m, z, nextBP + 1, newp, newBPset, STable );
+				root.BPset.push_back ( j );
+				PrefixMap ( x, n, m, z, p, start + 1, root.BPset, PrefixBPmaps );
 			}
 		}
-	}
-	if ( colx.colour[nextBP - 1] != 'b' )
-	{
-		p = colx.FP[nextBP - 1] * p;
-	}
-	if ( p < 1/z )
-	{
-		for ( unsigned int i = start; i < nextBP; i++ )
-		{
-			p = p * maximum ( x[i], m );
-			if ( p < 1/z )
-				endposition = i - 1;
-		}
-		STable->insert ( pair < vector < unsigned int >, unsigned int > ( BPset, endposition ) );
-		return 1;
 	}
 	else
 	{
-		for ( int i = 0; i < m; i++ )
+		nextBP = colx.BP[start];
+		p = p * colx.FP[nextBP - 1];
+		if ( p < 1/z )
 		{
-			newp = p * x[nextBP][i];
-			if ( newp > 1/z )
+			/* cannot extent to next BP, porb invalid */
+			for ( unsigned int i = start; i < nextBP; i++ )
 			{
-				vector < unsigned int > newBPset = BPset;
-				newBPset.push_back ( i );
-				PrefixMap ( x, n, m, z, nextBP + 1, newp, newBPset, STable );
+				newp *= maximum ( x[i], m );
+				if ( newp < 1/z )
+				{
+					root.endposition = i - 1;
+					PrefixBPmaps -> push_back ( root );
+					return 1;
+				}
+			}
+		}
+		else if ( nextBP != n )
+		{
+			/* can extent to next BP */
+			for ( unsigned int j = 0; j < m; j++ )
+			{
+				newp = p * x[nextBP][j];
+				if ( newp > 1/z )
+				{
+					root.BPset.push_back ( j );
+					PrefixMap ( x, n, m, z, newp, nextBP + 1, root.BPset, PrefixBPmaps );
+				}
 			}
 		}
 	}
-	return 1;
-}
 
+	if ( PrefixBPmaps -> size() == 0 )
+		return 0;
+	else
+		return 1;
+}
 
 unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , unsigned int * WP )
 {
 	/* This function is used to compute the Weighted Prefix Table */
+	clock_t Pstart, Pend, WPstart, WPend, allstart, allend;
+	allstart = clock();
 
 	/* compute the longest valid preifx for WP[0] */
 	WP[0] = 0;
@@ -99,14 +100,32 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 	map < vector < unsigned int >, unsigned int > :: iterator it_u = STable.begin();
 	//map < vector < unsigned int >, unsigned int > FTable;									//the map for the 
 	//map < vector < unsigned int >, unsigned int > :: iterator it_v = FTable.begin();
-	vector < unsigned int > BPset;
-	PrefixMap ( x, n, m, z, 0, 1, BPset, &STable );		//compute all the maps from the beginning of string x
+
+	vector < BPmap > PrefixBPmaps;
+	vector < unsigned int > BPstring;
+	PrefixMap ( x, n, m, z, 1, 0, BPstring, &PrefixBPmaps );
+	cout << "PBPMaps size:" << PrefixBPmaps.size() << endl;
+
+	for ( unsigned int i = 0; i < PrefixBPmaps.size(); i++ )
+	{
+		for ( unsigned int j = 0; j < PrefixBPmaps[i].BPset.size(); j++ )
+			cout << PrefixBPmaps[i].BPset[j];
+		cout << " : " << PrefixBPmaps[i].endposition << endl;
+		STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
+	}
+	cout << "STable size:" << STable.size() << endl;
+
 	unsigned int * Parray = new unsigned int [n];
+	Pstart = clock();
 	parray ( x, n, m , z, Parray );
+	Pend = clock();
+	double Ppass = ( double ) ( Pend - Pstart ) / CLOCKS_PER_SEC;
+	cout << "P takes: " << Ppass << "s.\n";
 
 	unsigned int g = 0;
 	unsigned int f;
 
+	WPstart = clock();
 	for ( unsigned int i = 1; i < n; i++ )
 	{
 		/* construct two factor u & v, to computer the lcve between stirng x and x[i....] */
@@ -202,6 +221,13 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 			WP[i] = g - f;
 		}
 	}
+	WPend = clock();
+	double WPpass = ( double ) ( WPend - WPstart ) / CLOCKS_PER_SEC;
+	cout << "WP takes: " << WPpass << "s.\n";
+
+	allend = clock();
+	double allpass = ( double ) ( allend - allstart ) / CLOCKS_PER_SEC;
+	cout << "All takes: " << allpass << "s.\n";
 
 	delete [] Parray;
 

@@ -18,12 +18,12 @@ struct StringColour
 
 struct Factor
 {	
-		unsigned int start;
-		unsigned int end;
-		unsigned int l;
-		vector < unsigned int > bpp;
-		vector < unsigned int > bpset;
-		float p;
+	unsigned int start;
+	unsigned int end;
+	unsigned int l;
+	vector < unsigned int > bpp;
+	vector < unsigned int > bpset;
+	float p;
 };
 
 
