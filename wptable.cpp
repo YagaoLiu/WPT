@@ -83,7 +83,10 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 {
 	/* This function is used to compute the Weighted Prefix Table */
 	clock_t Pstart, Pend, WPstart, WPend, allstart, allend;
-	allstart = clock();
+	clock_t * Lstart = new clock_t [n];
+	clock_t * Lend = new clock_t [n];
+	clock_t * Gstart = new clock_t [n];
+	clock_t * Gend = new clock_t [n];
 
 	/* compute the longest valid preifx for WP[0] */
 	WP[0] = 0;
@@ -98,24 +101,19 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 	/* make maps for the black position set and the stop position */
 	map < vector < unsigned int >, unsigned int > STable;									//the map for the
 	map < vector < unsigned int >, unsigned int > :: iterator it_u = STable.begin();
-	//map < vector < unsigned int >, unsigned int > FTable;									//the map for the 
-	//map < vector < unsigned int >, unsigned int > :: iterator it_v = FTable.begin();
 
 	vector < BPmap > PrefixBPmaps;
 	vector < unsigned int > BPstring;
+	allstart = clock();
 	PrefixMap ( x, n, m, z, 1, 0, BPstring, &PrefixBPmaps );
-	cout << "PBPMaps size:" << PrefixBPmaps.size() << endl;
 
 	for ( unsigned int i = 0; i < PrefixBPmaps.size(); i++ )
 	{
-		for ( unsigned int j = 0; j < PrefixBPmaps[i].BPset.size(); j++ )
-			cout << PrefixBPmaps[i].BPset[j];
-		cout << " : " << PrefixBPmaps[i].endposition << endl;
 		STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
 	}
-	cout << "STable size:" << STable.size() << endl;
 
-	unsigned int * Parray = new unsigned int [n];
+	allend = clock();
+	unsigned int * Parray = new unsigned int [ WP[0] ];
 	Pstart = clock();
 	parray ( x, n, m , z, Parray );
 	Pend = clock();
@@ -140,45 +138,32 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		v.l = 0;
 		int flag = 1;
 		unsigned int lcve_wp = 0;
-		lcve_wp = LCVE ( x, n, m, z, lcve_wp, Parray[i], &u, &v );
-		/* check the probability fail caused by grey position, and get the longest valid extension */
-		unsigned int lve_u = lcve_wp;
-		unsigned int lve_v = lcve_wp;
-//		if ( colx.colour[i] == 'b' )
-//			FTable.clear();			//if we get to the next black position, we clear the map table for the previous one.
-		if ( u.p < 1/z )
+		if ( i < g )
 		{
-			it_u = STable.find ( u.bpset );
-			if ( it_u != STable.end() )
+			unsigned int limit = min ( P[i - f], g - i );
+			Lstart[i] = clock();
+			lcve_wp = LCVE ( x, n, m, z, lcve_wp, limit, &u, &v );
+			Lend[i] = clock();
+			/* check the probability fail caused by grey position, and get the longest valid extension */
+			unsigned int lve_u = lcve_wp;
+			unsigned int lve_v = lcve_wp;
+			Gstart[i] = clock();
+			if ( u.p < 1/z )
 			{
-				lve_u = lcve_wp - ( u.end - it_u->second );
-				u.end = it_u->second;
-			}
-			else
-			{
-	//			cout << "Error : BPset of u not found in Table!" << endl;
-			}
-		}
-/*		Find the stop position of Factor v, using map
-	   if ( v.p < 1/z )
-		{
-			it_v = FTable.find ( v.bpset );
-			if ( it_v != FTable.end() )
-			{
-				// if we can find the bp set of factor v in the table, we get the lve directly
-				lve_v = lcve_wp - ( v.end - it_v->second );
-				v.end = it_v->second;
-
-				for ( unsigned int j = v.end; j < colx.BP[v.end]; j++ )
+				it_u = STable.find ( u.bpset );
+				if ( it_u != STable.end() )
 				{
-
+					lve_u = lcve_wp - ( u.end - it_u->second );
+					u.end = it_u->second;
+				}
+				else
+				{
+					cout << "Error : BPset of u not found in Table!" << endl;
+				}
 			}
-			else
+			if ( v.p < 1/z )
 			{
-				// if we cannot find the bp set in the table, we compute the lve from the end of v, go back one by one and check the probability. And then add it to the table
 				unsigned int j = v.end - 1;
-				if ( colx.colour[j] == 'b' )
-					j = j - 1;
 				for ( j; j > v.bpp[v.l - 1]; j-- )
 				{
 					v.p = v.p / ( maximum ( x[j], m ) );
@@ -186,38 +171,32 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 					{
 						lve_v = j - v.start;
 						v.end = j - 1;
-						FTable.insert ( pair < vector < unsigned int >, unsigned int > ( v.bpset, v.end ) );
 						break;
 					}
 				}
 			}
-		}
-*/
-		if ( v.p < 1/z )
-		{
-			unsigned int j = v.end - 1;
-			for ( j; j > v.bpp[v.l - 1]; j-- )
-			{
-				v.p = v.p / ( maximum ( x[j], m ) );
-				if ( v.p > 1/z )
-				{
-					lve_v = j - v.start;
-					v.end = j - 1;
-					break;
-				}
-			}
-		}
-		if ( lve_u != lcve_wp || lve_v != lcve_wp )
-			lcve_wp = min ( lve_u, lve_v );
+			Gend[i] = clock();
+
+			if ( lve_u != lcve_wp || lve_v != lcve_wp )
+				lcve_wp = min ( lve_u, lve_v );
 		
-		if ( i < g && lcve_wp < g - i )
-			WP[i] = lcve_wp;
-		else
+			if ( lcve_wp < g - i )
+			{
+				flag = 0;
+				WP[i] = lcve_wp;
+			}
+			else
+				flag = 1;
+		}
+		if ( flag )
 		{
 			f = i;
 			g = max( g, i ); 
-			while ( ( g < n ) && ( g - f < lcve_wp ) )
-				g ++;
+			while ( g < n )
+			{
+				
+
+				
 			WP[i] = g - f;
 		}
 	}
@@ -225,7 +204,17 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 	double WPpass = ( double ) ( WPend - WPstart ) / CLOCKS_PER_SEC;
 	cout << "WP takes: " << WPpass << "s.\n";
 
-	allend = clock();
+	double Lpass = 0, Gpass = 0;
+	for ( unsigned int i = 0; i < n; i++ )
+	{
+		Lpass += ( double ) ( Lend[i] - Lstart[i] ) / CLOCKS_PER_SEC;
+		Gpass += ( double ) ( Gend[i] - Gstart[i] ) / CLOCKS_PER_SEC;
+	}
+
+	cout << "LCVE takes: " << Lpass << "s.\n";
+	cout << "Grey check: " << Gpass << "s.\n";
+
+
 	double allpass = ( double ) ( allend - allstart ) / CLOCKS_PER_SEC;
 	cout << "All takes: " << allpass << "s.\n";
 

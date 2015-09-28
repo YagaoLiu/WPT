@@ -60,22 +60,20 @@ int main (int argc, char **argv)
 		}
 		else
 		{
-/*						unsigned int * P;
+						unsigned int * P;
 						P = new unsigned int [n];
-
+start = clock();
 						parray ( x, n, m, z, P );
-						cout << "P: ";
-						for ( unsigned int i = 0; i < n; i++ )
-							cout << P[i] << ' ';
-						cout << endl;
-*/
+						finish = clock();
+			double pass = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
+			cout << "P takes: " << pass << endl;
 			unsigned int * WP = new unsigned int [n];
 			
 			wptable ( x, n, m, z, WP );
 
 			finish = clock();
 			double duration = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
-			ofstream result( "WPTableReport" );
+/*			ofstream result( "WPTableReport" );
 			result << "string length=" << n << "		z=" << z << endl;
 			result << "Number of	Black Position: " << colx.bpos.size() << "	White & Grey position: " << n - colx.bpos.size() << endl;
 			result << "Elapsed time for processing is " << duration << " seconds" << endl;
@@ -96,12 +94,12 @@ int main (int argc, char **argv)
 			result << endl;
 
 			cout << "It takes " << duration << " seconds." << endl;
-
+*/
 			for ( unsigned int i = 0; i < n; i++ )
 				delete[] x[i];
 			delete[] x;
 
-			//			delete[] P;
+			delete[] P;
 			delete[] WP;
 
 		}

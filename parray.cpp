@@ -13,24 +13,6 @@ extern StringColour colx;
 
 unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned int * P )
 {
-	vector < unsigned int > xx;
-	unsigned int ul = m;
-	for ( unsigned int i = 0; i < n; i++ )
-	{
-		if ( colx.colour[i] != 'b' )
-			xx.push_back ( getLetter( x[i], m ) );
-		else
-		{
-			xx.push_back ( ul );
-			ul++;
-		}
-	}
-	
-	/* construct the set of string : x'$xx */
-	vector < unsigned int > :: iterator it_xx;
-	it_xx = xx.begin();
-
-
 	/* compute the longest valid prefix of x */
 	unsigned int lvp = 0;
 	double pp = 1;
@@ -43,17 +25,27 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 			break;
 	}
 
+	vector < unsigned int > xx;
+	unsigned int ul = m;
 	unsigned int num_bp_lvp = 0;
-	for ( unsigned int i = 0; i < colx.bpos.size(); i++ )
+	for ( unsigned int i = 0; i < lvp; i++ )
 	{
-		if ( colx.bpos[i] < lvp )
-			num_bp_lvp ++;
+		if ( colx.colour[i] != 'b' )
+			xx.push_back ( getLetter( x[i], m ) );
 		else
-			break;
+		{
+			xx.push_back ( ul );
+			ul ++;
+			num_bp_lvp ++;
+		}
 	}
 
 	if ( num_bp_lvp == 0 )
 		cout << "Warning: No Black Position in Longest Valid Prefix!" << endl;
+
+	/* construct the set of string : x'$xx */
+	vector < unsigned int > :: iterator it_xx;
+	it_xx = xx.begin();
 
 	vector < vector < unsigned int > > xp;
 	vector < vector < unsigned int > > fragment;			//save the fragments x' (the strings between two neighboor black position )
@@ -104,6 +96,7 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 		temp.insert ( temp.end(), xx.begin(), xx.end() );		//we add xx to the end of the temp array, so now it is x'$xx
 		xp.push_back ( temp );									//we add this array to the set of string x'$xx
 	}
+
 	/* compute prefix table for each x'$xx */
 	unsigned int ** ptset = NULL;
 	ptset = new unsigned int * [ xp.size() ];
@@ -111,21 +104,56 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 	{
 		unsigned int * tempPT = NULL;
 		tempPT = new unsigned int [ xp[i].size() ];
-		ptset[i] = new unsigned int [ n ];
+		ptset[i] = new unsigned int [ lvp ];
 		if ( prefix ( xp[i], tempPT ) )
 		{
-			for ( unsigned int j = 0; j < n; j++ )
+			for ( unsigned int j = 0; j < lvp; j++ )
 				ptset[i][j] = tempPT[j + fragment[i].size() + 1];		//just save part of the prefix table, from the beginning of string xx
 		}
 		delete[] tempPT;
 	}
 
-	P[0] = n;
+	P[0] = lvp;
 
-	for ( unsigned int i = 1; i < n; i++ )
+	for ( unsigned int i = 1; i < lvp; i++ )
 		P[i] = 0;
 
-	for ( unsigned int i = 1; i < n; i++ )
+	for ( unsigned int j = 1; j < lvp; j++ )
+	{
+		for ( unsigned int i = 0; i < lvp - j; i++ )
+		{
+			unsigned int pu = i;
+			unsigned int pv = j + i;
+
+			if ( colx.colour[pu] == 'b' || colx.colour[pv] == 'b' )
+				P[j] ++;
+			else
+			{
+				int pi = 0;
+				if ( findpi ( pu, frag_start ) >= 0 )
+				{
+					pi = findpi ( pu, frag_start );
+					if ( ptset[pi][pv] == 0 )
+						break;
+					P[j] += ptset[pi][pv];
+					i = i + ptset[pi][pv] - 1;
+				}
+				else
+				{
+					pi = findpi ( pv, frag_start );
+					if ( ptset[pi][pu] == 0 )
+						break;
+					P[j] += ptset[pi][pu];
+					i = i + ptset[pi][pu] - 1;
+				}
+				if ( colx.colour[i + 1] != 'b' && colx.colour[j + i + 1] != 'b' )
+					break;
+			}
+		}
+	}
+
+/*
+	for ( unsigned int i = 1; i < lvp; i++ )
 	{
 		unsigned int pos_u = 0;
 		unsigned int pos_v = i;
@@ -181,56 +209,8 @@ unsigned int parray ( double ** x, unsigned int n, unsigned int m, double z, uns
 			}
 		}while ( flag );
 	}
+*/
 
-
-
-
-
-	/*
-	   for ( unsigned int j = 1; j < n; j++ )
-	   {
-			for ( unsigned int i = 0; i < n - j; i++ )
-			{	
-
-			unsigned int pos_u = i;
-			unsigned int pos_v = j + i;
-			if ( i > lvp )
-			{
-				P[j] = n;
-			}
-			else
-			{
-				if ( colx.colour[pos_u] == 'b' || colx.colour[pos_v] == 'b' )
-					P[j] ++;
-				else
-				{	
-					int pi = 0;
-					if ( findpi ( pos_u, frag_start ) >= 0 )
-					{
-						pi = findpi ( pos_u, frag_start );
-						if ( ptset[pi][pos_v] == 0 )
-							break;
-						P[j] = P[j] + ptset[pi][pos_v];
-						i = i + ptset[pi][pos_v] - 1;
-					}
-					else
-					{
-						if ( xx[i] == xx[j + i] )
-						{
-							P[j] ++;
-						}
-						else
-						{
-							break;
-						}
-					}
-					if ( colx.colour[i + 1] != 'b' && colx.colour[j + i + 1] != 'b' )
-						break;
-				}
-			}
-		}
-	}
-	*/
 	for ( unsigned int i = 0; i < xp.size(); i++ )
 		delete[] ptset[i];
 	delete[] ptset;
