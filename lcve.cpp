@@ -20,7 +20,7 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 		return lcve;
 	while ( compareBP ( x[u->end], x[v->end], m ) < m )
 	{
-		if ( lcve == P )
+		if ( lcve >= P )
 			return lcve;
 		if ( v->end == n - 1 )
 		{
@@ -247,20 +247,24 @@ unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsig
 unsigned int gextension ( double ** x, unsigned int n, unsigned int m, double z,Factor * u, Factor * v )
 {
 	unsigned ge = 0;
-	vector < unsigned int > branch;
 	if ( v->end >= n )
 		return ge;
 	do
 	{
-		unsigned int match = branchBP ( x[u->end + 1], x[v->end + 1], m, &branch );
+		vector < unsigned int > branch;
+		unsigned int match = branchBP ( x[u->end], x[v->end], m, &branch );
 		if ( match == 0 )
+		{
 			break;
+		}
 		else if ( match == 1 )
 		{
-			u->p *= x[u->end + 1][ branch[0] ];
-			v->p *= x[v->end + 1][ branch[0] ];
+			u->p *= x[u->end][ branch[0] ];
+			v->p *= x[v->end][ branch[0] ];
 			if ( u->p < 1/z || v->p < 1/z )
+			{
 				break;
+			}
 			else
 			{
 				u->end ++;
@@ -272,7 +276,7 @@ unsigned int gextension ( double ** x, unsigned int n, unsigned int m, double z,
 		{
 			unsigned int g_branch[match];
 			unsigned int max_branch = 0;
-			unsigned int pick;
+			unsigned int pick = 0;
 
 			Factor u_branch[match];
 			Factor v_branch[match];
@@ -281,8 +285,8 @@ unsigned int gextension ( double ** x, unsigned int n, unsigned int m, double z,
 				g_branch[i] = 0;
 				u_branch[i] = *u;
 				v_branch[i] = *v;
-				u_branch[i].p *= x[u->end + 1][ branch[i] ];
-				v_branch[i].p *= x[v->end + 1][ branch[i] ];
+				u_branch[i].p *= x[u->end][ branch[i] ];
+				v_branch[i].p *= x[v->end][ branch[i] ];
 				if ( u_branch[i].p < 1/z || v_branch[i].p < 1/z )
 				{
 					g_branch[i] = 0;
@@ -298,6 +302,7 @@ unsigned int gextension ( double ** x, unsigned int n, unsigned int m, double z,
 				{
 					max_branch = g_branch[i];
 					pick = i;
+				
 				}
 			}
 			ge += max_branch;
@@ -305,9 +310,9 @@ unsigned int gextension ( double ** x, unsigned int n, unsigned int m, double z,
 			v->p = v_branch[pick].p;
 			u->end = u_branch[pick].end;
 			v->end = v_branch[pick].end;
+			break;
 		}
-	}while ( v->end < n - 1 );
-
+	}while ( v->end < n );
 	return ge;
 }
 

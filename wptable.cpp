@@ -82,48 +82,39 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , unsigned int * WP )
 {
 	/* This function is used to compute the Weighted Prefix Table */
-	clock_t Pstart, Pend, WPstart, WPend, allstart, allend;
-	clock_t * Lstart = new clock_t [n];
-	clock_t * Lend = new clock_t [n];
-	clock_t * Gstart = new clock_t [n];
-	clock_t * Gend = new clock_t [n];
+	clock_t Ps, Pe, WPs, WPe;
 
-	/* compute the longest valid preifx for WP[0] */
-	WP[0] = 0;
-	double p_wp0 = 1;
-	for ( unsigned int i = 0; i < n && p_wp0 >= 1/z; i++ )
-	{
-		p_wp0 = p_wp0 *  maximum ( x[i], m );
-		WP[0] ++;
-	}
-	WP[0] = WP[0] - 1;
+	vector < clock_t > Ls, Le, Gs, Ge;
+
+
+	/* compute P array */
+	Ps = clock();
+	unsigned int * Parray = new unsigned int [ n ];
+	parray ( x, n, m , z, Parray );
+	Pe = clock();
+
+	/* WP[0] is the longest valid prefix */
+	WP[0] = Parray[0];
 
 	/* make maps for the black position set and the stop position */
-	map < vector < unsigned int >, unsigned int > STable;									//the map for the
+	map < vector < unsigned int >, unsigned int > STable;					
 	map < vector < unsigned int >, unsigned int > :: iterator it_u = STable.begin();
 
 	vector < BPmap > PrefixBPmaps;
 	vector < unsigned int > BPstring;
-	allstart = clock();
-	PrefixMap ( x, n, m, z, 1, 0, BPstring, &PrefixBPmaps );
-
+	if ( PrefixMap ( x, n, m, z, 1, 0, BPstring, &PrefixBPmaps) == 0 )
+	{
+		cout << "No grey position causes invalid breakdown." << endl;
+	}
 	for ( unsigned int i = 0; i < PrefixBPmaps.size(); i++ )
 	{
 		STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
 	}
 
-	allend = clock();
-	unsigned int * Parray = new unsigned int [ WP[0] ];
-	Pstart = clock();
-	parray ( x, n, m , z, Parray );
-	Pend = clock();
-	double Ppass = ( double ) ( Pend - Pstart ) / CLOCKS_PER_SEC;
-	cout << "P takes: " << Ppass << "s.\n";
-
 	unsigned int g = 0;
 	unsigned int f;
-
-	WPstart = clock();
+	
+	WPs = clock();
 	for ( unsigned int i = 1; i < n; i++ )
 	{
 		/* construct two factor u & v, to computer the lcve between stirng x and x[i....] */
@@ -140,14 +131,13 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		unsigned int lcve_wp = 0;
 		if ( i < g )
 		{
-			unsigned int limit = min ( P[i - f], g - i );
-			Lstart[i] = clock();
+			unsigned int limit = min ( Parray[i], g - i );
+			Ls.push_back ( clock() );
 			lcve_wp = LCVE ( x, n, m, z, lcve_wp, limit, &u, &v );
-			Lend[i] = clock();
+			Le.push_back ( clock() );
 			/* check the probability fail caused by grey position, and get the longest valid extension */
 			unsigned int lve_u = lcve_wp;
 			unsigned int lve_v = lcve_wp;
-			Gstart[i] = clock();
 			if ( u.p < 1/z )
 			{
 				it_u = STable.find ( u.bpset );
@@ -175,11 +165,9 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 					}
 				}
 			}
-			Gend[i] = clock();
 
 			if ( lve_u != lcve_wp || lve_v != lcve_wp )
 				lcve_wp = min ( lve_u, lve_v );
-		
 			if ( lcve_wp < g - i )
 			{
 				flag = 0;
@@ -191,32 +179,31 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		if ( flag )
 		{
 			f = i;
-			g = max( g, i ); 
-			while ( g < n )
+			g = max( g, i );
+			
+			if ( g < n )	
 			{
-				
-
+				Gs.push_back ( clock() );
+				g = g + gextension ( x, n, m, z, &u, &v );
+				Ge.push_back ( clock() );
+			}
 				
 			WP[i] = g - f;
 		}
 	}
-	WPend = clock();
-	double WPpass = ( double ) ( WPend - WPstart ) / CLOCKS_PER_SEC;
-	cout << "WP takes: " << WPpass << "s.\n";
+	WPe = clock();
 
-	double Lpass = 0, Gpass = 0;
-	for ( unsigned int i = 0; i < n; i++ )
-	{
-		Lpass += ( double ) ( Lend[i] - Lstart[i] ) / CLOCKS_PER_SEC;
-		Gpass += ( double ) ( Gend[i] - Gstart[i] ) / CLOCKS_PER_SEC;
-	}
+	double Ptime = ( double ) ( Pe - Ps ) / CLOCKS_PER_SEC;
+	double WPtime = ( double ) ( WPe - WPs ) / CLOCKS_PER_SEC;
+	double Ltime = 0;
+	double Gtime = 0;
+	for ( unsigned int i = 0; i < Ls.size(); i++ )
+		Ltime += ( double ) ( Le[i] - Ls[i] ) / CLOCKS_PER_SEC;
+	for ( unsigned int i = 0; i < Gs.size(); i++ )
+		Gtime += ( double ) ( Ge[i] - Gs[i] ) / CLOCKS_PER_SEC;
 
-	cout << "LCVE takes: " << Lpass << "s.\n";
-	cout << "Grey check: " << Gpass << "s.\n";
-
-
-	double allpass = ( double ) ( allend - allstart ) / CLOCKS_PER_SEC;
-	cout << "All takes: " << allpass << "s.\n";
+	cout << "P time:" << Ptime << "\nWP time:" << WPtime << endl;
+	cout << "L time:" << Ltime << "\nG time:" << Gtime << endl;
 
 	delete [] Parray;
 

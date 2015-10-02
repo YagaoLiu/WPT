@@ -1,0 +1,1662 @@
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:309:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return _Tp(); }
+           ^
+/usr/include/c++/4.8/limits:313:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return _Tp(); }
+           ^
+/usr/include/c++/4.8/limits:376:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return false; }
+           ^
+/usr/include/c++/4.8/limits:379:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return true; }
+           ^
+/usr/include/c++/4.8/limits:383:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:445:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min(char); }
+           ^
+/usr/include/c++/4.8/limits:448:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_max(char); }
+           ^
+/usr/include/c++/4.8/limits:452:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:512:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SCHAR_MAX__ - 1; }
+           ^
+/usr/include/c++/4.8/limits:515:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __SCHAR_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:519:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:582:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+           ^
+/usr/include/c++/4.8/limits:585:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __SCHAR_MAX__ * 2U + 1; }
+           ^
+/usr/include/c++/4.8/limits:589:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:655:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min (wchar_t); }
+           ^
+/usr/include/c++/4.8/limits:658:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_max (wchar_t); }
+           ^
+/usr/include/c++/4.8/limits:662:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:724:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() noexcept { return __glibcxx_min (char16_t); }
+           ^
+/usr/include/c++/4.8/limits:727:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() noexcept { return __glibcxx_max (char16_t); }
+           ^
+/usr/include/c++/4.8/limits:730:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:785:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() noexcept { return __glibcxx_min (char32_t); }
+           ^
+/usr/include/c++/4.8/limits:788:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() noexcept { return __glibcxx_max (char32_t); }
+           ^
+/usr/include/c++/4.8/limits:791:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:847:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SHRT_MAX__ - 1; }
+           ^
+/usr/include/c++/4.8/limits:850:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __SHRT_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:854:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:914:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+           ^
+/usr/include/c++/4.8/limits:917:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __SHRT_MAX__ * 2U + 1; }
+           ^
+/usr/include/c++/4.8/limits:921:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:987:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return -__INT_MAX__ - 1; }
+           ^
+/usr/include/c++/4.8/limits:990:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __INT_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:994:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:1054:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+           ^
+/usr/include/c++/4.8/limits:1057:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __INT_MAX__ * 2U + 1; }
+           ^
+/usr/include/c++/4.8/limits:1061:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:1126:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_MAX__ - 1; }
+           ^
+/usr/include/c++/4.8/limits:1129:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:1133:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:1193:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+           ^
+/usr/include/c++/4.8/limits:1196:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_MAX__ * 2UL + 1; }
+           ^
+/usr/include/c++/4.8/limits:1200:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:1266:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_LONG_MAX__ - 1; }
+           ^
+/usr/include/c++/4.8/limits:1269:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_LONG_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:1273:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:1336:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+           ^
+/usr/include/c++/4.8/limits:1339:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_LONG_MAX__ * 2ULL + 1; }
+           ^
+/usr/include/c++/4.8/limits:1343:38: error: macro "min" requires 2 arguments, but only 1 given
+       lowest() noexcept { return min(); }
+                                      ^
+/usr/include/c++/4.8/limits:1558:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return __FLT_MIN__; }
+           ^
+/usr/include/c++/4.8/limits:1561:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __FLT_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:1633:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return __DBL_MIN__; }
+           ^
+/usr/include/c++/4.8/limits:1636:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __DBL_MAX__; }
+           ^
+/usr/include/c++/4.8/limits:1708:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() _GLIBCXX_USE_NOEXCEPT { return __LDBL_MIN__; }
+           ^
+/usr/include/c++/4.8/limits:1711:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() _GLIBCXX_USE_NOEXCEPT { return __LDBL_MAX__; }
+           ^
+In file included from /usr/include/c++/4.8/mutex:39:0,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/chrono:220:6: error: macro "max" requires 2 arguments, but only 1 given
+  max()
+      ^
+/usr/include/c++/4.8/chrono:221:37: error: macro "max" requires 2 arguments, but only 1 given
+  { return numeric_limits<_Rep>::max(); }
+                                     ^
+/usr/include/c++/4.8/chrono:224:6: error: macro "min" requires 2 arguments, but only 1 given
+  min()
+      ^
+/usr/include/c++/4.8/chrono:364:6: error: macro "min" requires 2 arguments, but only 1 given
+  min()
+      ^
+/usr/include/c++/4.8/chrono:365:46: error: macro "min" requires 2 arguments, but only 1 given
+  { return duration(duration_values<rep>::min()); }
+                                              ^
+/usr/include/c++/4.8/chrono:368:6: error: macro "max" requires 2 arguments, but only 1 given
+  max()
+      ^
+/usr/include/c++/4.8/chrono:369:46: error: macro "max" requires 2 arguments, but only 1 given
+  { return duration(duration_values<rep>::max()); }
+                                              ^
+/usr/include/c++/4.8/chrono:587:6: error: macro "min" requires 2 arguments, but only 1 given
+  min()
+      ^
+/usr/include/c++/4.8/chrono:588:36: error: macro "min" requires 2 arguments, but only 1 given
+  { return time_point(duration::min()); }
+                                    ^
+/usr/include/c++/4.8/chrono:591:6: error: macro "max" requires 2 arguments, but only 1 given
+  max()
+      ^
+/usr/include/c++/4.8/chrono:592:36: error: macro "max" requires 2 arguments, but only 1 given
+  { return time_point(duration::max()); }
+                                    ^
+/usr/include/c++/4.8/chrono:722:49: error: macro "min" requires 2 arguments, but only 1 given
+       static_assert(system_clock::duration::min()
+                                                 ^
+In file included from /usr/include/c++/4.8/random:50:0,
+                 from ./libsdsl/include/sdsl/util.hpp:45,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/bits/random.h:173:6: error: macro "min" requires 2 arguments, but only 1 given
+  min() const
+      ^
+/usr/include/c++/4.8/bits/random.h:177:6: error: macro "max" requires 2 arguments, but only 1 given
+  max() const
+      ^
+/usr/include/c++/4.8/bits/random.h:311:11: error: macro "min" requires 2 arguments, but only 1 given
+       min()
+           ^
+/usr/include/c++/4.8/bits/random.h:318:11: error: macro "max" requires 2 arguments, but only 1 given
+       max()
+           ^
+/usr/include/c++/4.8/bits/random.h:527:11: error: macro "min" requires 2 arguments, but only 1 given
+       min()
+           ^
+/usr/include/c++/4.8/bits/random.h:534:11: error: macro "max" requires 2 arguments, but only 1 given
+       max()
+           ^
+/usr/include/c++/4.8/bits/random.h:736:11: error: macro "min" requires 2 arguments, but only 1 given
+       min()
+           ^
+/usr/include/c++/4.8/bits/random.h:744:11: error: macro "max" requires 2 arguments, but only 1 given
+       max()
+           ^
+/usr/include/c++/4.8/bits/random.h:966:11: error: macro "min" requires 2 arguments, but only 1 given
+       min()
+           ^
+/usr/include/c++/4.8/bits/random.h:967:41: error: macro "min" requires 2 arguments, but only 1 given
+       { return _RandomNumberEngine::min(); }
+                                         ^
+/usr/include/c++/4.8/bits/random.h:973:11: error: macro "max" requires 2 arguments, but only 1 given
+       max()
+           ^
+/usr/include/c++/4.8/bits/random.h:974:41: error: macro "max" requires 2 arguments, but only 1 given
+       { return _RandomNumberEngine::max(); }
+                                         ^
+/usr/include/c++/4.8/bits/random.h:1175:11: error: macro "min" requires 2 arguments, but only 1 given
+       min()
+           ^
+/usr/include/c++/4.8/bits/random.h:1182:11: error: macro "max" requires 2 arguments, but only 1 given
+       max()
+           ^
+/usr/include/c++/4.8/bits/random.h:1405:11: error: macro "min" requires 2 arguments, but only 1 given
+       min()
+           ^
+/usr/include/c++/4.8/bits/random.h:1406:41: error: macro "min" requires 2 arguments, but only 1 given
+       { return _RandomNumberEngine::min(); }
+                                         ^
+/usr/include/c++/4.8/bits/random.h:1412:11: error: macro "max" requires 2 arguments, but only 1 given
+       max()
+           ^
+/usr/include/c++/4.8/bits/random.h:1413:41: error: macro "max" requires 2 arguments, but only 1 given
+       { return _RandomNumberEngine::max(); }
+                                         ^
+/usr/include/c++/4.8/bits/random.h:1605:9: error: macro "min" requires 2 arguments, but only 1 given
+     min()
+         ^
+/usr/include/c++/4.8/bits/random.h:1606:52: error: macro "min" requires 2 arguments, but only 1 given
+     { return std::numeric_limits<result_type>::min(); }
+                                                    ^
+/usr/include/c++/4.8/bits/random.h:1609:9: error: macro "max" requires 2 arguments, but only 1 given
+     max()
+         ^
+/usr/include/c++/4.8/bits/random.h:1610:52: error: macro "max" requires 2 arguments, but only 1 given
+     { return std::numeric_limits<result_type>::max(); }
+                                                    ^
+/usr/include/c++/4.8/bits/random.h:1681:56: error: macro "max" requires 2 arguments, but only 1 given
+      _IntType __b = std::numeric_limits<_IntType>::max())
+                                                        ^
+/usr/include/c++/4.8/bits/random.h:1710:57: error: macro "max" requires 2 arguments, but only 1 given
+       _IntType __b = std::numeric_limits<_IntType>::max())
+                                                         ^
+/usr/include/c++/4.8/bits/random.h:1754:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:1761:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:1958:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:1965:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2180:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2187:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2188:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:2382:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2389:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2390:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:2604:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2611:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2612:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:2792:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2799:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:2800:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:3013:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3020:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3021:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:3217:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3224:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3225:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:3430:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3437:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3438:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:3652:9: error: macro "min" requires 2 arguments, but only 1 given
+     min() const
+         ^
+/usr/include/c++/4.8/bits/random.h:3653:52: error: macro "min" requires 2 arguments, but only 1 given
+     { return std::numeric_limits<result_type>::min(); }
+                                                    ^
+/usr/include/c++/4.8/bits/random.h:3659:9: error: macro "max" requires 2 arguments, but only 1 given
+     max() const
+         ^
+/usr/include/c++/4.8/bits/random.h:3660:52: error: macro "max" requires 2 arguments, but only 1 given
+     { return std::numeric_limits<result_type>::max(); }
+                                                    ^
+/usr/include/c++/4.8/bits/random.h:3677:31: error: macro "min" requires 2 arguments, but only 1 given
+  if ((__aurng() - __aurng.min())
+                               ^
+/usr/include/c++/4.8/bits/random.h:3678:32: error: macro "max" requires 2 arguments, but only 1 given
+       < __p.p() * (__aurng.max() - __aurng.min()))
+                                ^
+/usr/include/c++/4.8/bits/random.h:3678:48: error: macro "min" requires 2 arguments, but only 1 given
+       < __p.p() * (__aurng.max() - __aurng.min()))
+                                                ^
+/usr/include/c++/4.8/bits/random.h:3880:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:3887:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4093:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4100:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4101:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:4295:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4302:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4303:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:4517:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4524:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4525:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:4727:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4734:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4735:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:4935:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4942:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:4943:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:5138:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5145:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5146:54: error: macro "max" requires 2 arguments, but only 1 given
+       { return std::numeric_limits<result_type>::max(); }
+                                                      ^
+/usr/include/c++/4.8/bits/random.h:5364:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5371:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5627:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5637:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5897:11: error: macro "min" requires 2 arguments, but only 1 given
+       min() const
+           ^
+/usr/include/c++/4.8/bits/random.h:5907:11: error: macro "max" requires 2 arguments, but only 1 given
+       max() const
+           ^
+In file included from /usr/include/c++/4.8/random:51:0,
+                 from ./libsdsl/include/sdsl/util.hpp:45,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/opt_random.h:73:40: error: macro "min" requires 2 arguments, but only 1 given
+  const __uctype __urngmin = __urng.min();
+                                        ^
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/opt_random.h:74:40: error: macro "max" requires 2 arguments, but only 1 given
+  const __uctype __urngmax = __urng.max();
+                                        ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from ./libsdsl/include/sdsl/util.hpp:45,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/bits/random.tcc:749:14: error: macro "max" requires 2 arguments, but only 1 given
+  = (_M_b.max() - _M_b.min() < std::numeric_limits<_Eresult_type>::max()
+              ^
+/usr/include/c++/4.8/bits/random.tcc:749:27: error: macro "min" requires 2 arguments, but only 1 given
+  = (_M_b.max() - _M_b.min() < std::numeric_limits<_Eresult_type>::max()
+                           ^
+/usr/include/c++/4.8/bits/random.tcc:749:71: error: macro "max" requires 2 arguments, but only 1 given
+  = (_M_b.max() - _M_b.min() < std::numeric_limits<_Eresult_type>::max()
+                                                                       ^
+/usr/include/c++/4.8/bits/random.tcc:750:16: error: macro "max" requires 2 arguments, but only 1 given
+     ? _M_b.max() - _M_b.min() + 1 : 0);
+                ^
+/usr/include/c++/4.8/bits/random.tcc:750:29: error: macro "min" requires 2 arguments, but only 1 given
+     ? _M_b.max() - _M_b.min() + 1 : 0);
+                             ^
+/usr/include/c++/4.8/bits/random.tcc:795:30: error: macro "min" requires 2 arguments, but only 1 given
+      __u = _M_b() - _M_b.min();
+                              ^
+/usr/include/c++/4.8/bits/random.tcc:803:30: error: macro "min" requires 2 arguments, but only 1 given
+      __u = _M_b() - _M_b.min();
+                              ^
+/usr/include/c++/4.8/bits/random.tcc:820:44: error: macro "min" requires 2 arguments, but only 1 given
+       size_t __j = __k * ((_M_y - _M_b.min())
+                                            ^
+/usr/include/c++/4.8/bits/random.tcc:821:18: error: macro "max" requires 2 arguments, but only 1 given
+      / (_M_b.max() - _M_b.min() + 1.0L));
+                  ^
+/usr/include/c++/4.8/bits/random.tcc:821:31: error: macro "min" requires 2 arguments, but only 1 given
+      / (_M_b.max() - _M_b.min() + 1.0L));
+                               ^
+/usr/include/c++/4.8/bits/random.tcc:888:40: error: macro "min" requires 2 arguments, but only 1 given
+  const __uctype __urngmin = __urng.min();
+                                        ^
+/usr/include/c++/4.8/bits/random.tcc:889:40: error: macro "max" requires 2 arguments, but only 1 given
+  const __uctype __urngmax = __urng.max();
+                                        ^
+/usr/include/c++/4.8/bits/random.tcc:957:40: error: macro "min" requires 2 arguments, but only 1 given
+  const __uctype __urngmin = __urng.min();
+                                        ^
+/usr/include/c++/4.8/bits/random.tcc:958:40: error: macro "max" requires 2 arguments, but only 1 given
+  const __uctype __urngmax = __urng.max();
+                                        ^
+/usr/include/c++/4.8/bits/random.tcc:1142:45: error: macro "max" requires 2 arguments, but only 1 given
+       auto __limit = __p.p() * (__aurng.max() - __aurng.min());
+                                             ^
+/usr/include/c++/4.8/bits/random.tcc:1142:61: error: macro "min" requires 2 arguments, but only 1 given
+       auto __limit = __p.p() * (__aurng.max() - __aurng.min());
+                                                             ^
+/usr/include/c++/4.8/bits/random.tcc:1145:36: error: macro "min" requires 2 arguments, but only 1 given
+  *__f++ = (__aurng() - __aurng.min()) < __limit;
+                                    ^
+/usr/include/c++/4.8/bits/random.tcc:1185:39: error: macro "max" requires 2 arguments, but only 1 given
+    std::numeric_limits<_IntType>::max() + __naf;
+                                       ^
+/usr/include/c++/4.8/bits/random.tcc:1213:39: error: macro "max" requires 2 arguments, but only 1 given
+    std::numeric_limits<_IntType>::max() + __naf;
+                                       ^
+/usr/include/c++/4.8/bits/random.tcc:1450:43: error: macro "max" requires 2 arguments, but only 1 given
+        std::numeric_limits<_IntType>::max() + __naf;
+                                           ^
+/usr/include/c++/4.8/bits/random.tcc:1705:43: error: macro "max" requires 2 arguments, but only 1 given
+        std::numeric_limits<_IntType>::max() + __naf;
+                                           ^
+/usr/include/c++/4.8/bits/random.tcc:3469:67: error: macro "max" requires 2 arguments, but only 1 given
+       const long double __r = static_cast<long double>(__urng.max())
+                                                                   ^
+/usr/include/c++/4.8/bits/random.tcc:3470:46: error: macro "min" requires 2 arguments, but only 1 given
+        - static_cast<long double>(__urng.min()) + 1.0L;
+                                              ^
+/usr/include/c++/4.8/bits/random.tcc:3477:45: error: macro "min" requires 2 arguments, but only 1 given
+    __sum += _RealType(__urng() - __urng.min()) * __tmp;
+                                             ^
+In file included from /usr/include/c++/4.8/bits/stl_algo.h:60:0,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from ./libsdsl/include/sdsl/util.hpp:49,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/bits/algorithmfwd.h:360:41: error: macro "max" passed 3 arguments, but takes just 2
+     max(const _Tp&, const _Tp&, _Compare);
+                                         ^
+/usr/include/c++/4.8/bits/algorithmfwd.h:371:41: error: macro "min" passed 3 arguments, but takes just 2
+     min(const _Tp&, const _Tp&, _Compare);
+                                         ^
+/usr/include/c++/4.8/bits/algorithmfwd.h:394:30: error: macro "min" requires 2 arguments, but only 1 given
+     min(initializer_list<_Tp>);
+                              ^
+/usr/include/c++/4.8/bits/algorithmfwd.h:402:30: error: macro "max" requires 2 arguments, but only 1 given
+     max(initializer_list<_Tp>);
+                              ^
+In file included from /usr/include/c++/4.8/algorithm:62:0,
+                 from ./libsdsl/include/sdsl/util.hpp:49,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/bits/stl_algo.h:4221:34: error: macro "min" requires 2 arguments, but only 1 given
+     min(initializer_list<_Tp> __l)
+                                  ^
+/usr/include/c++/4.8/bits/stl_algo.h:4231:34: error: macro "max" requires 2 arguments, but only 1 given
+     max(initializer_list<_Tp> __l)
+                                  ^
+In file included from parray_lcp.cpp:8:0:
+/usr/include/c++/4.8/bits/hashtable.h: In constructor ‘std::_Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal, _H1, _H2, _Hash, _RehashPolicy, _Traits>::_Hashtable(_InputIterator, _InputIterator, std::_Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal, _H1, _H2, _Hash, _RehashPolicy, _Traits>::size_type, const _H1&, const _H2&, const _Hash&, const _Equal&, const _ExtractKey&, const allocator_type&)’:
+global.h:1:18: error: expected unqualified-id before ‘(’ token
+ #define max(a,b) ((a) > (b)) ? (a) : (b)
+                  ^
+/usr/include/c++/4.8/bits/hashtable.h: In member function ‘void std::_Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal, _H1, _H2, _Hash, _RehashPolicy, _Traits>::rehash(std::_Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal, _H1, _H2, _Hash, _RehashPolicy, _Traits>::size_type)’:
+global.h:1:18: error: expected unqualified-id before ‘(’ token
+ #define max(a,b) ((a) > (b)) ? (a) : (b)
+                  ^
+/usr/include/c++/4.8/bits/sstream.tcc: In member function ‘virtual std::basic_stringbuf<_CharT, _Traits, _Alloc>::int_type std::basic_stringbuf<_CharT, _Traits, _Alloc>::overflow(std::basic_stringbuf<_CharT, _Traits, _Alloc>::int_type)’:
+global.h:1:18: error: expected unqualified-id before ‘(’ token
+ #define max(a,b) ((a) > (b)) ? (a) : (b)
+                  ^
+global.h:2:18: error: expected unqualified-id before ‘(’ token
+ #define min(a,b) ((a) < (b)) ? (a) : (b)
+                  ^
+/usr/include/c++/4.8/bits/fstream.tcc: In member function ‘virtual std::basic_filebuf<_CharT, _Traits>::int_type std::basic_filebuf<_CharT, _Traits>::underflow()’:
+global.h:2:18: error: expected unqualified-id before ‘(’ token
+ #define min(a,b) ((a) < (b)) ? (a) : (b)
+                  ^
+/usr/include/c++/4.8/bits/fstream.tcc: In member function ‘virtual std::streamsize std::basic_filebuf<_CharT, _Traits>::xsputn(const _CharT*, std::streamsize)’:
+global.h:2:18: error: expected unqualified-id before ‘(’ token
+ #define min(a,b) ((a) < (b)) ? (a) : (b)
+                  ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:309:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return _Tp(); }
+       ^
+/usr/include/c++/4.8/limits:309:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:309:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return _Tp(); }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:313:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return _Tp(); }
+       ^
+/usr/include/c++/4.8/limits:313:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:313:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return _Tp(); }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:376:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return false; }
+       ^
+/usr/include/c++/4.8/limits:376:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:376:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return false; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:379:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return true; }
+       ^
+/usr/include/c++/4.8/limits:379:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:379:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return true; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr bool std::numeric_limits<bool>::lowest()’:
+/usr/include/c++/4.8/limits:383:41: error: the value of ‘std::numeric_limits<bool>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:376:7: note: ‘std::numeric_limits<bool>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return false; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:445:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min(char); }
+       ^
+/usr/include/c++/4.8/limits:445:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:445:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min(char); }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:448:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_max(char); }
+       ^
+/usr/include/c++/4.8/limits:448:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:448:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_max(char); }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr char std::numeric_limits<char>::lowest()’:
+/usr/include/c++/4.8/limits:452:41: error: the value of ‘std::numeric_limits<char>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:445:7: note: ‘std::numeric_limits<char>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min(char); }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:512:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SCHAR_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits:512:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:512:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SCHAR_MAX__ - 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:515:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __SCHAR_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:515:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:515:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __SCHAR_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr signed char std::numeric_limits<signed char>::lowest()’:
+/usr/include/c++/4.8/limits:519:41: error: the value of ‘std::numeric_limits<signed char>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:512:7: note: ‘std::numeric_limits<signed char>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SCHAR_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:582:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits:582:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:582:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:585:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __SCHAR_MAX__ * 2U + 1; }
+       ^
+/usr/include/c++/4.8/limits:585:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:585:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __SCHAR_MAX__ * 2U + 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr unsigned char std::numeric_limits<unsigned char>::lowest()’:
+/usr/include/c++/4.8/limits:589:41: error: the value of ‘std::numeric_limits<unsigned char>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:582:7: note: ‘std::numeric_limits<unsigned char>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:655:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min (wchar_t); }
+       ^
+/usr/include/c++/4.8/limits:655:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:655:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min (wchar_t); }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:658:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_max (wchar_t); }
+       ^
+/usr/include/c++/4.8/limits:658:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:658:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_max (wchar_t); }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr wchar_t std::numeric_limits<wchar_t>::lowest()’:
+/usr/include/c++/4.8/limits:662:41: error: the value of ‘std::numeric_limits<wchar_t>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:655:7: note: ‘std::numeric_limits<wchar_t>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return __glibcxx_min (wchar_t); }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:724:7: error: constexpr static data member ‘min’ must have an initializer
+       min() noexcept { return __glibcxx_min (char16_t); }
+       ^
+/usr/include/c++/4.8/limits:724:7: error: expected ‘;’ at end of member declaration
+/usr/include/c++/4.8/limits:724:13: error: expected unqualified-id before ‘noexcept’
+       min() noexcept { return __glibcxx_min (char16_t); }
+             ^
+/usr/include/c++/4.8/limits:727:7: error: constexpr static data member ‘max’ must have an initializer
+       max() noexcept { return __glibcxx_max (char16_t); }
+       ^
+/usr/include/c++/4.8/limits:727:7: error: expected ‘;’ at end of member declaration
+/usr/include/c++/4.8/limits:727:13: error: expected unqualified-id before ‘noexcept’
+       max() noexcept { return __glibcxx_max (char16_t); }
+             ^
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr char16_t std::numeric_limits<char16_t>::lowest()’:
+/usr/include/c++/4.8/limits:730:41: error: the value of ‘std::numeric_limits<char16_t>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:724:7: note: ‘std::numeric_limits<char16_t>::min’ was not initialized with a constant expression
+       min() noexcept { return __glibcxx_min (char16_t); }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:785:7: error: constexpr static data member ‘min’ must have an initializer
+       min() noexcept { return __glibcxx_min (char32_t); }
+       ^
+/usr/include/c++/4.8/limits:785:7: error: expected ‘;’ at end of member declaration
+/usr/include/c++/4.8/limits:785:13: error: expected unqualified-id before ‘noexcept’
+       min() noexcept { return __glibcxx_min (char32_t); }
+             ^
+/usr/include/c++/4.8/limits:788:7: error: constexpr static data member ‘max’ must have an initializer
+       max() noexcept { return __glibcxx_max (char32_t); }
+       ^
+/usr/include/c++/4.8/limits:788:7: error: expected ‘;’ at end of member declaration
+/usr/include/c++/4.8/limits:788:13: error: expected unqualified-id before ‘noexcept’
+       max() noexcept { return __glibcxx_max (char32_t); }
+             ^
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr char32_t std::numeric_limits<char32_t>::lowest()’:
+/usr/include/c++/4.8/limits:791:41: error: the value of ‘std::numeric_limits<char32_t>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:785:7: note: ‘std::numeric_limits<char32_t>::min’ was not initialized with a constant expression
+       min() noexcept { return __glibcxx_min (char32_t); }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:847:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SHRT_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits:847:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:847:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SHRT_MAX__ - 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:850:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __SHRT_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:850:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:850:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __SHRT_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr short int std::numeric_limits<short int>::lowest()’:
+/usr/include/c++/4.8/limits:854:41: error: the value of ‘std::numeric_limits<short int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:847:7: note: ‘std::numeric_limits<short int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return -__SHRT_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:914:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits:914:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:914:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:917:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __SHRT_MAX__ * 2U + 1; }
+       ^
+/usr/include/c++/4.8/limits:917:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:917:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __SHRT_MAX__ * 2U + 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr short unsigned int std::numeric_limits<short unsigned int>::lowest()’:
+/usr/include/c++/4.8/limits:921:41: error: the value of ‘std::numeric_limits<short unsigned int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:914:7: note: ‘std::numeric_limits<short unsigned int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:987:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return -__INT_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits:987:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:987:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return -__INT_MAX__ - 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:990:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __INT_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:990:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:990:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __INT_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr int std::numeric_limits<int>::lowest()’:
+/usr/include/c++/4.8/limits:994:41: error: the value of ‘std::numeric_limits<int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:987:7: note: ‘std::numeric_limits<int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return -__INT_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:1054:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits:1054:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1054:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1057:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __INT_MAX__ * 2U + 1; }
+       ^
+/usr/include/c++/4.8/limits:1057:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1057:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __INT_MAX__ * 2U + 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr unsigned int std::numeric_limits<unsigned int>::lowest()’:
+/usr/include/c++/4.8/limits:1061:41: error: the value of ‘std::numeric_limits<unsigned int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:1054:7: note: ‘std::numeric_limits<unsigned int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:1126:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits:1126:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1126:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_MAX__ - 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1129:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:1129:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1129:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr long int std::numeric_limits<long int>::lowest()’:
+/usr/include/c++/4.8/limits:1133:41: error: the value of ‘std::numeric_limits<long int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:1126:7: note: ‘std::numeric_limits<long int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:1193:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits:1193:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1193:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1196:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_MAX__ * 2UL + 1; }
+       ^
+/usr/include/c++/4.8/limits:1196:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1196:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_MAX__ * 2UL + 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr long unsigned int std::numeric_limits<long unsigned int>::lowest()’:
+/usr/include/c++/4.8/limits:1200:41: error: the value of ‘std::numeric_limits<long unsigned int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:1193:7: note: ‘std::numeric_limits<long unsigned int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:1266:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_LONG_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits:1266:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1266:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_LONG_MAX__ - 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1269:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_LONG_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:1269:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1269:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_LONG_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr long long int std::numeric_limits<long long int>::lowest()’:
+/usr/include/c++/4.8/limits:1273:41: error: the value of ‘std::numeric_limits<long long int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:1266:7: note: ‘std::numeric_limits<long long int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return -__LONG_LONG_MAX__ - 1; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:1336:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits:1336:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1336:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1339:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_LONG_MAX__ * 2ULL + 1; }
+       ^
+/usr/include/c++/4.8/limits:1339:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1339:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __LONG_LONG_MAX__ * 2ULL + 1; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits: In static member function ‘static constexpr long long unsigned int std::numeric_limits<long long unsigned int>::lowest()’:
+/usr/include/c++/4.8/limits:1343:41: error: the value of ‘std::numeric_limits<long long unsigned int>::min’ is not usable in a constant expression
+       lowest() noexcept { return min(); }
+                                         ^
+/usr/include/c++/4.8/limits:1336:7: note: ‘std::numeric_limits<long long unsigned int>::min’ was not initialized with a constant expression
+       min() _GLIBCXX_USE_NOEXCEPT { return 0; }
+       ^
+/usr/include/c++/4.8/limits: At global scope:
+/usr/include/c++/4.8/limits:1558:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return __FLT_MIN__; }
+       ^
+/usr/include/c++/4.8/limits:1558:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1558:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return __FLT_MIN__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1561:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __FLT_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:1561:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1561:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __FLT_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1633:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return __DBL_MIN__; }
+       ^
+/usr/include/c++/4.8/limits:1633:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1633:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return __DBL_MIN__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1636:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __DBL_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:1636:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1636:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __DBL_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1708:7: error: constexpr static data member ‘min’ must have an initializer
+       min() _GLIBCXX_USE_NOEXCEPT { return __LDBL_MIN__; }
+       ^
+/usr/include/c++/4.8/limits:1708:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1708:13: error: expected unqualified-id before ‘noexcept’
+       min() _GLIBCXX_USE_NOEXCEPT { return __LDBL_MIN__; }
+             ^
+In file included from /usr/include/c++/4.8/chrono:40:0,
+                 from /usr/include/c++/4.8/mutex:39,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/limits:1711:7: error: constexpr static data member ‘max’ must have an initializer
+       max() _GLIBCXX_USE_NOEXCEPT { return __LDBL_MAX__; }
+       ^
+/usr/include/c++/4.8/limits:1711:7: error: expected ‘;’ at end of member declaration
+In file included from /usr/include/c++/4.8/iostream:38:0,
+                 from parray_lcp.cpp:1:
+/usr/include/c++/4.8/limits:1711:13: error: expected unqualified-id before ‘noexcept’
+       max() _GLIBCXX_USE_NOEXCEPT { return __LDBL_MAX__; }
+             ^
+In file included from /usr/include/c++/4.8/mutex:39:0,
+                 from ./libsdsl/include/sdsl/ram_fs.hpp:12,
+                 from ./libsdsl/include/sdsl/sfstream.hpp:11,
+                 from ./libsdsl/include/sdsl/util.hpp:25,
+                 from ./libsdsl/include/sdsl/int_vector.hpp:26,
+                 from ./libsdsl/include/sdsl/rmq_support_sparse_table.hpp:25,
+                 from ./libsdsl/include/sdsl/rmq_support.hpp:46,
+                 from parray_lcp.cpp:19:
+/usr/include/c++/4.8/chrono:221:4: error: expected primary-expression before ‘return’
+  { return numeric_limits<_Rep>::max(); }
+    ^
+/usr/include/c++/4.8/chrono:221:4: error: expected ‘}’ before ‘return’
+/usr/include/c++/4.8/chrono:221:4: error: function definition does not declare parameters
+/usr/include/c++/4.8/chrono:224:2: error: expected initializer before ‘min’
+  min()
+  ^
+/usr/include/c++/4.8/chrono:245:17: error: ‘__is_duration’ was not declared in this scope
+  static_assert(!__is_duration<_Rep>::value, "rep cannot be a duration");
+                 ^
+/usr/include/c++/4.8/chrono:245:17: note: suggested alternative:
+/usr/include/c++/4.8/chrono:180:14: note:   ‘std::chrono::__is_duration’
+       struct __is_duration
+              ^
+/usr/include/c++/4.8/chrono:245:35: error: expected primary-expression before ‘>’ token
+  static_assert(!__is_duration<_Rep>::value, "rep cannot be a duration");
+                                   ^
+/usr/include/c++/4.8/chrono:245:36: error: ‘::value’ has not been declared
+  static_assert(!__is_duration<_Rep>::value, "rep cannot be a duration");
+                                    ^
+/usr/include/c++/4.8/chrono:260:9: error: ‘treat_as_floating_point’ was not declared in this scope
+     && (treat_as_floating_point<rep>::value
+         ^
+/usr/include/c++/4.8/chrono:260:9: note: suggested alternative:
+/usr/include/c++/4.8/chrono:207:14: note:   ‘std::chrono::treat_as_floating_point’
+       struct treat_as_floating_point
+              ^
+/usr/include/c++/4.8/chrono:260:37: error: ‘::value’ has not been declared
+     && (treat_as_floating_point<rep>::value
+                                     ^
+/usr/include/c++/4.8/chrono:261:13: error: ‘treat_as_floating_point’ was not declared in this scope
+         || !treat_as_floating_point<_Rep2>::value)>::type>
+             ^
+/usr/include/c++/4.8/chrono:261:13: note: suggested alternative:
+/usr/include/c++/4.8/chrono:207:14: note:   ‘std::chrono::treat_as_floating_point’
+       struct treat_as_floating_point
+              ^
+/usr/include/c++/4.8/chrono:261:43: error: ‘::value’ has not been declared
+         || !treat_as_floating_point<_Rep2>::value)>::type>
+                                           ^
+/usr/include/c++/4.8/chrono:259:9: error: parse error in template argument list
+         enable_if<is_convertible<_Rep2, rep>::value
+         ^
+/usr/include/c++/4.8/chrono:259:9: error: expected nested-name-specifier
+/usr/include/c++/4.8/chrono:259:9: error: expected ‘>’
+/usr/include/c++/4.8/chrono:266:19: error: ‘treat_as_floating_point’ was not declared in this scope
+         enable_if<treat_as_floating_point<rep>::value
+                   ^
+/usr/include/c++/4.8/chrono:266:19: note: suggested alternative:
+/usr/include/c++/4.8/chrono:207:14: note:   ‘std::chrono::treat_as_floating_point’
+       struct treat_as_floating_point
+              ^
+/usr/include/c++/4.8/chrono:266:46: error: template argument 1 is invalid
+         enable_if<treat_as_floating_point<rep>::value
+                                              ^
+/usr/include/c++/4.8/chrono:266:9: error: expected nested-name-specifier
+         enable_if<treat_as_floating_point<rep>::value
+         ^
+/usr/include/c++/4.8/chrono:266:49: error: expected ‘>’ before ‘value’
+         enable_if<treat_as_floating_point<rep>::value
+                                                 ^
+/usr/include/c++/4.8/chrono:268:52: error: ‘type’ in namespace ‘::’ does not name a type
+         && !treat_as_floating_point<_Rep2>::value)>::type>
+                                                    ^
+/usr/include/c++/4.8/chrono:341:24: error: ‘treat_as_floating_point’ was not declared in this scope
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+                        ^
+/usr/include/c++/4.8/chrono:341:24: note: suggested alternative:
+/usr/include/c++/4.8/chrono:207:14: note:   ‘std::chrono::treat_as_floating_point’
+       struct treat_as_floating_point
+              ^
+/usr/include/c++/4.8/chrono:341:53: error: template argument 1 is invalid
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+                                                     ^
+/usr/include/c++/4.8/chrono:341:13: error: expected nested-name-specifier
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+             ^
+/usr/include/c++/4.8/chrono:341:61: error: invalid type in declaration before ‘,’ token
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+                                                             ^
+/usr/include/c++/4.8/chrono:341:61: error: expected ‘;’ before ‘,’ token
+/usr/include/c++/4.8/chrono:347:4: error: data member ‘value’ cannot be a member template
+    }
+    ^
+/usr/include/c++/4.8/chrono:350:24: error: ‘treat_as_floating_point’ was not declared in this scope
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+                        ^
+/usr/include/c++/4.8/chrono:350:24: note: suggested alternative:
+/usr/include/c++/4.8/chrono:207:14: note:   ‘std::chrono::treat_as_floating_point’
+       struct treat_as_floating_point
+              ^
+/usr/include/c++/4.8/chrono:350:53: error: template argument 1 is invalid
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+                                                     ^
+/usr/include/c++/4.8/chrono:350:13: error: expected nested-name-specifier
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+             ^
+/usr/include/c++/4.8/chrono:350:61: error: invalid type in declaration before ‘,’ token
+    typename enable_if<!treat_as_floating_point<_Rep2>::value,
+                                                             ^
+/usr/include/c++/4.8/chrono:350:61: error: expected ‘;’ before ‘,’ token
+/usr/include/c++/4.8/chrono:356:4: error: data member ‘value’ cannot be a member template
+    }
+    ^
+/usr/include/c++/4.8/chrono:365:4: error: expected primary-expression before ‘return’
+  { return duration(duration_values<rep>::min()); }
+    ^
+/usr/include/c++/4.8/chrono:365:4: error: expected ‘}’ before ‘return’
+/usr/include/c++/4.8/chrono:365:4: error: function definition does not declare parameters
+/usr/include/c++/4.8/chrono: In constructor ‘constexpr std::duration<_Rep, _Period>::duration(const _Rep2&)’:
+/usr/include/c++/4.8/chrono:263:6: error: class ‘std::duration<_Rep, _Period>’ does not have any field named ‘__r’
+    : __r(static_cast<rep>(__rep)) { }
+      ^
+/usr/include/c++/4.8/chrono: In member function ‘constexpr std::duration<_Rep, _Period>::rep std::duration<_Rep, _Period>::count() const’:
+/usr/include/c++/4.8/chrono:278:11: error: ‘__r’ was not declared in this scope
+  { return __r; }
+           ^
+/usr/include/c++/4.8/chrono: In member function ‘constexpr std::duration<_Rep, _Period> std::duration<_Rep, _Period>::operator-() const’:
+/usr/include/c++/4.8/chrono:287:21: error: ‘__r’ was not declared in this scope
+  { return duration(-__r); }
+                     ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period>& std::duration<_Rep, _Period>::operator++()’:
+/usr/include/c++/4.8/chrono:292:6: error: ‘__r’ was not declared in this scope
+    ++__r;
+      ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period> std::duration<_Rep, _Period>::operator++(int)’:
+/usr/include/c++/4.8/chrono:298:20: error: ‘__r’ was not declared in this scope
+  { return duration(__r++); }
+                    ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period>& std::duration<_Rep, _Period>::operator--()’:
+/usr/include/c++/4.8/chrono:303:6: error: ‘__r’ was not declared in this scope
+    --__r;
+      ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period> std::duration<_Rep, _Period>::operator--(int)’:
+/usr/include/c++/4.8/chrono:309:20: error: ‘__r’ was not declared in this scope
+  { return duration(__r--); }
+                    ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period>& std::duration<_Rep, _Period>::operator+=(const std::duration<_Rep, _Period>&)’:
+/usr/include/c++/4.8/chrono:314:4: error: ‘__r’ was not declared in this scope
+    __r += __d.count();
+    ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period>& std::duration<_Rep, _Period>::operator-=(const std::duration<_Rep, _Period>&)’:
+/usr/include/c++/4.8/chrono:321:4: error: ‘__r’ was not declared in this scope
+    __r -= __d.count();
+    ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period>& std::duration<_Rep, _Period>::operator*=(const rep&)’:
+/usr/include/c++/4.8/chrono:328:4: error: ‘__r’ was not declared in this scope
+    __r *= __rhs;
+    ^
+/usr/include/c++/4.8/chrono: In member function ‘std::duration<_Rep, _Period>& std::duration<_Rep, _Period>::operator/=(const rep&)’:
+/usr/include/c++/4.8/chrono:335:4: error: ‘__r’ was not declared in this scope
+    __r /= __rhs;
+    ^
+/usr/include/c++/4.8/chrono: In static member function ‘static constexpr std::duration<_Rep, _Period> std::duration<_Rep, _Period>::zero()’:
+/usr/include/c++/4.8/chrono:361:20: error: ‘duration_values’ was not declared in this scope
+  { return duration(duration_values<rep>::zero()); }
+                    ^
+/usr/include/c++/4.8/chrono:361:20: note: suggested alternative:
+/usr/include/c++/4.8/chrono:213:14: note:   ‘std::chrono::duration_values’
+       struct duration_values
+              ^
+/usr/include/c++/4.8/chrono:361:40: error: ‘::zero’ has not been declared
+  { return duration(duration_values<rep>::zero()); }
+                                        ^
+/usr/include/c++/4.8/chrono:361:19: error: expected primary-expression before ‘(’ token
+  { return duration(duration_values<rep>::zero()); }
+                   ^
+/usr/include/c++/4.8/chrono:361:39: error: expected primary-expression before ‘>’ token
+  { return duration(duration_values<rep>::zero()); }
+                                       ^
+/usr/include/c++/4.8/chrono:361:40: error: ‘::zero’ has not been declared
+  { return duration(duration_values<rep>::zero()); }
+                                        ^
+/usr/include/c++/4.8/chrono: At global scope:
+/usr/include/c++/4.8/chrono:368:2: error: expected initializer before ‘max’
+  max()
+  ^
+/usr/include/c++/4.8/chrono:371:7: error: expected unqualified-id before ‘private’
+       private:
+       ^
+/usr/include/c++/4.8/chrono:428:13: error: ‘__is_duration’ was not declared in this scope
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+             ^
+/usr/include/c++/4.8/chrono:428:13: note: suggested alternative:
+/usr/include/c++/4.8/chrono:180:14: note:   ‘std::chrono::__is_duration’
+       struct __is_duration
+              ^
+/usr/include/c++/4.8/chrono:428:32: error: template argument 1 is invalid
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                ^
+/usr/include/c++/4.8/chrono:428:40: error: expected ‘(’ before ‘,’ token
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                        ^
+/usr/include/c++/4.8/chrono:428:47: error: template argument 2 is invalid
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                               ^
+/usr/include/c++/4.8/chrono:428:47: error: type/value mismatch at argument 3 in template parameter list for ‘template<class _Rep1, class _Rep2, bool <anonymous> > struct __common_rep_type’
+/usr/include/c++/4.8/chrono:428:47: error:   expected a constant of type ‘bool’, got ‘_Rep2’
+/usr/include/c++/4.8/chrono:428:54: error: wrong number of template arguments (1, should be 2)
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                                      ^
+/usr/include/c++/4.8/chrono:240:14: error: provided for ‘template<class _Rep, class _Period> struct std::duration’
+       struct duration
+              ^
+/usr/include/c++/4.8/chrono:428:57: error: ‘type’ does not name a type
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                                         ^
+/usr/include/c++/4.8/chrono:451:13: error: ‘__is_duration’ was not declared in this scope
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+             ^
+/usr/include/c++/4.8/chrono:451:13: note: suggested alternative:
+/usr/include/c++/4.8/chrono:180:14: note:   ‘std::chrono::__is_duration’
+       struct __is_duration
+              ^
+/usr/include/c++/4.8/chrono:451:32: error: template argument 1 is invalid
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                ^
+/usr/include/c++/4.8/chrono:451:40: error: expected ‘(’ before ‘,’ token
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                        ^
+/usr/include/c++/4.8/chrono:451:47: error: template argument 2 is invalid
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                               ^
+/usr/include/c++/4.8/chrono:451:47: error: type/value mismatch at argument 3 in template parameter list for ‘template<class _Rep1, class _Rep2, bool <anonymous> > struct __common_rep_type’
+/usr/include/c++/4.8/chrono:451:47: error:   expected a constant of type ‘bool’, got ‘_Rep2’
+/usr/include/c++/4.8/chrono:451:54: error: wrong number of template arguments (1, should be 2)
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                                      ^
+/usr/include/c++/4.8/chrono:240:14: error: provided for ‘template<class _Rep, class _Period> struct std::duration’
+       struct duration
+              ^
+/usr/include/c++/4.8/chrono:451:57: error: ‘type’ does not name a type
+  enable_if<!__is_duration<_Rep2>::value, _Rep2>::type>::type, _Period>
+                                                         ^
+/usr/include/c++/4.8/chrono:535:29: error: wrong number of template arguments (1, should be 2)
+     typedef duration<int64_t>   seconds;
+                             ^
+/usr/include/c++/4.8/chrono:240:14: error: provided for ‘template<class _Rep, class _Period> struct std::duration’
+       struct duration
+              ^
+/usr/include/c++/4.8/chrono:535:40: error: invalid type in declaration before ‘;’ token
+     typedef duration<int64_t>   seconds;
+                                        ^
+/usr/include/c++/4.8/chrono:588:4: error: expected primary-expression before ‘return’
+  { return time_point(duration::min()); }
+    ^
+/usr/include/c++/4.8/chrono:588:4: error: expected ‘}’ before ‘return’
+/usr/include/c++/4.8/chrono:588:4: error: function definition does not declare parameters
+/usr/include/c++/4.8/chrono: In constructor ‘constexpr time_point<_Clock, _Dur>::time_point()’:
+/usr/include/c++/4.8/chrono:552:27: error: class ‘time_point<_Clock, _Dur>’ does not have any field named ‘__d’
+  constexpr time_point() : __d(duration::zero())
+                           ^
+/usr/include/c++/4.8/chrono: In constructor ‘constexpr time_point<_Clock, _Dur>::time_point(const duration&)’:
+/usr/include/c++/4.8/chrono:556:4: error: class ‘time_point<_Clock, _Dur>’ does not have any field named ‘__d’
+  : __d(__dur)
+    ^
+/usr/include/c++/4.8/chrono: In constructor ‘constexpr time_point<_Clock, _Dur>::time_point(const time_point<_Clock, _Dur2>&)’:
+/usr/include/c++/4.8/chrono:562:6: error: class ‘time_point<_Clock, _Dur>’ does not have any field named ‘__d’
+    : __d(__t.time_since_epoch())
+      ^
+/usr/include/c++/4.8/chrono: In member function ‘constexpr time_point<_Clock, _Dur>::duration time_point<_Clock, _Dur>::time_since_epoch() const’:
+/usr/include/c++/4.8/chrono:568:11: error: ‘__d’ was not declared in this scope
+  { return __d; }
+           ^
+/usr/include/c++/4.8/chrono: In member function ‘time_point<_Clock, _Dur>& time_point<_Clock, _Dur>::operator+=(const duration&)’:
+/usr/include/c++/4.8/chrono:574:4: error: ‘__d’ was not declared in this scope
+    __d += __dur;
+    ^
+/usr/include/c++/4.8/chrono: In member function ‘time_point<_Clock, _Dur>& time_point<_Clock, _Dur>::operator-=(const duration&)’:
+/usr/include/c++/4.8/chrono:581:4: error: ‘__d’ was not declared in this scope
+    __d -= __dur;
+    ^
+/usr/include/c++/4.8/chrono: At global scope:
+/usr/include/c++/4.8/chrono:591:2: error: expected initializer before ‘max’
+  max()
+  ^
+/usr/include/c++/4.8/chrono:594:7: error: expected unqualified-id before ‘private’
+       private:
+       ^
+/usr/include/c++/4.8/chrono:596:7: error: expected declaration before ‘}’ token
+       };
+       ^
+make: *** [parray_lcp.o] Error 1
