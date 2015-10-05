@@ -2,12 +2,10 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <ctime>
 
-#include "parray.h"
+#include "defs.h"
+#include "global.h"
 #include "lcve.h"
-#include "wptable.h"
-#include "operate.h"
 
 using namespace std;
 

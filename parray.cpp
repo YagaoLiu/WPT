@@ -2,10 +2,8 @@
 #include <vector>
 
 #include "global.h"
-#include "operate.h"
-#include "colour.h"
+#include "defs.h"
 #include "util.h"
-#include "parray.h"
 
 #include <sdsl/rmq_support.hpp>
 

@@ -4,10 +4,8 @@
 #include <vector>
 #include <time.h>
 
-#include "colour.h"
+#include "defs.h"
 #include "global.h"
-#include "parray.h"
-#include "wptable.h"
 
 using namespace std;
 
@@ -52,7 +50,7 @@ int main (int argc, char **argv)
 		in.close();
 
 		start = clock();	
-		if ( ! (colour ( x, n, m, z ) ) )
+		if ( ! ( colour( x, n, m, z ) ) )
 		{
 			cout << "Error: no Black Position in String" << endl;
 			return 0;

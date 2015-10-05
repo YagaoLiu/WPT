@@ -10,7 +10,7 @@ EXE=    example
  
 SRC=    main.cpp colour.cpp parray.cpp wptable.cpp drittel.cpp lcve.cpp operate.cpp
  
-HD=     global.h colour.h parray.h lcve.h wptable.h operate.h Makefile
+HD=     global.h defs.h util.h lcve.h   Makefile
  
 # 
 # No need to edit below this line 

@@ -2,9 +2,9 @@
 #include <string>
 #include <vector>
 
+#include "defs.h"
 #include "global.h"
-#include "operate.h"
-#include "colour.h"
+#include "lcve.h"
 
 using namespace std;
 
