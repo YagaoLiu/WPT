@@ -1,4 +1,4 @@
-#include "global.h"
+#include "defs.h"
 
 using namespace std;
 
