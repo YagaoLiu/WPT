@@ -10,8 +10,6 @@
 using namespace sdsl;
 using namespace std;
 
-extern StringColour colx;
-
 void suffixArray ( int * s, int * SA, int n, int K );
 
 unsigned int LCParray ( int  * text, unsigned int n, int * SA, int * ISA, int * LCP )

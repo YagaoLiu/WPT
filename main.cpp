@@ -9,8 +9,6 @@
 
 using namespace std;
 
-extern StringColour colx;
-
 int main (int argc, char **argv)
 {
 	if ( argc == 3 )

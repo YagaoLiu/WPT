@@ -8,8 +8,6 @@
 
 using namespace std;
 
-extern StringColour colx;
-
 unsigned int LCVE ( double ** x, unsigned int n, unsigned int m, double z, unsigned int lcve, unsigned int P, Factor * u, Factor * v )
 {
 	unsigned int letter;

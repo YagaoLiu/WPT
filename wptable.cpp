@@ -9,8 +9,6 @@
 
 using namespace std;
 
-extern StringColour colx;
-
 struct BPmap
 {
 	vector < unsigned int > BPset;
