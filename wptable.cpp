@@ -82,16 +82,10 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , unsigned int * WP )
 {
 	/* This function is used to compute the Weighted Prefix Table */
-	clock_t Ps, Pe, WPs, WPe;
-
-	vector < clock_t > Ls, Le, Gs, Ge;
-
 
 	/* compute P array */
-	Ps = clock();
 	unsigned int * Parray = new unsigned int [ n ];
 	parray ( x, n, m , z, Parray );
-	Pe = clock();
 
 	/* WP[0] is the longest valid prefix */
 	WP[0] = Parray[0];
@@ -102,19 +96,22 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 
 	vector < BPmap > PrefixBPmaps;
 	vector < unsigned int > BPstring;
-	if ( PrefixMap ( x, n, m, z, 1, 0, BPstring, &PrefixBPmaps) == 0 )
+	if ( PrefixMap ( x, n, m, z, 1, 0, BPstring, &PrefixBPmaps) )
+	{
+		for ( unsigned int i = 0; i < PrefixBPmaps.size(); i++ )
+		{
+			STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
+		}
+	}
+	else
 	{
 		cout << "No grey position causes invalid breakdown." << endl;
 	}
-	for ( unsigned int i = 0; i < PrefixBPmaps.size(); i++ )
-	{
-		STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
-	}
 
+	/* compute WP table */
 	unsigned int g = 0;
 	unsigned int f;
 	
-	WPs = clock();
 	for ( unsigned int i = 1; i < n; i++ )
 	{
 		/* construct two factor u & v, to computer the lcve between stirng x and x[i....] */
@@ -132,9 +129,8 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 		if ( i < g )
 		{
 			unsigned int limit = min ( Parray[i], g - i );
-			Ls.push_back ( clock() );
 			lcve_wp = LCVE ( x, n, m, z, lcve_wp, limit, &u, &v );
-			Le.push_back ( clock() );
+
 			/* check the probability fail caused by grey position, and get the longest valid extension */
 			unsigned int lve_u = lcve_wp;
 			unsigned int lve_v = lcve_wp;
@@ -165,9 +161,9 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 					}
 				}
 			}
-
 			if ( lve_u != lcve_wp || lve_v != lcve_wp )
 				lcve_wp = min ( lve_u, lve_v );
+
 			if ( lcve_wp < g - i )
 			{
 				flag = 0;
@@ -183,27 +179,12 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 			
 			if ( g < n )	
 			{
-				Gs.push_back ( clock() );
 				g = g + gextension ( x, n, m, z, &u, &v );
-				Ge.push_back ( clock() );
 			}
 				
 			WP[i] = g - f;
 		}
 	}
-	WPe = clock();
-
-	double Ptime = ( double ) ( Pe - Ps ) / CLOCKS_PER_SEC;
-	double WPtime = ( double ) ( WPe - WPs ) / CLOCKS_PER_SEC;
-	double Ltime = 0;
-	double Gtime = 0;
-	for ( unsigned int i = 0; i < Ls.size(); i++ )
-		Ltime += ( double ) ( Le[i] - Ls[i] ) / CLOCKS_PER_SEC;
-	for ( unsigned int i = 0; i < Gs.size(); i++ )
-		Gtime += ( double ) ( Ge[i] - Gs[i] ) / CLOCKS_PER_SEC;
-
-	cout << "P time:" << Ptime << "\nWP time:" << WPtime << endl;
-	cout << "L time:" << Ltime << "\nG time:" << Gtime << endl;
 
 	delete [] Parray;
 

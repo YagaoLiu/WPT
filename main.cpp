@@ -4,7 +4,6 @@
 #include <vector>
 #include <time.h>
 
-#include "prefix.h"
 #include "colour.h"
 #include "global.h"
 #include "parray.h"
@@ -67,12 +66,15 @@ int main (int argc, char **argv)
 			finish = clock();
 			double duration = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
 			
+			cout << "Elapsed time for processing is " << duration << " seconds" << endl;
+			cout << "The result is writing into the file 'WPTableReport'. It will take some time." << endl;
+			
 			/* write the report file */
-		/*	
 			ofstream result( "WPTableReport" );
 			result << "string length=" << n << "		z=" << z << endl;
 			result << "Number of	Black Position: " << colx.bpos.size() << "	White & Grey position: " << n - colx.bpos.size() << endl;
-			result << "Elapsed time for processing is " << duration << " seconds" << endl;
+			result << "Elapsed time for processing is " << duration << " seconds" << endl << endl;
+			result << "Prefix Table for this Weighted String: " << endl;
 			int row = 0;
 			int column = 0;
 			do
@@ -88,8 +90,7 @@ int main (int argc, char **argv)
 			}while ( row * 20 + column < n );
 
 			result << endl;
-*/			
-			cout << "It takes " << duration << " seconds." << endl;
+			result.close();
 
 			for ( unsigned int i = 0; i < n; i++ )
 				delete[] x[i];

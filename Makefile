@@ -8,7 +8,7 @@ LFLAGS= -std=c++11 -O3 -DNDEBUG -I ./libsdsl/include/ -L ./libsdsl/lib/ -lsdsl -
 
 EXE=    example
  
-SRC=    main.cpp colour.cpp parray_lcp.cpp wptable.cpp drittel.cpp lcve.cpp operate.cpp
+SRC=    main.cpp colour.cpp parray.cpp wptable.cpp drittel.cpp lcve.cpp operate.cpp
  
 HD=     global.h colour.h parray.h lcve.h wptable.h operate.h Makefile
  
