@@ -55,7 +55,7 @@ int main (int argc, char **argv)
 		}
 		else
 		{
-			unsigned int * WP = new unsigned int [n];
+/*			unsigned int * WP = new unsigned int [n];
 			
 			wptable ( x, n, m, z, WP );
 
@@ -65,7 +65,7 @@ int main (int argc, char **argv)
 			cout << "Elapsed time for processing is " << duration << " seconds" << endl;
 			cout << "The result is writing into the file 'WPTableReport'. It will take some time." << endl;
 			
-			/* write the report file */
+			 write the report file 
 			ofstream result( "WPTableReport" );
 			result << "string length=" << n << "		z=" << z << endl;
 			result << "Number of	Black Position: " << colx.bpos.size() << "	White & Grey position: " << n - colx.bpos.size() << endl;
@@ -93,7 +93,7 @@ int main (int argc, char **argv)
 			delete[] x;
 
 			delete[] WP;
-
+*/
 		}
 	}
 	return 0;

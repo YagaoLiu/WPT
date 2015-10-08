@@ -77,7 +77,7 @@ unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z )
 			if ( k == wpos.size() )
 			{
 				colx.WP.push_back ( n );
-				k = colx.bpos.size() - 1;
+				k = wpos.size() - 1;
 			}
 			else
 				colx.WP.push_back( wpos[k] );

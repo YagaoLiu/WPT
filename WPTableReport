@@ -1,6 +1,7 @@
-string length=15		z=256
-Number of	Black Position: 6	White & Grey position: 9
-Elapsed time for processing is 0.000197 seconds
+string length=20		z=256
+Number of	Black Position: 8	White & Grey position: 12
+Elapsed time for processing is 0.000468 seconds
 
 Prefix Table for this Weighted String: 
-14 0 1 3 0 3 0 7 0 1 4 0 2 0 0 
+13 6 0 4 2 2 2 0 0 0 5 4 2 3 2 2 0 0 0 0 
+

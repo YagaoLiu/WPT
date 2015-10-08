@@ -5,7 +5,6 @@
 
 #include "defs.h"
 #include "global.h"
-#include "lcve.h"
 
 using namespace std;
 
@@ -15,7 +14,7 @@ struct BPmap
 	unsigned int endposition;
 };
 
-unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, double p, unsigned int start, vector < unsigned int > BPstring, vector < BPmap > * PrefixBPmaps )
+unsigned int PrefixMap ( WStr x, unsigned int n, int m, double z, double p, unsigned int start, vector < unsigned int > BPstring, vector < BPmap > * PrefixBPmaps )
 {
 	BPmap root;
 	unsigned int nextBP;
@@ -24,11 +23,11 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 	if ( start != 0 )
 		root.BPset = BPstring;
 
-	if ( colx.colour[start] == 'b' )
+	if ( x.str[start] > m )
 	{
 		for ( unsigned int j = 0; j < m; j++ )
 		{
-			newp = p * x[start][j];
+			newp = p * x.bpt[ x.str[start] - m - 1 ][j];
 			if ( newp > 1/z )
 			{
 				root.BPset.push_back ( j );
@@ -38,14 +37,14 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 	}
 	else
 	{
-		nextBP = colx.BP[start];
-		p = p * colx.FP[nextBP - 1];
+		nextBP = x.BP[start];
+		p = p * x.FP[nextBP - 1];
 		if ( p < 1/z )
 		{
-			/* cannot extent to next BP, porb invalid */
+			/* cannot extent to next BP, probability invalid */
 			for ( unsigned int i = start; i < nextBP; i++ )
 			{
-				newp *= maximum ( x[i], m );
+				newp *= x.prob[i];
 				if ( newp < 1/z )
 				{
 					root.endposition = i - 1;
@@ -59,7 +58,7 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 			/* can extent to next BP */
 			for ( unsigned int j = 0; j < m; j++ )
 			{
-				newp = p * x[nextBP][j];
+				newp = p * x.bpt[ x.str[nextBP] - m - 1 ][j];
 				if ( newp > 1/z )
 				{
 					root.BPset.push_back ( j );
@@ -75,16 +74,16 @@ unsigned int PrefixMap ( double ** x, unsigned int n, unsigned int m, double z, 
 		return 1;
 }
 
-unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , unsigned int * WP )
+unsigned int wptable (  WStr x, int m, double z , unsigned int * WP )
 {
 	/* This function is used to compute the Weighted Prefix Table */
-
+	unsigned int n = x.str.size();
 	/* compute P array */
 	unsigned int * Parray = new unsigned int [ n ];
-	parray ( x, n, m , z, Parray );
+	parray ( x, m, z, Parray );
 
 	/* WP[0] is the longest valid prefix */
-	WP[0] = Parray[0];
+	WP[0] = x.lvp; 
 
 	/* make maps for the black position set and the stop position */
 	map < vector < unsigned int >, unsigned int > STable;					
@@ -148,7 +147,7 @@ unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z , u
 				unsigned int j = v.end - 1;
 				for ( j; j > v.bpp[v.l - 1]; j-- )
 				{
-					v.p = v.p / ( maximum ( x[j], m ) );
+					v.p = v.p / x.prob[j];
 					if ( v.p > 1/z )
 					{
 						lve_v = j - v.start;

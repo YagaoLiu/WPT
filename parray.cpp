@@ -30,30 +30,19 @@ unsigned int LCParray ( int  * text, unsigned int n, int * SA, int * ISA, int * 
 	return ( 1 );
 }
 
-void parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned int * P )
+void parray ( WStr x, int m, double z, unsigned int * P )
 {
-	int * xx	= new int [n+3];
+	unsigned int n = x.str.size();
+
+	int * xx	= &x.str[0];
 	int * SA	= new int [n+3];
 	int * iSA	= new int [n];
 	int * LCP	= new int [n];
 
 	xx[n] = xx[n+1] = xx[n+2] = SA[n] = SA[n+1] = SA[n+2] = 0;
-
-	/* construct string xx with unique letter for BP */
-	int ul = m + 1;
-	for ( unsigned int i = 0; i < n; i++ )
-	{
-		if ( colx.colour[i] != 'b' )
-			xx[i] = getLetter ( x[i], m ) + 1;
-		else
-		{
-			xx[i] = ul;
-			ul++;
-		}
-	}
-
+	
 	/* computer SA, iSA, LCParray for xx */
-	suffixArray ( xx, SA, n, ul );
+	suffixArray ( xx, SA, n, x.ul );
 
 	for ( unsigned int i = 0; i < n; i++ )
 		iSA[ SA[i] ] = i;
@@ -67,16 +56,7 @@ void parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned in
 
 	rmq_succinct_sct<> rmq ( &v );
 
-	/* compute the longest valid prefix */
-	unsigned int lvp = 0;
-	double pp = 1;
-	for ( unsigned int i = 0; i < n && pp >= 1/z; i++, lvp++ )
-	{
-		pp *= maximum ( x[i], m );
-	}
-	lvp --;
-
-	P[0] = lvp;
+	P[0] = x.lvp;
 
 	for ( unsigned int i = 1; i < n; i++ )
 	{
@@ -91,13 +71,13 @@ void parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned in
 		{
 			if ( pos_v >= n )
 				flag = 0;
-			else if ( pos_u >= lvp )
+			else if ( pos_u >= P[0] )
 				flag = 0;
 			else
 			{
-				if ( colx.colour[pos_u] == 'b' || colx.colour[pos_v] == 'b' )
+				if ( x.str[pos_u] > m || x.str[pos_v] > m )
 				{
-					span = min ( ( colx.WP[pos_u] - pos_u ), ( colx.WP[pos_v] - pos_v ) );
+					span = max ( ( x.WP[pos_u] - pos_u ), ( x.WP[pos_v] - pos_v ) );
 					P[i] += span;
 					pos_u += span;
 					pos_v += span;
@@ -116,15 +96,10 @@ void parray ( double ** x, unsigned int n, unsigned int m, double z, unsigned in
 						P[i] += span;
 					}
 				}
-				if ( P[i] > lvp )
-					P[i] = lvp;
 			}
 		}while ( flag );
 	}
 
-
-
-	delete [] xx;
 	delete [] SA;
 	delete [] iSA;
 	delete [] LCP;
