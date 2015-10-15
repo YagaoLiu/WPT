@@ -148,22 +148,23 @@ int main (int argc, char **argv)
 		}
 		solid.close();
 	}
-
+	
+	start = clock();
 	if ( mod == 0 )
 	{
 		string empty;
-		start = clock();
 		if ( ! ( preparation ( empty, y, n, z, alphabet, mod ) ) )
 		{
 			return 0;
 		}
 		else
 		{
-			finish = clock();
-			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
-			cout << "preparation time is " << passtime << endl;
 			unsigned int * WP = new unsigned int [n];
 			wptable ( sigma, z, WP );
+			
+			finish = clock();
+			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
+			cout << "Elapsed time is " << passtime << endl;
 			/*print*/
 			
 			ofstream result ( output );
@@ -197,7 +198,14 @@ int main (int argc, char **argv)
 		{
 			vector < unsigned int > Occ;
 			unsigned int Occ_number;
-			Occ_number = matching ( m, alphabet, z, &Occ );
+			if ( mod == 1 )
+				Occ_number = matching ( m, alphabet, z, &Occ );
+			if ( mod == 2 )
+				Occ_number = matching ( n, alphabet, z, &Occ );
+	
+			finish = clock();
+			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
+			cout << "preparation time is " << passtime << endl;
 			/*print result*/
 			ofstream result ( output );
 			result << "The number of occurrances is " << Occ_number << endl;

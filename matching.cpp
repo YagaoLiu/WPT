@@ -20,14 +20,12 @@ unsigned int matching ( unsigned int n, string alphabet, double z, vector < unsi
 
 	for ( unsigned int i = n; i < N; i++ )
 	{
-		cout << WP[i] << ' ';
 		if ( WP[i] >= n )
 		{
 			Occ->push_back ( i - n );
 			Occ_number ++;
 		}
 	}
-	cout << endl;
 
 	cout << "OCC_NUMBER:" << Occ_number << endl;
 
