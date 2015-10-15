@@ -11,90 +11,203 @@ using namespace std;
 
 int main (int argc, char **argv)
 {
-	if ( argc == 3 )
-	{
-		clock_t start, finish;
-	
-		unsigned int n = 0;
-		unsigned int m = 4;
-		double z = 1.0;
-		sscanf ( argv[2], "%lf", &z );
+	TSwitch sw;
+	string alphabet;
+	unsigned int sigma;
+	int mod;
+	string wsfile;
+	string ssfile;
+	string output;
+	double z;
+	string x;				//solid string
+	unsigned int m;			//length of x
+	double ** y;			//weighted string
+	unsigned int n;			//length of y
+	WStr xystr;
 
-		ifstream ReadFile;
-		string tmp;
-		ReadFile.open ( argv[1] );
-		if ( ReadFile.fail() )
-			cout << "Cannot open the file" << endl;
+	clock_t start;
+	clock_t finish;
+
+	unsigned int k;
+
+	/* Decodes the arguments */
+	k = decode_switches ( argc, argv, &sw );
+
+	/* Check the arguments */
+	if ( k < 7 )
+	{
+		usage();
+		return 1;
+	}
+	else
+	{
+		if ( sw.alphabet.compare ( "DNA" ) == 0 )
+		{
+			alphabet = DNA;
+			sigma = alphabet.size();
+		}
 		else
 		{
-			while ( getline ( ReadFile, tmp, '\n' ) )
-				n++;
+			cout << "Error: Only support DNA alphabet up to now!" << endl;
+			return 0;
 		}
-		ReadFile.close();
 
-		ifstream in ( argv[1] );
-		double ** x;
-		x = new double * [n];
-		for ( unsigned int i = 0; i < n; i++ )
-			x[i] = new double [m];
-
-		for ( unsigned int i = 0; i < n; i++ )
-		{
-			for ( unsigned int j = 0; j < m; j++ )
-			{
-				in >> x[i][j];
-			}
-		}
-		in.close();
-
-		start = clock();	
-		if ( ! ( colour( x, n, m, z ) ) )
-		{
-			cout << "Error: no Black Position in String" << endl;
+		mod = sw.mod;
+		if ( sw.mod > 2 )
+		{	
+			cout << "Error: The model (-m) should be only '0', '1' or '2'!" << endl;
 			return 0;
 		}
 		else
 		{
-/*			unsigned int * WP = new unsigned int [n];
-			
-			wptable ( x, n, m, z, WP );
+			mod = sw.mod;
+		}
 
+		if ( sw.weighted_str_filename.size() == 0 )
+		{
+			cout << "Error: No weighted string input!" << endl;
+			return 0;
+		}
+		else
+			wsfile = sw.weighted_str_filename;
+
+		if ( sw.solid_str_filename.size() == 0 && mod != 0 )
+		{
+			cout << "Error: Need one more solid string for matching!" << endl;
+			return 0;
+		}
+		else
+		{
+			if ( mod != 0 )
+				ssfile = sw.solid_str_filename;
+		}
+
+		if ( sw.output_filename.size() == 0 )
+		{
+			if ( mod == 0 )
+				output = "WPTableReport";
+			else
+				output = "MatchingReport";		
+		}
+		else
+		{
+			output = sw.output_filename;
+		}
+
+		z = sw.z;
+	}
+
+	/* read input Weighted String */
+	ifstream weighted ( wsfile );
+	if ( weighted.fail() )
+	{
+		cout << "Error: Cannot open the weighted string file!" << endl;
+		return 0;
+	}
+	else
+	{
+		vector < double > temparray;
+		double temp;
+		unsigned int column = alphabet.size();
+		while ( !weighted.eof() )
+		{
+			weighted >> temp;
+			temparray.push_back ( temp );
+		}
+		unsigned int row = temparray.size() / column;
+		y = new double * [row];
+		for ( unsigned int i = 0; i < row; i++ )
+			y[i] = new double [column];
+
+		for ( unsigned int i = 0; i < row; i++ )
+		{
+			for ( unsigned int j = 0; j < column; j++ )
+			{
+				y[i][j] = temparray[ j + i * column ];
+			}
+		}
+		n = row;
+
+		weighted.close();
+	}
+
+
+	/* read input Solid String */
+	if ( mod != 0 )
+	{
+		ifstream solid ( ssfile );
+		if ( solid.fail() )
+		{
+			cout << "Error: Cannot open the solid string file!" << endl;
+			return 0;
+		}
+		else
+		{
+			getline ( solid, x );
+			m = x.size();
+		}
+		solid.close();
+	}
+
+	if ( mod == 0 )
+	{
+		string empty;
+		start = clock();
+		if ( ! ( preparation ( empty, y, n, z, alphabet, mod ) ) )
+		{
+			return 0;
+		}
+		else
+		{
 			finish = clock();
-			double duration = ( double ) ( finish - start )/ CLOCKS_PER_SEC;
+			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
+			cout << "preparation time is " << passtime << endl;
+			unsigned int * WP = new unsigned int [n];
+			wptable ( sigma, z, WP );
+			/*print*/
 			
-			cout << "Elapsed time for processing is " << duration << " seconds" << endl;
-			cout << "The result is writing into the file 'WPTableReport'. It will take some time." << endl;
-			
-			 write the report file 
-			ofstream result( "WPTableReport" );
-			result << "string length=" << n << "		z=" << z << endl;
-			result << "Number of	Black Position: " << colx.bpos.size() << "	White & Grey position: " << n - colx.bpos.size() << endl;
-			result << "Elapsed time for processing is " << duration << " seconds" << endl << endl;
+			ofstream result ( output );
+			result << "string length=" << n << "\t z=" << z << endl;
 			result << "Prefix Table for this Weighted String: " << endl;
-			int row = 0;
-			int column = 0;
+			int outrow = 0;
+			int outcol = 0;
 			do
 			{
-				result << WP[row * 20 + column] << ' ';
-				column++;
-				if ( column == 20 )
+				result << WP[outrow * 20 + outcol] << ' ';
+				outcol++;
+				if ( outcol == 20 )
 				{
 					result << endl;
-					row++;
-					column = 0;
+					outrow ++;
+					outcol = 0;
 				}
-			}while ( row * 20 + column < n );
-
+			}while ( outrow * 20 + outcol < n );
 			result << endl;
 			result.close();
-
-			for ( unsigned int i = 0; i < n; i++ )
-				delete[] x[i];
-			delete[] x;
-
-			delete[] WP;
-*/
+		
 		}
 	}
+	else
+	{
+		if ( ! ( preparation ( x, y, n, z, alphabet, mod ) ) )
+		{
+			return 0;
+		}
+		else
+		{
+			vector < unsigned int > Occ;
+			unsigned int Occ_number;
+			Occ_number = matching ( m, alphabet, z, &Occ );
+			/*print result*/
+			ofstream result ( output );
+			result << "The number of occurrances is " << Occ_number << endl;
+			result << "The positions of each occurrances:" << endl;
+			for ( unsigned int i = 0; i < Occ_number; i++ )
+				result << "Occur at position " << Occ[i] << endl;
+			result.close();
+		}
+	}
+
+
 	return 0;
 }

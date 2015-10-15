@@ -5,7 +5,9 @@ using namespace std;
 
 #define DNA		 "ACGT";
 
-struct TSwith
+#ifndef TSWITCH_H
+#define TSWITCH_H
+struct TSwitch
 {
 	string	weighted_str_filename;
 	string	solid_str_filename;
@@ -14,10 +16,10 @@ struct TSwith
 	string	alphabet;
 	int		mod;
 };
+#endif
 
-
-#ifndef STRINGCOLOUR_H
-#define STRINGCOLOUR_H
+#ifndef WSTR_H
+#define WSTR_H
 struct WStr 
 {
 	vector < int > str;
@@ -44,12 +46,16 @@ struct Factor
 };
 #endif
 
-unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z );
-void parray ( WStr x, int m, double z, unsigned int * P );
-unsigned int wptable ( double ** x, unsigned int n, unsigned int m, double z, unsigned int * WP );
+int decode_switches ( int argc, char * argv[], struct TSwitch * sw );
+void usage ( void );
+unsigned int preparation ( string x, double ** y, unsigned int n, double z, string alphabet, int mod );
+//unsigned int colour ( double ** x, unsigned int n, unsigned int m, double z );
+unsigned int matching ( unsigned int n, string alphabet, double z, vector < unsigned int > * Occ );
+void parray ( int m, double z, unsigned int * P );
+unsigned int wptable ( int m, double z, unsigned int * WP );
 double maximum ( double * x, unsigned int m );
 unsigned int getLetter ( double * x, unsigned int m );
-unsigned int compareBP ( double * x, double * y, unsigned int m );
-unsigned int branchBP ( double * x, double * y, unsigned int m, vector < unsigned int > * branch );
-unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor *u, Factor *v );
-unsigned int gextension ( WStr x, unsigned int n, int m, double z, Factor * u, Factor * v );
+//unsigned int compareBP ( double * x, double * y, unsigned int m );
+//unsigned int branchBP ( double * x, double * y, unsigned int m, vector < unsigned int > * branch );
+unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor *u, Factor *v, int *k );
+unsigned int gextension ( unsigned int n, int m, double z, Factor * u, Factor * v, int *k );

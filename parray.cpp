@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 #include "global.h"
 #include "defs.h"
@@ -9,6 +10,8 @@
 
 using namespace sdsl;
 using namespace std;
+
+extern WStr xy;
 
 void suffixArray ( int * s, int * SA, int n, int K );
 
@@ -30,19 +33,24 @@ unsigned int LCParray ( int  * text, unsigned int n, int * SA, int * ISA, int * 
 	return ( 1 );
 }
 
-void parray ( WStr x, int m, double z, unsigned int * P )
+void parray ( int m, double z, unsigned int * P )
 {
-	unsigned int n = x.str.size();
+	clock_t start, finish;
+	start = clock();
+	unsigned int n = xy.str.size();
+	vector < int > tmpxx;
+	tmpxx = xy.str;
+	tmpxx.insert ( tmpxx.end(), 3, 0 );
 
-	int * xx	= &x.str[0];
+	int * xx	= &tmpxx[0];
 	int * SA	= new int [n+3];
 	int * iSA	= new int [n];
 	int * LCP	= new int [n];
 
-	xx[n] = xx[n+1] = xx[n+2] = SA[n] = SA[n+1] = SA[n+2] = 0;
+	SA[n] = SA[n+1] = SA[n+2] = 0;
 	
 	/* computer SA, iSA, LCParray for xx */
-	suffixArray ( xx, SA, n, x.ul );
+	suffixArray ( xx, SA, n, xy.ul );
 
 	for ( unsigned int i = 0; i < n; i++ )
 		iSA[ SA[i] ] = i;
@@ -56,7 +64,7 @@ void parray ( WStr x, int m, double z, unsigned int * P )
 
 	rmq_succinct_sct<> rmq ( &v );
 
-	P[0] = x.lvp;
+	P[0] = xy.lvp;
 
 	for ( unsigned int i = 1; i < n; i++ )
 	{
@@ -75,9 +83,9 @@ void parray ( WStr x, int m, double z, unsigned int * P )
 				flag = 0;
 			else
 			{
-				if ( x.str[pos_u] > m || x.str[pos_v] > m )
+				if ( xy.str[pos_u] > m || xy.str[pos_v] > m )
 				{
-					span = max ( ( x.WP[pos_u] - pos_u ), ( x.WP[pos_v] - pos_v ) );
+					span = max ( ( xy.WP[pos_u] - pos_u ), ( xy.WP[pos_v] - pos_v ) );
 					P[i] += span;
 					pos_u += span;
 					pos_v += span;
@@ -103,5 +111,9 @@ void parray ( WStr x, int m, double z, unsigned int * P )
 	delete [] SA;
 	delete [] iSA;
 	delete [] LCP;
+
+	finish = clock();
+	double passtime = (double) ( finish - start ) / CLOCKS_PER_SEC;
+	cout << "P array time is " << passtime << endl;
 }
 

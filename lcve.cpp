@@ -2,44 +2,51 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <ctime>
 
 #include "defs.h"
-#include "global.h"
 
 using namespace std;
 
-int compare ( WStr x, unsigned int a, unsigned int b, int m, pair < double, double > * p )
+extern WStr xy;
+
+int compare ( unsigned int a, unsigned int b, int m, pair < double, double > * p )
 {
-	if ( x.str[a] > m && x.str[b] > m )
+	if ( xy.str[a] > m && xy.str[b] > m )
 	{
 		/*both positions are Black*/
 		p->first  = 0;
 		p->second = 0;
 		return 4;
 	}
-	else if ( ( x.str[a] < m + 1 ) && ( x.str[b] < m + 1 ) )
+	else if ( ( xy.str[a] < m + 1 ) && ( xy.str[b] < m + 1 ) )
 	{
 		/*both positions are White of Greg*/
-		if ( x.str[a] == x.str[b] )
+		if ( xy.str[a] == xy.str[b] )
 		{
-			p->first  = x.prob[a];
-			p->second = x.prob[b];
+			p->first  = xy.prob[a];
+			p->second = xy.prob[b];
+	
 			return 1;
 		}
 		else
+		{
 			return 0;
+		}
 	}
 	else
 	{
-		if ( x.str[a] > m )
+		
+		if ( xy.str[a] > m )
 		{
 			/*only position u is Black*/
-			int row = x.str[a] - m - 1;
-			int col = x.str[b] - 1;
-			if ( x.bpt[row][col] > 0 )
+			int row = xy.str[a] - m - 1;
+			int col = xy.str[b] - 1;
+			if ( xy.bpt[row][col] > 0 )
 			{
-				p->first  = x.bpt[row][col];
-				p->second = x.prob[b];
+				p->first  = xy.bpt[row][col];
+				p->second = xy.prob[b];
+			
 				return 2;
 			}
 			else
@@ -48,12 +55,13 @@ int compare ( WStr x, unsigned int a, unsigned int b, int m, pair < double, doub
 		else
 		{
 			/*only position v is Black*/
-			int row = x.str[b] - m - 1;
-			int col = x.str[a] - 1;
-			if ( x.bpt[row][col] > 0 )
+			int row = xy.str[b] - m - 1;
+			int col = xy.str[a] - 1;
+			if ( xy.bpt[row][col] > 0 )
 			{
-				p->first  = x.prob[a];
-				p->second = x.bpt[row][col];
+				p->first  = xy.prob[a];
+				p->second = xy.bpt[row][col];
+		
 				return 3;
 			}
 			else
@@ -62,16 +70,16 @@ int compare ( WStr x, unsigned int a, unsigned int b, int m, pair < double, doub
 	}
 }
 
-int branchBP ( WStr x, unsigned int a, unsigned int b, int m, vector < int > * branch, vector < pair < double, double > > * pro )
+int branchBP ( unsigned int a, unsigned int b, int m, vector < int > * branch, vector < pair < double, double > > * pro )
 {
 	int num_branch = 0;
 	for ( int i = 0; i < m; i++ )
 	{
-		if ( x.bpt[a][i] > 0 && x.bpt[b][i] > 0 )
+		if ( xy.bpt[a][i] > 0 && xy.bpt[b][i] > 0 )
 		{
 			pair < double, double > p;
-			p.first  = x.bpt[a][i];
-			p.second = x.bpt[b][i];
+			p.first  = xy.bpt[a][i];
+			p.second = xy.bpt[b][i];
 			branch->push_back ( i + 1 );
 			pro->push_back ( p );
 			num_branch ++;
@@ -80,8 +88,9 @@ int branchBP ( WStr x, unsigned int a, unsigned int b, int m, vector < int > * b
 	return num_branch;
 }
 
-unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor * u, Factor * v )
+unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor * u, Factor * v, int * k )
 {
+	*k += 1;
 	unsigned int letter;
 	unsigned int span;
 	unsigned int old_uend;
@@ -89,9 +98,10 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 	pair < double, double > pro;
 	if ( v->end == n )
 		return lcve;
-	while ( compare ( x, u->end, v->end, m, &pro ) )
+
+	while ( compare ( u->end, v->end, m, &pro ) )
 	{
-		int result = compare ( x, u->end, v->end, m, &pro );
+		int result = compare ( u->end, v->end, m, &pro );
 
 		if ( lcve >= P )
 			return lcve;
@@ -114,8 +124,8 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 			{
 				for ( int l = 0; l < m; l++ )
 				{
-					double pcheck_u = u->p * x.bpt[x.str[u->end] - m - 1][l];
-					double pcheck_v = v->p * x.bpt[x.str[v->end] - m - 1][l];
+					double pcheck_u = u->p * xy.bpt[xy.str[u->end] - m - 1][l];
+					double pcheck_v = v->p * xy.bpt[xy.str[v->end] - m - 1][l];
 					if ( pcheck_u > 1/z && pcheck_v > 1/z )
 					{
 						lcve ++;
@@ -128,13 +138,17 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 
 		if ( result == 4 )
 		{
-			int row_u = x.str[u->end] - m - 1;
-			int row_v = x.str[v->end] - m - 1;
+			int row_u = xy.str[u->end] - m - 1;
+			int row_v = xy.str[v->end] - m - 1;
 			int num_branch;
 			vector < int > branch;
 			vector < pair < double, double > > p_branch;
 			vector < unsigned int > lcve_branch;
-			num_branch = branchBP ( x, row_u, row_v, m, &branch, &p_branch );
+			
+			num_branch = branchBP ( row_u, row_v, m, &branch, &p_branch );
+			
+			if ( num_branch == 0 )
+				break;
 			
 			Factor u_branch[num_branch];
 			Factor v_branch[num_branch];
@@ -162,10 +176,10 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 					v_branch[i].bpset.push_back ( letter );
 					v_branch[i].l ++;
 
-					if ( ( x.BP[u->end] - u->end ) < ( x.BP[v->end] - v->end ) )
-						span = x.BP[u->end] - u->end;
+					if ( ( xy.BP[u->end] - u->end ) < ( xy.BP[v->end] - v->end ) )
+						span = xy.BP[u->end] - u->end;
 					else
-						span = x.BP[v->end] - v->end;
+						span = xy.BP[v->end] - v->end;
 
 					if ( span + lcve > P )
 						span = P - lcve;
@@ -175,8 +189,8 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 
 					if ( span > 1 )
 					{
-						u_branch[i].p = u->p * p_branch[i].first * x.FP[ u_branch[i].end - 1];
-						v_branch[i].p = v->p * p_branch[i].second * x.FP[ v_branch[i].end - 1];
+						u_branch[i].p = u->p * p_branch[i].first * xy.FP[ u_branch[i].end - 1];
+						v_branch[i].p = v->p * p_branch[i].second * xy.FP[ v_branch[i].end - 1];
 					}
 					else
 					{
@@ -185,7 +199,7 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 					}
 
 					lcve_branch.push_back ( lcve + span );
-					lcve_branch[i] = ( LCVE( x, n, m, z, lcve_branch[i], P, &u_branch[i], &v_branch[i] ) );
+					lcve_branch[i] = ( LCVE( n, m, z, lcve_branch[i], P, &u_branch[i], &v_branch[i], k ) );
 				}
 			}
 			/* find the longest extension branch */
@@ -234,10 +248,10 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 				{
 
 					/* jump to the next black position */
-					if ( ( x.BP[u->end] - u->end ) < ( x.BP[v->end] - v->end ) )
-						span = x.BP[u->end] - u->end;
+					if ( ( xy.BP[u->end] - u->end ) < ( xy.BP[v->end] - v->end ) )
+						span = xy.BP[u->end] - u->end;
 					else
-						span = x.BP[v->end] - v->end;
+						span = xy.BP[v->end] - v->end;
 
 					if ( span + lcve > P )
 						span = P - lcve;
@@ -249,8 +263,8 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 					/* update the probability */
 					if ( span > 1 )
 					{
-						u->p = u->p * pro.first * x.FP[u->end - 1] / x.FP[old_uend];
-						v->p = v->p * pro.second * x.FP[u->end - 1] / x.FP[old_vend];
+						u->p = u->p * pro.first * xy.FP[u->end - 1] / xy.FP[old_uend];
+						v->p = v->p * pro.second * xy.FP[u->end - 1] / xy.FP[old_vend];
 					}
 					else
 					{
@@ -264,14 +278,14 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 				{
 					/* add the new black position to factor u */
 					u->bpp.push_back ( u->end );
-					u->bpset.push_back ( x.str[v->end] );
+					u->bpset.push_back ( xy.str[v->end] );
 					u->l ++;
 
 					/* skip to the next black position */
-					if ( ( x.BP[u->end] - u->end ) < ( x.BP[v->end] - v->end ) )
-						span = x.BP[u->end] - u->end;
+					if ( ( xy.BP[u->end] - u->end ) < ( xy.BP[v->end] - v->end ) )
+						span = xy.BP[u->end] - u->end;
 					else
-						span = x.BP[v->end] - v->end;
+						span = xy.BP[v->end] - v->end;
 					if ( span + lcve > P )
 						span = P - lcve;
 
@@ -283,8 +297,8 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 					/* update the probability */
 					if ( span > 1 )
 					{
-						u->p = u->p * pro.first  * x.FP[u->end - 1];
-						v->p = v->p * pro.second * x.FP[v->end - 1] / x.FP[old_vend];
+						u->p = u->p * pro.first  * xy.FP[u->end - 1];
+						v->p = v->p * pro.second * xy.FP[v->end - 1] / xy.FP[old_vend];
 					}
 					else
 					{
@@ -298,14 +312,14 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 				{
 					/* add the new black position to factor v */
 					v->bpp.push_back ( v->end );
-					v->bpset.push_back ( x.str[u->end] );
+					v->bpset.push_back ( xy.str[u->end] );
 					v->l ++;
 
 					/* skip to the next black position */
-					if ( ( x.BP[u->end] - u->end ) < ( x.BP[v->end] - v->end ) )
-						span = x.BP[u->end] - u->end;
+					if ( ( xy.BP[u->end] - u->end ) < ( xy.BP[v->end] - v->end ) )
+						span = xy.BP[u->end] - u->end;
 					else
-						span = x.BP[v->end] - v->end;
+						span = xy.BP[v->end] - v->end;
 					if ( span + lcve > P )
 						span = P - lcve;
 
@@ -317,8 +331,8 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 					/* update the probability */
 					if ( span > 1 )
 					{
-						u->p = u->p * pro.first * x.FP[u->end - 1] / x.FP[old_uend];
-						v->p = v->p * pro.second * x.FP[v->end - 1];
+						u->p = u->p * pro.first * xy.FP[u->end - 1] / xy.FP[old_uend];
+						v->p = v->p * pro.second * xy.FP[v->end - 1];
 					}
 					else
 					{
@@ -336,8 +350,9 @@ unsigned int LCVE ( WStr x, unsigned int n, int m, double z, unsigned int lcve, 
 	return lcve;
 }
 
-unsigned int gextension ( WStr x, unsigned int n, unsigned int m, double z,Factor * u, Factor * v )
+unsigned int gextension ( unsigned int n, int m, double z,Factor * u, Factor * v, int *k )
 {
+	*k += 1;
 	unsigned ge = 0;
 	pair < double, double > pro;
 	if ( v->end >= n )
@@ -345,7 +360,7 @@ unsigned int gextension ( WStr x, unsigned int n, unsigned int m, double z,Facto
 	do
 	{
 		vector < unsigned int > branch;
-		int match = compare ( x, u->end, v->end, m, &pro );
+		int match = compare ( u->end, v->end, m, &pro );
 		if ( match == 0 )
 		{
 			break;
@@ -367,20 +382,23 @@ unsigned int gextension ( WStr x, unsigned int n, unsigned int m, double z,Facto
 		}
 		else if ( match == 4 )
 		{
-			int row_u = x.str[u->end] - m - 1;
-			int row_v = x.str[v->end] - m - 1;
+			int row_u = xy.str[u->end] - m - 1;
+			int row_v = xy.str[v->end] - m - 1;
+
 
 			vector < int > branch;
 			vector < pair < double, double > > p_branch;
 
-			int num_branch = branchBP ( x, row_u, row_v, m, &branch, &p_branch );
+			int num_branch = branchBP ( row_u, row_v, m, &branch, &p_branch );
+			if ( num_branch == 0 )
+				break;
 			unsigned int g_branch[num_branch];
 			unsigned int max_branch = 0;
 			unsigned int pick = 0;
 
 			Factor u_branch[num_branch];
 			Factor v_branch[num_branch];
-			for ( unsigned int i = 0; i < match; i++ )
+			for ( unsigned int i = 0; i < num_branch; i++ )
 			{
 				g_branch[i] = 0;
 				u_branch[i] = * u;
@@ -396,7 +414,7 @@ unsigned int gextension ( WStr x, unsigned int n, unsigned int m, double z,Facto
 					u_branch[i].end ++;
 					v_branch[i].end ++;
 					g_branch[i] ++;
-					g_branch[i] += gextension ( x, n, m, z, &u_branch[i], &v_branch[i] );
+					g_branch[i] += gextension ( n, m, z, &u_branch[i], &v_branch[i], k );
 				}
 				if ( max_branch < g_branch[i] )
 				{

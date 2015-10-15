@@ -9,22 +9,27 @@ using namespace std;
 int main ()
 {
 	srand ( time ( NULL ) );
-	char dat[5][20];
-	strcpy ( dat[0], "bp10k" );
-	strcpy ( dat[1], "bp20k" );
-	strcpy ( dat[2], "bp30k" );
-	strcpy ( dat[3], "bp40k" );
-	strcpy ( dat[4], "bp50k" );
-	for ( int aaaaa = 1; aaaaa < 6; aaaaa++ )
-	{
-		int n = aaaaa * 10000;
+	char dat[10][20];
+	strcpy ( dat[0], "10k1" );
+	strcpy ( dat[1], "10k2" );
+	strcpy ( dat[2], "10k3" );
+	strcpy ( dat[3], "10k4" );
+	strcpy ( dat[4], "10k5" );
+	strcpy ( dat[5], "10k6" );
+	strcpy ( dat[6], "10k7" );
+	strcpy ( dat[7], "10k8" );
+	strcpy ( dat[8], "10k9" );
+	strcpy ( dat[9], "10k0" );
+	for ( int aaaaa = 1; aaaaa < 11; aaaaa++ )
+	{	
+		int n = 10000;
 		cout << n<< endl;
 		double z = 256;
 		double ** c;
 		c = new double * [n];
 		for ( int k = 0; k < n; k++ )
 			c[k] = new double [4];
-		int b = 4000;
+		int b = n * 0.3;
 		int w = n - b;
 
 		int num_w = 0;							//counter for w&g position
