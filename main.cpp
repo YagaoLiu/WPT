@@ -168,8 +168,8 @@ int main (int argc, char **argv)
 			/*print*/
 			
 			ofstream result ( output );
-			result << "string length=" << n << "\t z=" << z << endl;
-			result << "Prefix Table for this Weighted String: " << endl;
+//			result << "string length=" << n << "\t z=" << z << endl;
+//			result << "Prefix Table for this Weighted String: " << endl;
 			int outrow = 0;
 			int outcol = 0;
 			do

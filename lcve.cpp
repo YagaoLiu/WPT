@@ -99,9 +99,12 @@ unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned
 	if ( v->end == n )
 		return lcve;
 
-	while ( compare ( u->end, v->end, m, &pro ) )
+	while ( v->end < n )
 	{
 		int result = compare ( u->end, v->end, m, &pro );
+		
+		if ( result == 0 )
+			return lcve;
 
 		if ( lcve >= P )
 			return lcve;
