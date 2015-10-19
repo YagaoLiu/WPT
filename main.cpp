@@ -205,7 +205,7 @@ int main (int argc, char **argv)
 	
 			finish = clock();
 			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
-			cout << "preparation time is " << passtime << endl;
+			cout << "Elapsed time is " << passtime << endl;
 			/*print result*/
 			ofstream result ( output );
 			result << "The number of occurrances is " << Occ_number << endl;

@@ -109,7 +109,6 @@ unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned
 		{
 			if ( result != 4 )
 			{
-				lcve ++;
 				double pcheck_u = u->p * pro.first;
 				double pcheck_v = v->p * pro.second;
 				if ( pcheck_u > 1/z && pcheck_v > 1/z )
@@ -361,6 +360,8 @@ unsigned int gextension ( unsigned int n, int m, double z,Factor * u, Factor * v
 	{
 		vector < unsigned int > branch;
 		int match = compare ( u->end, v->end, m, &pro );
+			if ( u->end == 3 && v->end == 8 )
+				cout << match << endl;
 		if ( match == 0 )
 		{
 			break;
@@ -369,6 +370,8 @@ unsigned int gextension ( unsigned int n, int m, double z,Factor * u, Factor * v
 		{
 			u->p *= pro.first;
 			v->p *= pro.second;
+			if ( u->end == 3 && v->end == 8 )
+				cout << "P check: u=" << u->p << "\tv=" << v->p << endl;
 			if ( u->p < 1/z || v->p < 1/z )
 			{
 				break;
