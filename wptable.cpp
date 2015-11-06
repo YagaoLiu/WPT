@@ -82,12 +82,10 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 	/* This function is used to compute the Weighted Prefix Table */
 	unsigned int n = xy.str.size();
 
-	clock_t begin, end;
-	double passtime;
 	/* compute P array */
 	unsigned int * Parray = new unsigned int [ n ];
 	parray ( m, z, Parray );
-
+	
 	/* WP[0] is the longest valid prefix */
 	WP[0] = xy.lvp; 
 
@@ -97,7 +95,6 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 
 	vector < BPmap > PrefixBPmaps;
 	vector < unsigned int > BPstring;
-	int timesk = 0;
 	if ( PrefixMap ( n, m, z, 1, 0, BPstring, &PrefixBPmaps ) )
 	{
 		for ( unsigned int i = 0; i < PrefixBPmaps.size(); i++ )
@@ -113,11 +110,6 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 	/* compute WP table */
 	unsigned int g = 0;
 	unsigned int f;
-	begin = clock();	
-	vector < clock_t > l_begin, l_end;
-	vector < clock_t > g_begin, g_end;
-	int ltimes = 0;
-	int gtimes = 0;
 	for ( unsigned int i = 1; i < n; i++ ) 
 	{
 		/* construct two factor u & v, to computer the lcve between stirng x and x[i....] */
@@ -132,9 +124,7 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 		v.l = 0;
 		int flag = 1;
 		unsigned int lcve_wp = 0;
-		l_begin.push_back ( clock() );
-		lcve_wp = LCVE ( n, m, z, lcve_wp, Parray[i], &u, &v, &ltimes );
-		l_end.push_back ( clock() );
+		lcve_wp = LCVE ( n, m, z, lcve_wp, Parray[i], &u, &v );
 		/* check the probability fail caused by grey position, and get the longest valid extension */
 		unsigned int lve_u = lcve_wp;
 		unsigned int lve_v = lcve_wp;
@@ -170,17 +160,6 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 	
 		WP[i] = lcve_wp;
 	}
-	end = clock();
-	passtime = ( double ) ( end - begin ) / CLOCKS_PER_SEC;
-	cout << "WP time is " << passtime << endl;
-	passtime = 0;
-	for ( unsigned int i = 0; i < l_begin.size() ; i++ )
-		passtime += ( double ) ( l_end[i] - l_begin[i] ) / CLOCKS_PER_SEC;
-	cout << "IF case time is " << passtime << "\tIF case run times:" << ltimes << endl;
-	passtime = 0;
-	for ( unsigned int i = 0; i < g_begin.size(); i++ )
-		passtime += ( double ) ( g_end[i] - g_begin[i] ) / CLOCKS_PER_SEC;
-	cout << "ELSE case time is " << passtime << "\tELSE case run times:" << gtimes << endl;
 
 	delete [] Parray;
 

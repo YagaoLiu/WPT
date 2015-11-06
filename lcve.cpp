@@ -88,9 +88,8 @@ int branchBP ( unsigned int a, unsigned int b, int m, vector < int > * branch, v
 	return num_branch;
 }
 
-unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor * u, Factor * v, int * k )
+unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor * u, Factor * v )
 {
-	*k += 1;
 	unsigned int letter;
 	unsigned int span;
 	unsigned int old_uend;
@@ -201,7 +200,7 @@ unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned
 					}
 
 					lcve_branch.push_back ( lcve + span );
-					lcve_branch[i] = ( LCVE( n, m, z, lcve_branch[i], P, &u_branch[i], &v_branch[i], k ) );
+					lcve_branch[i] = ( LCVE( n, m, z, lcve_branch[i], P, &u_branch[i], &v_branch[i] ) );
 				}
 			}
 			/* find the longest extension branch */
@@ -350,93 +349,5 @@ unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned
 			break;
 	}
 	return lcve;
-}
-
-unsigned int gextension ( unsigned int n, int m, double z,Factor * u, Factor * v, int *k )
-{
-	*k += 1;
-	unsigned ge = 0;
-	pair < double, double > pro;
-	if ( v->end >= n )
-		return ge;
-	do
-	{
-		vector < unsigned int > branch;
-		int match = compare ( u->end, v->end, m, &pro );
-			if ( u->end == 3 && v->end == 8 )
-				cout << match << endl;
-		if ( match == 0 )
-		{
-			break;
-		}
-		else if ( match != 4 )
-		{
-			u->p *= pro.first;
-			v->p *= pro.second;
-			if ( u->end == 3 && v->end == 8 )
-				cout << "P check: u=" << u->p << "\tv=" << v->p << endl;
-			if ( u->p < 1/z || v->p < 1/z )
-			{
-				break;
-			}
-			else
-			{
-				u->end ++;
-				v->end ++;
-				ge ++;
-			}
-		}
-		else if ( match == 4 )
-		{
-			int row_u = xy.str[u->end] - m - 1;
-			int row_v = xy.str[v->end] - m - 1;
-
-
-			vector < int > branch;
-			vector < pair < double, double > > p_branch;
-
-			int num_branch = branchBP ( row_u, row_v, m, &branch, &p_branch );
-			if ( num_branch == 0 )
-				break;
-			unsigned int g_branch[num_branch];
-			unsigned int max_branch = 0;
-			unsigned int pick = 0;
-
-			Factor u_branch[num_branch];
-			Factor v_branch[num_branch];
-			for ( unsigned int i = 0; i < num_branch; i++ )
-			{
-				g_branch[i] = 0;
-				u_branch[i] = * u;
-				v_branch[i] = * v;
-				u_branch[i].p *= p_branch[i].first;
-				v_branch[i].p *= p_branch[i].second;
-				if ( u_branch[i].p < 1/z || v_branch[i].p < 1/z )
-				{
-					g_branch[i] = 0;
-				}
-				else
-				{
-					u_branch[i].end ++;
-					v_branch[i].end ++;
-					g_branch[i] ++;
-					g_branch[i] += gextension ( n, m, z, &u_branch[i], &v_branch[i], k );
-				}
-				if ( max_branch < g_branch[i] )
-				{
-					max_branch = g_branch[i];
-					pick = i;
-
-				}
-			}
-			ge += max_branch;
-			u->p = u_branch[pick].p;
-			v->p = v_branch[pick].p;
-			u->end = u_branch[pick].end;
-			v->end = v_branch[pick].end;
-			break;
-		}
-	}while ( v->end < n );
-	return ge;
 }
 

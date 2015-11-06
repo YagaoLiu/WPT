@@ -199,9 +199,9 @@ int main (int argc, char **argv)
 			vector < unsigned int > Occ;
 			unsigned int Occ_number;
 			if ( mod == 1 )
-				Occ_number = matching ( m, alphabet, z, &Occ );
-			if ( mod == 2 )
 				Occ_number = matching ( n, alphabet, z, &Occ );
+			if ( mod == 2 )
+				Occ_number = matching ( m, alphabet, z, &Occ );
 	
 			finish = clock();
 			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;

@@ -57,5 +57,5 @@ double maximum ( double * x, unsigned int m );
 unsigned int getLetter ( double * x, unsigned int m );
 //unsigned int compareBP ( double * x, double * y, unsigned int m );
 //unsigned int branchBP ( double * x, double * y, unsigned int m, vector < unsigned int > * branch );
-unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor *u, Factor *v, int *k );
+unsigned int LCVE ( unsigned int n, int m, double z, unsigned int lcve, unsigned int P, Factor *u, Factor *v );
 unsigned int gextension ( unsigned int n, int m, double z, Factor * u, Factor * v, int *k );

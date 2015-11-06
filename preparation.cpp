@@ -57,7 +57,10 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 	{
 		pp *= maximum ( y[i], sigma );
 	}
-	xy.lvp --;
+	if ( xy.lvp != n )
+	{
+		xy.lvp --;
+	}
 
 	/* combine two string, according to the mod */
 	switch ( mod )
@@ -65,13 +68,13 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 		case 0:
 			/* the case we only need WP table */
 			break;
-		case 1:
+		case 2:
 			/* the case solid string x is pattern and weighted string y is text */
 			xy.str.insert ( xy.str.begin(), xx.begin(), xx.end() );
 			xy.prob.insert ( xy.prob.begin(), pxx.begin(), pxx.end () );
 			xy.lvp += m;
 			break;
-		case 2:
+		case 1:
 			/* the case solid string x is text and weighted string y is pattern */
 			xy.str.insert ( xy.str.end(), xx.begin(), xx.end() );
 			xy.prob.insert ( xy.prob.end(), pxx.begin(), pxx.end() );
