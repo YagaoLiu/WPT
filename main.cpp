@@ -106,24 +106,25 @@ int main (int argc, char **argv)
 	}
 	else
 	{
-		vector < double > temparray;
 		double temp;
+		long int num = 0;
 		unsigned int column = alphabet.size();
 		while ( !weighted.eof() )
 		{
 			weighted >> temp;
-			temparray.push_back ( temp );
+			num ++;
 		}
-		unsigned int row = temparray.size() / column;
+		unsigned int row = num / column;
 		y = new double * [row];
 		for ( unsigned int i = 0; i < row; i++ )
 			y[i] = new double [column];
-
+		weighted.clear();
+		weighted.seekg( 0, ios::beg );
 		for ( unsigned int i = 0; i < row; i++ )
 		{
 			for ( unsigned int j = 0; j < column; j++ )
 			{
-				y[i][j] = temparray[ j + i * column ];
+				weighted >> y[i][j];
 			}
 		}
 		n = row;
@@ -159,6 +160,9 @@ int main (int argc, char **argv)
 		}
 		else
 		{
+			for ( unsigned int i = 0; i < n; i++ )
+				delete[] y[i];
+			delete[] y;
 			unsigned int * WP = new unsigned int [n];
 			wptable ( sigma, z, WP );
 			
@@ -166,10 +170,10 @@ int main (int argc, char **argv)
 			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
 			cout << "Elapsed time is " << passtime << endl;
 			/*print*/
-			
+#if 0			
 			ofstream result ( output );
-//			result << "string length=" << n << "\t z=" << z << endl;
-//			result << "Prefix Table for this Weighted String: " << endl;
+			result << "string length=" << n << "\t z=" << z << endl;
+			result << "Prefix Table for this Weighted String: " << endl;
 			int outrow = 0;
 			int outcol = 0;
 			do
@@ -185,7 +189,7 @@ int main (int argc, char **argv)
 			}while ( outrow * 20 + outcol < n );
 			result << endl;
 			result.close();
-		
+#endif	
 		}
 	}
 	else
@@ -196,6 +200,10 @@ int main (int argc, char **argv)
 		}
 		else
 		{
+			for ( unsigned int i = 0; i < n; i++ )
+				delete[] y[i];
+			delete[] y;
+	
 			vector < unsigned int > Occ;
 			unsigned int Occ_number;
 			if ( mod == 1 )

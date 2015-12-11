@@ -19,7 +19,7 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 {
 	int opt;
 	char *ep;
-	int val;
+	double val;
 	int args;
 
 	/* initialisation */
@@ -58,7 +58,7 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 				args ++;
 				break;
 			case 'z':
-				val = strtol ( optarg, &ep, 10 );
+				val = strtod ( optarg, &ep );
 				if ( optarg == ep )
 				{
 					return 0;

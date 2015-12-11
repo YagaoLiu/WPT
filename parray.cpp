@@ -48,14 +48,26 @@ void parray ( int m, double z, unsigned int * P )
 	int * LCP	= new int [n];
 
 	SA[n] = SA[n+1] = SA[n+2] = 0;
+	clock_t SAstart, SAfin;
 	
 	/* computer SA, iSA, LCParray for xx */
+	SAstart = clock();
 	suffixArray ( xx, SA, n, xy.ul );
+	SAfin = clock();
+
+	double SAtime = ( double ) ( SAfin - SAstart ) / CLOCKS_PER_SEC;
+	cout << "SAtime: " << SAtime << endl;
 
 	for ( unsigned int i = 0; i < n; i++ )
 		iSA[ SA[i] ] = i;
 
+	clock_t LCPs, LCPe;
+	LCPs = clock();
 	LCParray ( xx, n, SA, iSA, LCP );
+	LCPe = clock();
+
+	double LCPtime = ( double ) ( LCPe - LCPs ) / CLOCKS_PER_SEC;
+	cout << "LCPtime: " << LCPtime << endl;
 	
 	/* construct data structure RMQ */
 	vector < int > v( n, 0 );
@@ -66,6 +78,8 @@ void parray ( int m, double z, unsigned int * P )
 
 	P[0] = xy.lvp;
 
+	clock_t Ps, Pe;
+	Ps = clock();
 	for ( unsigned int i = 1; i < n; i++ )
 	{
 		unsigned int pos_u = 0;
@@ -107,6 +121,10 @@ void parray ( int m, double z, unsigned int * P )
 			}
 		}while ( flag );
 	}
+	Pe = clock();
+
+	double Ptime = ( double ) ( Pe - Ps ) / CLOCKS_PER_SEC;
+	cout << Ptime << endl;
 
 	delete [] SA;
 	delete [] iSA;
@@ -114,6 +132,5 @@ void parray ( int m, double z, unsigned int * P )
 
 	finish = clock();
 	double passtime = (double) ( finish - start ) / CLOCKS_PER_SEC;
-	cout << "P array time is " << passtime << endl;
 }
 

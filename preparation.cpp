@@ -12,39 +12,42 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 {
 	int sigma = alphabet.size();			
 	unsigned int m = x.size();
-	unsigned int N = m + n;					
+	unsigned int N = m + n;				
 
-	vector < int > xx;
-	vector < double > pxx;
+	int * xx	 = new int [m];
+	double * pxx = new double [m];
+
 	/* if not mod 0( only WPtable ), construct an integer string & a probability array for x */
 	if ( m != 0 )
 	{
 		for ( unsigned int i = 0; i < m; i++ )
 		{
-			xx.push_back ( alphabet.find ( x[i] ) + 1 );
-			pxx.push_back ( 1 );
+			xx[i] =  alphabet.find ( x[i] ) + 1;
+			pxx[i] = 1;
 		}
 
 	}
 
 	/* seperate y into an integer string, a prob~ array for WGPs and a prob~ table for BPs */
 	xy.ul = sigma + 1;
+	int * yy	 = new int [n];
+	double * pyy = new double [n];
 
 	for ( unsigned int i = 0; i < n; i++ )
 	{
 		double max = maximum ( y[i], sigma );
 		if ( max > 1 - 1/z )
 		{
-			xy.str.push_back ( getLetter ( y[i], sigma ) + 1 );
-			xy.prob.push_back ( max );
+			yy[i]  = getLetter ( y[i], sigma ) + 1;
+			pyy[i] = max;
 		}
 		else
 		{
 			vector < double > yi;
 			yi.assign ( y[i], y[i] + sigma );
 
-			xy.str.push_back ( xy.ul );
-			xy.prob.push_back ( 0 );
+			yy[i]  = xy.ul;
+			pyy[i] = 0;
 			xy.bpt.push_back ( yi );
 			xy.ul ++;
 		}
@@ -67,26 +70,43 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 	{
 		case 0:
 			/* the case we only need WP table */
-			break;
-		case 2:
-			/* the case solid string x is pattern and weighted string y is text */
-			xy.str.insert ( xy.str.begin(), xx.begin(), xx.end() );
-			xy.prob.insert ( xy.prob.begin(), pxx.begin(), pxx.end () );
-			xy.lvp += m;
+			cout << "text length:" << n << endl;
+			xy.str.assign ( yy, yy + n );
+			xy.prob.assign ( pyy, pyy + n );
 			break;
 		case 1:
 			/* the case solid string x is text and weighted string y is pattern */
-			xy.str.insert ( xy.str.end(), xx.begin(), xx.end() );
-			xy.prob.insert ( xy.prob.end(), pxx.begin(), pxx.end() );
+			cout << "pattern length:" << m << "\ttext length:" << n << endl;
+			xy.str.assign ( yy, yy + n );
+			xy.str.insert ( xy.str.end(), xx, xx + m );
+			xy.prob.assign ( pyy, pyy + n );
+			xy.prob.insert ( xy.prob.end(), pxx, pxx + m );
 			if ( xy.lvp == n )
 				xy.lvp += m;
 			break;
+		case 2:
+			/* the case solid string x is pattern and weighted string y is text */
+			cout << "pattern length:" << m << "\ttext length:" << n << endl;
+			xy.str.assign ( yy, yy + n );
+			xy.str.insert ( xy.str.begin(), xx, xx + m );
+			xy.prob.assign ( pyy, pyy + n );
+			xy.prob.insert ( xy.prob.begin(), pxx, pxx + m );
+			xy.lvp += m;
+			break;
 	}
+
+	delete[] xx;
+	delete[] pxx;
+	delete[] yy;
+	delete[] pyy;
 
 	N = xy.str.size();
 
 	vector < unsigned int > bpos;
 	vector < unsigned int > wpos;
+
+	bpos.reserve ( N );
+	wpos.reserve ( N );
 
 	for ( unsigned int i = 0; i < N; i++ )
 	{
@@ -107,6 +127,7 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 	}
 
 	/* Computing BP array */
+	xy.BP.reserve ( n );
 	unsigned int k = 0;
 	if ( bpos.size() > 0 )
 	{
@@ -129,6 +150,7 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 	}
 
 	/* Computing WP array */
+	xy.WP.reserve ( n );
 	k = 0;
 	for ( unsigned int i = 0; i < N; i++ )
 	{
@@ -148,6 +170,7 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 	}
 
 	/* Computing FP array */
+	xy.FP.reserve ( n );
 	double fp = 1;
 	for ( unsigned int i = 0; i < N; i++ )
 	{
