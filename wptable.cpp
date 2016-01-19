@@ -102,10 +102,6 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 			STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
 		}
 	}
-	else
-	{
-		cout << "No grey position causes invalid breakdown." << endl;
-	}
 
 	/* compute WP table */
 	unsigned int g = 0;
@@ -135,10 +131,6 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 			{
 				lve_u = lcve_wp - ( u.end - it_u->second );
 				u.end = it_u->second;
-			}
-			else
-			{
-		//		cout << "Error : BPset of u not found in Table!" << endl;
 			}
 		}
 		if ( v.p < 1/z )

@@ -12,8 +12,8 @@ using namespace std;
 int main (int argc, char **argv)
 {
 	TSwitch sw;
-	string alphabet;
-	unsigned int sigma;
+	string alphabet = DNA;
+	unsigned int sigma = alphabet.size();
 	int mod;
 	string wsfile;
 	string ssfile;
@@ -24,6 +24,7 @@ int main (int argc, char **argv)
 	double ** y;			//weighted string
 	unsigned int n;			//length of y
 	WStr xystr;
+	ofstream result;
 
 	clock_t start;
 	clock_t finish;
@@ -34,25 +35,13 @@ int main (int argc, char **argv)
 	k = decode_switches ( argc, argv, &sw );
 
 	/* Check the arguments */
-	if ( k < 7 )
+	if ( k < 5 )
 	{
 		usage();
 		return 1;
 	}
 	else
 	{
-		if ( sw.alphabet.compare ( "DNA" ) == 0 )
-		{
-			alphabet = DNA;
-			sigma = alphabet.size();
-		}
-		else
-		{
-			cout << "Error: Only support DNA alphabet up to now!" << endl;
-			return 0;
-		}
-
-		mod = sw.mod;
 		if ( sw.mod > 2 )
 		{	
 			cout << "Error: The model (-m) should be only '0', '1' or '2'!" << endl;
@@ -69,7 +58,9 @@ int main (int argc, char **argv)
 			return 0;
 		}
 		else
+		{
 			wsfile = sw.weighted_str_filename;
+		}
 
 		if ( sw.solid_str_filename.size() == 0 && mod != 0 )
 		{
@@ -169,25 +160,14 @@ int main (int argc, char **argv)
 			finish = clock();
 			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
 			cout << "Elapsed time is " << passtime << endl;
+#if 1			
 			/*print*/
-#if 0			
-			ofstream result ( output );
-			result << "string length=" << n << "\t z=" << z << endl;
-			result << "Prefix Table for this Weighted String: " << endl;
-			int outrow = 0;
-			int outcol = 0;
-			do
+			result.open ( output );
+			result << "Weighted Prefix Table:\n";
+			for ( unsigned int i = 0; i < n; i++ )
 			{
-				result << WP[outrow * 20 + outcol] << ' ';
-				outcol++;
-				if ( outcol == 20 )
-				{
-					result << endl;
-					outrow ++;
-					outcol = 0;
-				}
-			}while ( outrow * 20 + outcol < n );
-			result << endl;
+				result << WP[i] << '\n';
+			}
 			result.close();
 #endif	
 		}
@@ -210,17 +190,36 @@ int main (int argc, char **argv)
 				Occ_number = matching ( n, alphabet, z, &Occ );
 			if ( mod == 2 )
 				Occ_number = matching ( m, alphabet, z, &Occ );
+
+			cout << "Number of Occurrances:" << Occ_number << endl;
 	
 			finish = clock();
 			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
 			cout << "Elapsed time is " << passtime << endl;
+#if 1
 			/*print result*/
-			ofstream result ( output );
-			result << "The number of occurrances is " << Occ_number << endl;
-			result << "The positions of each occurrances:" << endl;
-			for ( unsigned int i = 0; i < Occ_number; i++ )
-				result << "Occur at position " << Occ[i] << endl;
+			result.open ( output );
+			result << "The positions of occurrances:\n";
+			if ( Occ_number == 0 )
+			{
+				cout <<  ( Occ_number == 0 ) << endl;
+				result << "No occurrance.\n";
+			}
+			else
+			{
+				for ( unsigned int i = 0; i < Occ_number; i++ )
+					result << Occ[i] << '\n';
+			}
 			result.close();
+#endif
+			ofstream result;
+			result.open ( "wpt.dat", ios::app );
+			if ( mod == 1 )
+				result << n << '\t' << passtime << '\n';
+			if ( mod == 2 )
+				result << m << '\t' << passtime << '\n';
+			result.close();
+
 		}
 	}
 

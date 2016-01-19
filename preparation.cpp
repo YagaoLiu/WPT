@@ -76,7 +76,7 @@ unsigned int preparation ( string x, double ** y, unsigned int n, double z, stri
 			break;
 		case 1:
 			/* the case solid string x is text and weighted string y is pattern */
-			cout << "pattern length:" << m << "\ttext length:" << n << endl;
+			cout << "pattern length:" << n << "\ttext length:" << m << endl;
 			xy.str.assign ( yy, yy + n );
 			xy.str.insert ( xy.str.end(), xx, xx + m );
 			xy.prob.assign ( pyy, pyy + n );

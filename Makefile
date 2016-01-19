@@ -6,7 +6,7 @@ CFLAGS= -g -fopenmp -msse4.2 -fomit-frame-pointer -funroll-loops
  
 LFLAGS= -std=c++11 -O3 -DNDEBUG -I ./libsdsl/include/ -L ./libsdsl/lib/ -lsdsl -ldivsufsort -ldivsufsort64 -Wl,-rpath=$(PWD)/libsdsl/lib
 
-EXE=    example
+EXE=    wpt 
  
 SRC=    main.cpp input.cpp matching.cpp preparation.cpp parray.cpp wptable.cpp drittel.cpp lcve.cpp operate.cpp
  
@@ -33,3 +33,9 @@ $(OBJ): $(MF) $(HD)
  
 clean: 
 	rm -f $(OBJ) $(EXE) *~
+	
+clean-all:
+	rm -f $(OBJ) $(EXE) *~
+	rm -r libsdsl
+	rm -r sdsl-lite
+

@@ -1,0 +1,27 @@
+
+Pre-installation Instructions
+=============================
+
+   This installation requires the pre-installation of the cmake tool,
+a C++ compiler, and the libraries: libdivsufsort and sdsl.
+
+For Linux, you can install libraries libdivsufsort and sdsl via
+
+ $ ./pre-install.sh 
+
+Basic Instructions
+==================
+
+   The shell command `make -f Makefile' should compile this program. 
+   
+After compilation the binary `wpt' will be created in the working 
+directory, e.g. you may call it from this directory via
+
+For Weighted Prefix Table
+ $  ./wpt -m 0 -z 16 -w ./data/text0.txt -o output.txt
+
+For Weighted Pattern Matching
+ $  ./wpt -m 1 -z 16 -s ./data/text1.txt -w ./data/pattern1 -o output.txt
+
+For Weighted Text Matching
+ $  ./wpt -m 2 -z 16 -w ./data/text2.txt -s ./data/pattern2 -o output.txt

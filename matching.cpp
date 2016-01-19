@@ -13,7 +13,6 @@ unsigned int matching ( unsigned int n, string alphabet, double z, vector < unsi
 
 	unsigned int N = xy.str.size();
 	int sigma = alphabet.size();
-	cout << "n & N:" << n << ' ' << N << endl;
 
 	unsigned int * WP = new unsigned int [N];
 
@@ -27,8 +26,6 @@ unsigned int matching ( unsigned int n, string alphabet, double z, vector < unsi
 			Occ_number ++;
 		}
 	}
-
-	cout << "OCC_NUMBER:" << Occ_number << endl;
 
 	return Occ_number;
 }
