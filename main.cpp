@@ -190,23 +190,21 @@ int main (int argc, char **argv)
 				Occ_number = matching ( n, alphabet, z, &Occ );
 			if ( mod == 2 )
 				Occ_number = matching ( m, alphabet, z, &Occ );
-
-			cout << "Number of Occurrances:" << Occ_number << endl;
-	
 			finish = clock();
 			double passtime = (	double ) ( finish - start ) / CLOCKS_PER_SEC;
+			
+			cout << "Number of Occurrances:" << Occ_number << endl;
 			cout << "Elapsed time is " << passtime << endl;
-#if 1
+#if 1 
 			/*print result*/
 			result.open ( output );
-			result << "The positions of occurrances:\n";
 			if ( Occ_number == 0 )
 			{
-				cout <<  ( Occ_number == 0 ) << endl;
 				result << "No occurrance.\n";
 			}
 			else
 			{
+				result << "The positions of occurrances:\n";
 				for ( unsigned int i = 0; i < Occ_number; i++ )
 					result << Occ[i] << '\n';
 			}
