@@ -212,6 +212,8 @@ int main (int argc, char **argv)
 			}
 			result.close();
 #endif
+
+#if 0
 			ofstream result;
 			result.open ( "wpt.dat", ios::app );
 			if ( mod == 1 )
@@ -219,7 +221,7 @@ int main (int argc, char **argv)
 			if ( mod == 2 )
 				result << m << '\t' << passtime << '\n';
 			result.close();
-
+#endif
 		}
 	}
 
