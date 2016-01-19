@@ -199,14 +199,13 @@ int main (int argc, char **argv)
 #if 1
 			/*print result*/
 			result.open ( output );
-			result << "The positions of occurrances:\n";
 			if ( Occ_number == 0 )
 			{
-				cout <<  ( Occ_number == 0 ) << endl;
 				result << "No occurrance.\n";
 			}
 			else
 			{
+				result << "The positions of occurrances:\n";
 				for ( unsigned int i = 0; i < Occ_number; i++ )
 					result << Occ[i] << '\n';
 			}
