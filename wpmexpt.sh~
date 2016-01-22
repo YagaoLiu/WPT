@@ -1,0 +1,50 @@
+./wpt -z 256 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern8
+./wpt -z 256 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern16
+./wpt -z 256 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern32
+./wpt -z 256 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern64
+./wpt -z 256 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern128
+
+./wpt -z 16384 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern8
+./wpt -z 16384 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern16
+./wpt -z 16384 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern32
+./wpt -z 16384 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern64
+./wpt -z 16384 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern128
+
+./wpt -z 1048576 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern8
+./wpt -z 1048576 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern16
+./wpt -z 1048576 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern32
+./wpt -z 1048576 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern64
+./wpt -z 1048576 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern128
+
+./wpt -z 67108864 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern8
+./wpt -z 67108864 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern16
+./wpt -z 67108864 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern32
+./wpt -z 67108864 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern64
+./wpt -z 67108864 -m 1 -s ../data/solidtext32M -w ../data/spattern/spattern128
+
+./wpt -z 256 -m 2 -w ../data/wtext32Mbp2.5 -s ../data/spattern/spattern8
+./wpt -z 256 -m 2 -w ../data/wtext32Mbp2.5 -s ../data/spattern/spattern16
+./wpt -z 256 -m 2 -w ../data/wtext32Mbp2.5 -s ../data/spattern/spattern32
+./wpt -z 256 -m 2 -w ../data/wtext32Mbp2.5 -s ../data/spattern/spattern64
+./wpt -z 256 -m 2 -w ../data/wtext32Mbp2.5 -s ../data/spattern/spattern128
+
+./wpt -z 16384 -m 2 -w ../data/wtext32Mbp5 -s ../data/spattern/spattern8
+./wpt -z 16384 -m 2 -w ../data/wtext32Mbp5 -s ../data/spattern/spattern16
+./wpt -z 16384 -m 2 -w ../data/wtext32Mbp5 -s ../data/spattern/spattern32
+./wpt -z 16384 -m 2 -w ../data/wtext32Mbp5 -s ../data/spattern/spattern64
+./wpt -z 16384 -m 2 -w ../data/wtext32Mbp5 -s ../data/spattern/spattern128
+
+./wpt -z 1048576 -m 2 -w ../data/wtext32Mbp7.5 -s ../data/spattern/spattern8
+./wpt -z 1048576 -m 2 -w ../data/wtext32Mbp7.5 -s ../data/spattern/spattern16
+./wpt -z 1048576 -m 2 -w ../data/wtext32Mbp7.5 -s ../data/spattern/spattern32
+./wpt -z 1048576 -m 2 -w ../data/wtext32Mbp7.5 -s ../data/spattern/spattern64
+./wpt -z 1048576 -m 2 -w ../data/wtext32Mbp7.5 -s ../data/spattern/spattern128
+
+./wpt -z 67108864 -m 2 -w ../data/wtext32Mbp10 -s ../data/spattern/spattern8
+./wpt -z 67108864 -m 2 -w ../data/wtext32Mbp10 -s ../data/spattern/spattern16
+./wpt -z 67108864 -m 2 -w ../data/wtext32Mbp10 -s ../data/spattern/spattern32
+./wpt -z 67108864 -m 2 -w ../data/wtext32Mbp10 -s ../data/spattern/spattern64
+./wpt -z 67108864 -m 2 -w ../data/wtext32Mbp10 -s ../data/spattern/spattern128
+
+
+

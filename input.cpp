@@ -71,7 +71,7 @@ int decode_switches ( int argc, char * argv[], struct TSwitch * sw )
 		}
 	}
 
-	if ( args < 3 )
+	if ( args < 4 )
 	{
 		usage();
 		exit ( 1 );
