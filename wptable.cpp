@@ -16,7 +16,7 @@ struct BPmap
 };
 
 extern WStr xy;
-
+#if 0
 unsigned int PrefixMap ( unsigned int n, int m, double z, double p, unsigned int start, vector < unsigned int > BPstring, vector < BPmap > * PrefixBPmaps )
 {
 	BPmap root;
@@ -76,7 +76,7 @@ unsigned int PrefixMap ( unsigned int n, int m, double z, double p, unsigned int
 	else
 		return 1;
 }
-
+#endif
 unsigned int wptable ( int m, double z , unsigned int * WP )
 {
 	/* This function is used to compute the Weighted Prefix Table */
@@ -88,7 +88,7 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 	
 	/* WP[0] is the longest valid prefix */
 	WP[0] = xy.lvp; 
-
+#if 0
 	/* make maps for the black position set and the stop position */
 	map < vector < unsigned int >, unsigned int > STable;					
 	map < vector < unsigned int >, unsigned int > :: iterator it_u = STable.begin();
@@ -102,7 +102,7 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 			STable.insert ( pair < vector < unsigned int >, unsigned int > ( PrefixBPmaps[i].BPset, PrefixBPmaps[i].endposition ) );
 		}
 	}
-
+#endif
 	/* compute WP table */
 	unsigned int g = 0;
 	unsigned int f;
@@ -124,6 +124,7 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 		/* check the probability fail caused by grey position, and get the longest valid extension */
 		unsigned int lve_u = lcve_wp;
 		unsigned int lve_v = lcve_wp;
+#if 0
 		if ( u.p < 1/z )
 		{
 			it_u = STable.find ( u.bpset );
@@ -147,9 +148,10 @@ unsigned int wptable ( int m, double z , unsigned int * WP )
 				}
 			}
 		}
+
 		if ( lve_u != lcve_wp || lve_v != lcve_wp )
 			lcve_wp = min ( lve_u, lve_v );
-	
+#endif	
 		WP[i] = lcve_wp;
 	}
 
